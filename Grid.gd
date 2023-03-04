@@ -1,12 +1,17 @@
 class_name Grid extends Node2D
 
 var pixel_size = 16
-var COLOR_ON : Color = Color(255, 0, 0)
+var COLOR_ON : Color = Color(255, 255, 255)
 var COLOR_OFF : Color = Color(0, 0, 0)
+var MARGIN := 2
 var m : Array = [[]]
 
 func _ready():
 	pass
+
+func _draw_cell(p:Vector2, c:Color = COLOR_ON):
+	draw_rect(Rect2(p.x*pixel_size + MARGIN, p.y*pixel_size + MARGIN,
+				 pixel_size - MARGIN, pixel_size - MARGIN), c)
 
 func _draw():
 	var W = m.size()
@@ -15,8 +20,7 @@ func _draw():
 	for x in range(W):
 		for y in range(H):
 			if m[x][y]:
-				draw_rect(Rect2(x*pixel_size, y*pixel_size,
-				 pixel_size, pixel_size), COLOR_ON)
+				_draw_cell(Vector2(x, y))
 
 func world_to_map(p:Vector2):
 	return Vector2(floor(p.x / pixel_size), floor(p.y / pixel_size))
