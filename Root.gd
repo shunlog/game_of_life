@@ -41,7 +41,6 @@ func _process(delta):
 			aut.step()
 
 func _on_HSlider_value_changed(value):
-	print(value)
 	_speed = value
 
 func _pause_toggle():

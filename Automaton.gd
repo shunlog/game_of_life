@@ -6,12 +6,12 @@ signal matrix_updated()
 
 # m is a 2d array of booleans, storing the state for each cell
 # nc is a 2d array of int, storing the neighbors count for each cell
-# m2 and nc2 are used when going to next state, so that i declare them once
+# nc2 is used when going to next state, so that i declare it once
+# we only need to keep track of previous neighbor count, previous state doesn't matter
 
-# the cells are drawn using a TileMap
+# the cells are drawn on a Grid
 
 var m = []
-var m_prev = []
 var nc = []
 var nc2 = []
 var grid : Grid
@@ -29,10 +29,8 @@ func _ready():
 			m[x].append(false)
 			nc[x].append(0)
 	nc2 = nc.duplicate(true)
-	m_prev = m.duplicate(true)
 
 func step():
-	m_prev = m.duplicate(true)	
 	nc2 = nc.duplicate(true)
 	for x in range(GRID_W):
 		for y in range(GRID_H):
