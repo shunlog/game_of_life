@@ -2,7 +2,6 @@ class_name Automaton extends Node
 
 var GRID_W = 100
 var GRID_H = 100
-signal matrix_updated()
 
 # m is a 2d array of booleans, storing the state for each cell
 # nc is a 2d array of int, storing the neighbors count for each cell
@@ -52,8 +51,8 @@ func set_cell(p: Vector2, val: bool):
 	if _outside(p) or val == m[p.x][p.y]:
 		return
 	for dp in [[-1, -1], [-1, 0], [-1, 1],
-			 [0, -1], [0, 1],
-			 [1, -1], [1, 0], [1, 1]]:
+			   [0, -1], [0, 1],
+			   [1, -1], [1, 0], [1, 1]]:
 		var dx = dp[0]
 		var dy = dp[1]
 		var nx = p.x + dx
