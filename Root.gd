@@ -46,6 +46,7 @@ func _pause_toggle():
 	_paused = !_paused
 	emit_signal("pause_state_changed", _paused)
 
-func _on_Button_button_down():
+
+func _on_Random_button_down():
 	g.fill_random()
 	g.set_tilemap($TileMap)
