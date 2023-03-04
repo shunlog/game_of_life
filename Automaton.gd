@@ -2,6 +2,7 @@ class_name Automaton extends Node
 
 var GRID_W = 100
 var GRID_H = 100
+signal matrix_updated()
 
 # m is a 2d array of booleans, storing the state for each cell
 # nc is a 2d array of int, storing the neighbors count for each cell
@@ -10,9 +11,9 @@ var GRID_H = 100
 # the cells are drawn using a TileMap
 
 var m = []
+var m_prev = []
 var nc = []
 var nc2 = []
-var tmp = []
 
 func _ready():
 	for x in range(GRID_W):
@@ -22,8 +23,10 @@ func _ready():
 			m[x].append(false)
 			nc[x].append(0)
 	nc2 = nc.duplicate(true)
+	m_prev = m.duplicate(true)
 
 func step():
+	m_prev = m.duplicate(true)	
 	nc2 = nc.duplicate(true)
 	for x in range(GRID_W):
 		for y in range(GRID_H):
@@ -55,11 +58,7 @@ func set_cell(p: Vector2, val: bool):
 			continue
 		nc[nx][ny] += 1 if val else -1
 	m[p.x][p.y] = val
-
-func set_tilemap(t: TileMap):
-	for x in range(GRID_W):
-		for y in range(GRID_H):
-			t.set_cell(x, y, 0 if m[x][y] else -1)
+	emit_signal("matrix_updated")
 
 func fill_random():
 	for x in range(GRID_W):
@@ -72,3 +71,4 @@ func clear():
 		m[x].fill(false)
 		nc[x].resize(GRID_H)
 		nc[x].fill(0)
+	emit_signal("matrix_updated")

@@ -13,15 +13,21 @@ _global_script_classes=[ {
 "class": "Automaton",
 "language": "GDScript",
 "path": "res://Automaton.gd"
+}, {
+"base": "Node2D",
+"class": "Grid",
+"language": "GDScript",
+"path": "res://Grid.gd"
 } ]
 _global_script_class_icons={
-"Automaton": ""
+"Automaton": "",
+"Grid": ""
 }
 
 [application]
 
 config/name="My Game of Life"
-run/main_scene="res://Node2D.tscn"
+run/main_scene="res://Game.tscn"
 config/icon="res://icon.png"
 
 [global]

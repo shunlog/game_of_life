@@ -6,6 +6,7 @@ var _moveCamera: bool = false;
 var zoom_mult = 1.1
 
 func _unhandled_input(event):
+	
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
@@ -22,7 +23,7 @@ func _unhandled_input(event):
 			
 
 	elif event is InputEventMouseMotion && _moveCamera:
-		position += zoom * (_previousPosition - event.position);
+		position += zoom * (_previousPosition - event.position)
 		_previousPosition = event.position;
 		
 func zoom_at_point(zoom_change, point):

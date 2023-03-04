@@ -1,61 +1,58 @@
 extends Node2D
 
-onready var g = Automaton.new()
+onready var aut = Automaton.new()
+onready var grid = Grid.new(aut)
 var t = 0.0
 var _draw : bool = false
 var _speed : float = 0.1
 var _paused : bool = true
+
 signal pause_state_changed(paused)
-# useful methods for TileMap:
-# get_cell, set_cell, get_used_cells, get_used_rect
 
 func _ready():
-	add_child(g)
-	$Control/ColorRect.margin_right = (g.GRID_W + 1) * $TileMap.cell_size.x
-	$Control/ColorRect.margin_bottom = (g.GRID_H + 1) * $TileMap.cell_size.y
-	$Control/ColorRect2.margin_right = (g.GRID_W) * $TileMap.cell_size.x
-	$Control/ColorRect2.margin_bottom = (g.GRID_H) * $TileMap.cell_size.y
-	
-	
+	add_child(aut)
+	add_child(grid)
+
+func _input(event):
+	if event is InputEventMouseMotion and _draw:
+		aut.set_cell(grid.world_to_map(get_global_mouse_position()), true)
+
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT:
 			if event.is_pressed():
-				var v = $TileMap.world_to_map(get_global_mouse_position())
-				g.toggle_cell(v)
-				g.set_tilemap($TileMap)
+				var v = grid.world_to_map(get_global_mouse_position())
+				aut.toggle_cell(v)
 				_draw = true
 			else:
 				_draw = false
 	elif event.is_action_pressed("step"):
-		g.step()
-		g.set_tilemap($TileMap)
+		aut.step()
+		
 	elif event.is_action_pressed("pause"):
 		_pause_toggle()
-	elif event is InputEventMouseMotion and _draw:
-		g.set_cell($TileMap.world_to_map(get_global_mouse_position()), true)
-		g.set_tilemap($TileMap)
+	
 
 func _process(delta):
 	if not _paused:
-		g.set_tilemap($TileMap)
 		t += delta
 		while t - _speed > 0:
 			t -= _speed
-			g.step()
+			aut.step()
 
 func _on_HSlider_value_changed(value):
+	print(value)
 	_speed = value
 
 func _pause_toggle():
 	_paused = !_paused
 	emit_signal("pause_state_changed", _paused)
 
-
 func _on_Random_button_down():
-	g.fill_random()
-	g.set_tilemap($TileMap)
+	aut.fill_random()
 
 func _on_ButtonClear_button_down():
-	g.clear()
-	g.set_tilemap($TileMap)
+	aut.clear()
+
+func _on_CheckButtonSimulation_toggled(_button_pressed):
+	_pause_toggle()
