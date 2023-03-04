@@ -27,9 +27,9 @@ func _unhandled_input(event):
 		g.set_tilemap($TileMap)
 	elif event.is_action_pressed("pause"):
 		_pause_toggle()
-#	elif event is InputEventMouseMotion and _draw:
-#		g.set_cell($TileMap.world_to_map(get_global_mouse_position()), true)
-#		g.set_tilemap($TileMap)
+	elif event is InputEventMouseMotion and _draw:
+		g.set_cell($TileMap.world_to_map(get_global_mouse_position()), true)
+		g.set_tilemap($TileMap)
 
 func _process(delta):
 	if not _paused:
