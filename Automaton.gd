@@ -1,7 +1,7 @@
 class_name Automaton extends Node
 
-var GRID_W = 50
-var GRID_H = 50
+var GRID_W = 100
+var GRID_H = 100
 
 # m is a 2d array of booleans, storing the state for each cell
 # nc is a 2d array of int, storing the neighbors count for each cell
@@ -12,6 +12,7 @@ var GRID_H = 50
 var m = []
 var nc = []
 var nc2 = []
+var tmp = []
 
 func _ready():
 	for x in range(GRID_W):
@@ -20,6 +21,7 @@ func _ready():
 		for _y in range(GRID_H):
 			m[x].append(false)
 			nc[x].append(0)
+	nc2 = nc.duplicate(true)
 
 func step():
 	nc2 = nc.duplicate(true)
@@ -40,17 +42,18 @@ func toggle_cell(p: Vector2):
 	set_cell(p, !m[p.x][p.y])
 	
 func set_cell(p: Vector2, val: bool):
-	if _outside(p) or val == m[p.x][p.y]:
+	if val == m[p.x][p.y] or _outside(p):
 		return
-	for dx in [-1, 0, 1]:
-		for dy in [-1, 0, 1]:
-			if dx == 0 and dy == 0:
-				continue
-			var nx = p.x + dx
-			var ny = p.y + dy
-			if _outside(Vector2(nx, ny)):
-				continue
-			nc[nx][ny] += 1 if val else -1
+	for dp in [[-1, -1], [-1, 0], [-1, 1],
+			 [0, -1], [0, 1],
+			 [1, -1], [1, 0], [1, 1]]:
+		var dx = dp[0]
+		var dy = dp[1]
+		var nx = p.x + dx
+		var ny = p.y + dy
+		if _outside(Vector2(nx, ny)):
+			continue
+		nc[nx][ny] += 1 if val else -1
 	m[p.x][p.y] = val
 
 func set_tilemap(t: TileMap):
@@ -62,3 +65,10 @@ func fill_random():
 	for x in range(GRID_W):
 		for y in range(GRID_H):
 			set_cell(Vector2(x, y), randi() % 2 == 0)
+
+func clear():
+	for x in range(GRID_W):
+		m[x].resize(GRID_H)
+		m[x].fill(false)
+		nc[x].resize(GRID_H)
+		nc[x].fill(0)

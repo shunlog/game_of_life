@@ -11,7 +11,12 @@ signal pause_state_changed(paused)
 
 func _ready():
 	add_child(g)
-
+	$Control/ColorRect.margin_right = (g.GRID_W + 1) * $TileMap.cell_size.x
+	$Control/ColorRect.margin_bottom = (g.GRID_H + 1) * $TileMap.cell_size.y
+	$Control/ColorRect2.margin_right = (g.GRID_W) * $TileMap.cell_size.x
+	$Control/ColorRect2.margin_bottom = (g.GRID_H) * $TileMap.cell_size.y
+	
+	
 func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_RIGHT:
@@ -49,4 +54,8 @@ func _pause_toggle():
 
 func _on_Random_button_down():
 	g.fill_random()
+	g.set_tilemap($TileMap)
+
+func _on_ButtonClear_button_down():
+	g.clear()
 	g.set_tilemap($TileMap)
