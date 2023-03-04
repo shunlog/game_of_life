@@ -10,7 +10,6 @@ var GRID_H = 50
 # the cells are drawn using a TileMap
 
 var m = []
-var m2 = []
 var nc = []
 var nc2 = []
 
@@ -23,15 +22,11 @@ func _ready():
 			nc[x].append(0)
 
 func step():
-#	var tmp = m2
-#	m2 = m
-#	m = tmp
-	m2 = m.duplicate(true)
 	nc2 = nc.duplicate(true)
 	for x in range(GRID_W):
 		for y in range(GRID_H):
-			if (m2[x][y] and (nc2[x][y] in [2, 3])) \
-				or ((!m2[x][y]) and (nc2[x][y] == 3)):
+			if (m[x][y] and (nc2[x][y] in [2, 3])) \
+				or ((!m[x][y]) and (nc2[x][y] == 3)):
 				set_cell(Vector2(x, y), true)
 			else:
 				set_cell(Vector2(x, y), false)
