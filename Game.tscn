@@ -29,10 +29,8 @@ script = ExtResource( 6 )
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="HUD"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 273.0
-margin_bottom = 576.0
+anchor_bottom = 1.0
+margin_right = 290.0
 custom_styles/panel = SubResource( 2 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HUD/Panel"]
@@ -44,19 +42,19 @@ margin_right = -10.0
 margin_bottom = -10.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panel/ScrollContainer"]
-margin_right = 237.0
-margin_bottom = 126.0
+margin_right = 270.0
+margin_bottom = 150.0
 size_flags_horizontal = 3
 
 [node name="LabelFPS" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_right = 237.0
+margin_right = 270.0
 margin_bottom = 14.0
 text = "FPS"
 script = ExtResource( 5 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 18.0
-margin_right = 237.0
+margin_right = 270.0
 margin_bottom = 58.0
 
 [node name="LabelPaused" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
@@ -74,7 +72,7 @@ script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 62.0
-margin_right = 237.0
+margin_right = 270.0
 margin_bottom = 78.0
 
 [node name="LabelSpeed" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
@@ -86,7 +84,7 @@ script = ExtResource( 7 )
 
 [node name="HSliderSpeed" type="HSlider" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
 margin_left = 47.0
-margin_right = 237.0
+margin_right = 270.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 0.05
@@ -95,27 +93,33 @@ step = 0.05
 value = 0.05
 script = ExtResource( 4 )
 
-[node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="ButtonStep" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 82.0
-margin_right = 237.0
+margin_right = 270.0
 margin_bottom = 102.0
+text = "Step"
+
+[node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+margin_top = 106.0
+margin_right = 270.0
+margin_bottom = 126.0
 text = "Random fill"
 
 [node name="ButtonClear" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 106.0
-margin_right = 237.0
-margin_bottom = 126.0
+margin_top = 130.0
+margin_right = 270.0
+margin_bottom = 150.0
 text = "Clear"
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 512, 304 )
+position = Vector2( 481, 331 )
 current = true
-zoom = Vector2( 1.5, 1.5 )
 script = ExtResource( 2 )
 
 [connection signal="pause_state_changed" from="." to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" method="_on_Root_pause_state_changed"]
 [connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
+[connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_button_down"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonRandom" to="." method="_on_Random_button_down"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]

@@ -27,11 +27,12 @@ func _unhandled_input(event):
 			else:
 				_draw = false
 	elif event.is_action_pressed("step"):
-		aut.step()
-		
+		_step()
 	elif event.is_action_pressed("pause"):
 		_pause_toggle()
-	
+
+func _step():
+	aut.step()
 
 func _process(delta):
 	if not _paused:
@@ -55,3 +56,6 @@ func _on_ButtonClear_button_down():
 
 func _on_CheckButtonSimulation_toggled(_button_pressed):
 	_pause_toggle()
+
+func _on_ButtonStep_button_down():
+	_step()
