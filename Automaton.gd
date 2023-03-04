@@ -42,7 +42,7 @@ func toggle_cell(p: Vector2):
 	set_cell(p, !m[p.x][p.y])
 	
 func set_cell(p: Vector2, val: bool):
-	if val == m[p.x][p.y] or _outside(p):
+	if _outside(p) or val == m[p.x][p.y]:
 		return
 	for dp in [[-1, -1], [-1, 0], [-1, 1],
 			 [0, -1], [0, 1],
