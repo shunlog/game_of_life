@@ -14,7 +14,13 @@ var m = []
 var m_prev = []
 var nc = []
 var nc2 = []
+var grid : Grid
 
+func _init(g : Grid = Grid.new()):
+	grid = g
+	grid.m = m
+	pass
+	
 func _ready():
 	for x in range(GRID_W):
 		m.append([])
@@ -58,7 +64,7 @@ func set_cell(p: Vector2, val: bool):
 			continue
 		nc[nx][ny] += 1 if val else -1
 	m[p.x][p.y] = val
-	emit_signal("matrix_updated")
+	grid.update()
 
 func fill_random():
 	for x in range(GRID_W):
@@ -71,4 +77,4 @@ func clear():
 		m[x].fill(false)
 		nc[x].resize(GRID_H)
 		nc[x].fill(0)
-	emit_signal("matrix_updated")
+	grid.update()

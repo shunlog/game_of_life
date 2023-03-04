@@ -1,7 +1,7 @@
 extends Node2D
 
-onready var aut = Automaton.new()
-onready var grid = Grid.new(aut)
+onready var grid = Grid.new()
+onready var aut = Automaton.new(grid)
 var t = 0.0
 var _draw : bool = false
 var _speed : float = 0.1
