@@ -7,9 +7,7 @@
 [ext_resource path="res://LabelFPS.gd" type="Script" id=5]
 [ext_resource path="res://Grid.gd" type="Script" id=6]
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 0.913725 )
+[ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=8]
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Label
@@ -31,7 +29,7 @@ script = ExtResource( 6 )
 [node name="Panel" type="Panel" parent="HUD"]
 anchor_bottom = 1.0
 margin_right = 290.0
-custom_styles/panel = SubResource( 2 )
+theme = ExtResource( 8 )
 
 [node name="ScrollContainer" type="ScrollContainer" parent="HUD/Panel"]
 anchor_right = 1.0
@@ -43,49 +41,52 @@ margin_bottom = -10.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panel/ScrollContainer"]
 margin_right = 270.0
-margin_bottom = 229.0
+margin_bottom = 1060.0
 size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 5
 
 [node name="LabelFPS" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+margin_top = -1.0
 margin_right = 270.0
-margin_bottom = 14.0
+margin_bottom = 24.4
 text = "FPS"
 script = ExtResource( 5 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 18.0
+margin_top = 30.0
 margin_right = 270.0
-margin_bottom = 58.0
+margin_bottom = 55.0
 
 [node name="LabelPaused" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
-margin_top = 13.0
-margin_right = 88.0
-margin_bottom = 27.0
+margin_top = -1.0
+margin_right = 104.4
+margin_bottom = 24.4
 text = "Simulation (p)"
 script = SubResource( 3 )
 
 [node name="CheckButtonSimulation" type="CheckButton" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
-margin_left = 92.0
-margin_right = 168.0
-margin_bottom = 40.0
+margin_left = 107.0
+margin_right = 149.0
+margin_bottom = 25.0
 script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 62.0
+margin_top = 60.0
 margin_right = 270.0
-margin_bottom = 78.0
+margin_bottom = 85.0
 
 [node name="LabelSpeed" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_top = 1.0
-margin_right = 39.0
-margin_bottom = 15.0
+margin_top = -1.0
+margin_right = 50.4
+margin_bottom = 24.4
 text = "Speed"
 script = ExtResource( 7 )
 
 [node name="HSliderSpeed" type="HSlider" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
-margin_left = 43.0
+margin_left = 53.0
 margin_right = 270.0
-margin_bottom = 16.0
+margin_bottom = 13.0
 size_flags_horizontal = 3
 min_value = 0.05
 max_value = 0.5
@@ -94,27 +95,27 @@ value = 0.05
 script = ExtResource( 4 )
 
 [node name="ButtonStep" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 82.0
+margin_top = 90.0
 margin_right = 270.0
-margin_bottom = 102.0
+margin_bottom = 113.0
 text = "Step (s)"
 
 [node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 106.0
+margin_top = 118.0
 margin_right = 270.0
-margin_bottom = 126.0
+margin_bottom = 141.0
 text = "Random fill"
 
 [node name="ButtonClear" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 130.0
+margin_top = 146.0
 margin_right = 270.0
-margin_bottom = 150.0
+margin_bottom = 169.0
 text = "Clear"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 154.0
+margin_top = 174.0
 margin_right = 270.0
-margin_bottom = 229.0
+margin_bottom = 280.0
 text = "**Help**
 
 Pan with left click.
