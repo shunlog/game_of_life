@@ -61,10 +61,10 @@ func set_cell(p: Vector2, val: bool):
 	m[p.x][p.y] = val
 	grid.update()
 
-func fill_random():
+func fill_random(rand:=.5):
 	for x in range(GRID_W):
 		for y in range(GRID_H):
-			set_cell(Vector2(x, y), randi() % 2 == 0)
+			set_cell(Vector2(x, y), randf() < rand)
 
 func clear():
 	for x in range(GRID_W):

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=8]
 [ext_resource path="res://RuleMenuButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=11]
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Label
@@ -101,11 +102,26 @@ margin_right = 270.0
 margin_bottom = 113.0
 text = "Step (s)"
 
-[node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="HBoxContainer4" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 118.0
 margin_right = 270.0
 margin_bottom = 141.0
+
+[node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
+margin_right = 205.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
 text = "Random fill"
+
+[node name="SpinBoxRandFill" type="SpinBox" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
+margin_left = 208.0
+margin_right = 270.0
+margin_bottom = 23.0
+min_value = 0.01
+max_value = 1.0
+step = 0.01
+value = 0.01
+script = ExtResource( 11 )
 
 [node name="ButtonClear" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 146.0
@@ -165,5 +181,6 @@ script = ExtResource( 2 )
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_button_down"]
-[connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonRandom" to="." method="_on_Random_button_down"]
+[connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_Random_button_down"]
+[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]

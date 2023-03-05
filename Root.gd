@@ -6,6 +6,7 @@ var t = 0.0
 var _draw : bool = false
 var _speed : float = 0.1
 var _paused : bool = true
+var _rand_fill : float
 
 signal pause_state_changed(paused)
 
@@ -52,7 +53,7 @@ func _pause_toggle():
 	emit_signal("pause_state_changed", _paused)
 
 func _on_Random_button_down():
-	aut.fill_random()
+	aut.fill_random(_rand_fill)
 
 func _on_ButtonClear_button_down():
 	aut.clear()
@@ -65,4 +66,9 @@ func _on_ButtonStep_button_down():
 
 func _on_rule_updated(rule, ls):
 	aut.rules[rule] = ls
-	
+
+
+func _on_SpinBoxRandFill_value_changed(value):
+	print("slider", value)
+	_rand_fill = value
+
