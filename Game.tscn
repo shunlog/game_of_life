@@ -172,8 +172,9 @@ Zoom in with mouse wheel."
 fit_content_height = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 481, 331 )
+position = Vector2( 683, 603 )
 current = true
+zoom = Vector2( 3, 3 )
 script = ExtResource( 2 )
 
 [connection signal="pause_state_changed" from="." to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" method="_on_Root_pause_state_changed"]
