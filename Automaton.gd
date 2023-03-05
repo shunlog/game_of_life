@@ -10,16 +10,15 @@ var GRID_H = 100
 
 # the cells are drawn on a Grid
 
-var m = []
-var nc = []
-var nc2 = []
+var m := []
+var nc := []
+var nc2 := []
 var grid : Grid
 
 func _init(g : Grid = Grid.new()):
 	grid = g
 	grid.m = m
-	pass
-	
+
 func _ready():
 	for x in range(GRID_W):
 		m.append([])
@@ -39,26 +38,26 @@ func step():
 			else:
 				set_cell(Vector2(x, y), false)
 
-func _outside(p: Vector2):
-	return p.x >= GRID_W or p.x < 0 or p.y >= GRID_H or p.y < 0
-	
 func toggle_cell(p: Vector2):
-	if _outside(p):
-		return
+	p = _wrap(p)
 	set_cell(p, !m[p.x][p.y])
-	
+
+func _wrap(p: Vector2):
+	p.x = int(p.x) % GRID_W
+	p.y = int(p.y) % GRID_H
+	return p
+
 func set_cell(p: Vector2, val: bool):
-	if _outside(p) or val == m[p.x][p.y]:
+	p = _wrap(p)
+	if val == m[p.x][p.y]:
 		return
 	for dp in [[-1, -1], [-1, 0], [-1, 1],
 			   [0, -1], [0, 1],
 			   [1, -1], [1, 0], [1, 1]]:
 		var dx = dp[0]
 		var dy = dp[1]
-		var nx = p.x + dx
-		var ny = p.y + dy
-		if _outside(Vector2(nx, ny)):
-			continue
+		var nx = int(p.x + dx) % GRID_W
+		var ny = int(p.y + dy) % GRID_H
 		nc[nx][ny] += 1 if val else -1
 	m[p.x][p.y] = val
 	grid.update()
