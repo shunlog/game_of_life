@@ -14,6 +14,8 @@ var m := []
 var nc := []
 var nc2 := []
 var grid : Grid
+var B := [3]
+var S := [2, 3]
 
 func _init(g : Grid = Grid.new()):
 	grid = g
@@ -32,11 +34,11 @@ func step():
 	nc2 = nc.duplicate(true)
 	for x in range(GRID_W):
 		for y in range(GRID_H):
-			if (m[x][y] and (nc2[x][y] in [2, 3])) \
-				or ((!m[x][y]) and (nc2[x][y] == 3)):
+			if !m[x][y] and nc2[x][y] in B:
 				set_cell(Vector2(x, y), true)
-			else:
+			elif m[x][y] and not nc2[x][y] in S:
 				set_cell(Vector2(x, y), false)
+
 
 func toggle_cell(p: Vector2):
 	p = _wrap(p)
@@ -54,10 +56,8 @@ func set_cell(p: Vector2, val: bool):
 	for dp in [[-1, -1], [-1, 0], [-1, 1],
 			   [0, -1], [0, 1],
 			   [1, -1], [1, 0], [1, 1]]:
-		var dx = dp[0]
-		var dy = dp[1]
-		var nx = int(p.x + dx) % GRID_W
-		var ny = int(p.y + dy) % GRID_H
+		var nx = int(p.x + dp[0]) % GRID_W
+		var ny = int(p.y + dp[1]) % GRID_H
 		nc[nx][ny] += 1 if val else -1
 	m[p.x][p.y] = val
 	grid.update()
