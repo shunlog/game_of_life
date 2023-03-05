@@ -14,8 +14,7 @@ var m := []
 var nc := []
 var nc2 := []
 var grid : Grid
-var B := [3]
-var S := [2, 3]
+var rules := {Global.Rules.survival: [2, 3], Global.Rules.birth: [3]}
 
 func _init(g : Grid = Grid.new()):
 	grid = g
@@ -34,9 +33,9 @@ func step():
 	nc2 = nc.duplicate(true)
 	for x in range(GRID_W):
 		for y in range(GRID_H):
-			if !m[x][y] and nc2[x][y] in B:
+			if !m[x][y] and nc2[x][y] in rules[Global.Rules.birth]:
 				set_cell(Vector2(x, y), true)
-			elif m[x][y] and not nc2[x][y] in S:
+			elif m[x][y] and not nc2[x][y] in rules[Global.Rules.survival]:
 				set_cell(Vector2(x, y), false)
 
 

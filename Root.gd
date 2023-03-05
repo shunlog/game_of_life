@@ -12,6 +12,9 @@ signal pause_state_changed(paused)
 func _ready():
 	add_child(aut)
 	add_child(grid)
+	for r in get_tree().get_nodes_in_group("rules"):
+		r.connect("rule_updated", self, "_on_rule_updated")
+		r.set_checked(aut.rules[r.rule])
 
 func _input(event):
 	if event is InputEventMouseMotion and _draw:
@@ -59,3 +62,7 @@ func _on_CheckButtonSimulation_toggled(_button_pressed):
 
 func _on_ButtonStep_button_down():
 	_step()
+
+func _on_rule_updated(rule, ls):
+	aut.rules[rule] = ls
+	
