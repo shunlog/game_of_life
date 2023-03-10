@@ -6,7 +6,7 @@ extends Control
 # We'll give input to the first renderer
 # Then the CA (Cellular Automata) will ping-pong
 # back and forth between the two viewports
-onready var Renderer = $"/root/GameOfLife/Viewport/Renderer"
+onready var Renderer = $Viewport/Renderer
 
 var t := 0.0
 var step := 0.01
@@ -18,12 +18,16 @@ func _ready():
 func step():
 	$Viewport.set_update_mode(Viewport.UPDATE_ONCE)
 	$Viewport2.set_update_mode(Viewport.UPDATE_ONCE)
+	# reset params
+#	Renderer.material.set_shader_param("mouse_pressed", false)
+#	Renderer.material.set_shader_param("random", false)
 
-func draw_mouse(event):
-	Renderer.material.set_shader_param("mouse_pressed", true)
+func draw_mouse(pressed=true):
+	Renderer.material.set_shader_param("mouse_pressed", pressed)
 	var pos = get_local_mouse_position()
+	print(pos)
 
 	Renderer.material.set_shader_param("mouse_position", pos)
 
-func random(v=true):
-	Renderer.material.set_shader_param("random", v)
+func random(active=true):
+	Renderer.material.set_shader_param("random", active)

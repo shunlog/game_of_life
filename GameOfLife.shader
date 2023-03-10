@@ -65,20 +65,6 @@ int ca_count(in sampler2D tex, vec2 uv, vec2 pixel_size) {
 
       // Add any neighbours x value (we could also use y or z)
 		vec2 nv = uv + vec2(x, y) * pixel_size;
-		float w = 50.;
-		float h = 50.;
-		if (nv.x >= w){
-			nv.x = nv.x - w;
-		}
-		if (nv.y >= h){
-			nv.y = nv.y - h;
-		}
-		if (nv.x < 0.){
-			nv.x = w;
-		}
-		if (nv.y < 0.){
-			nv.y = h;
-		}
       neighbours += getCellContent(texture(tex, nv)) * modifier;
     }
   }
@@ -101,14 +87,15 @@ void fragment() {
   vec2 curr = uv/sz;
 
  
-   if ( length( curr - vec2(100., 100.)) < 50.0) {
+   if ( length( curr - vec2(100., 100.)) < 25.0) {
   	COLOR = vec4(0.0, 0.0, 0.0, 1.0);
 	} else {
     COLOR = getColor(texture(TEXTURE, uv), count, 1.0);
 	}
 	
 if (random){
-	 float col = rand(10. * uv * 2.);
+//	 float col = rand(abs(mouse_position) * uv * 2.);
+float col = rand( uv * 2.);
     // Turn on pixels if value is > .5
     col = smoothstep(0.5, 0.51, col);
 
@@ -116,15 +103,15 @@ if (random){
     COLOR = vec4(col, col, col, 1.0);
 }
 	 // Mouse input drawing
-  if (mouse_pressed && length(distance_to_mouse) <= 2.5) {
-    // Apply some random spread to the mouse circle
-    // gives us a nicer starting draw cycle
-//    float col = rand(distance_to_mouse * uv * 2.);
-//
-//    // Turn on pixels if value is > .5
-//    col = smoothstep(0.5, 0.51, col);
+  if (mouse_pressed && length(distance_to_mouse) <= 5.) {
+//	 Apply some random spread to the mouse circle
+//	 gives us a nicer starting draw cycle
+    float col = rand(abs(distance_to_mouse) * uv * 2.);
+
+    // Turn on pixels if value is > .5
+    col = smoothstep(0.5, 0.51, col);
     
-	float col = 1.0;
+//	float col = 1.0;
     COLOR = vec4(col, col, col, 1.0);
   }
 }
