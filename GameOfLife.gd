@@ -8,6 +8,8 @@ extends Control
 # back and forth between the two viewports
 onready var Renderer = $Viewport/Renderer
 var ping = false
+onready var back :Viewport = $Viewport
+onready var front :Viewport = $Viewport2
 
 var t := 0.0
 var step := 0.01
@@ -16,23 +18,22 @@ func _ready():
 	$Viewport.size = rect_size
 	$Viewport2.size = rect_size
 
+func _swap():
+	var tmp = back
+	back = front
+	front = tmp
+
 func step():
 	# reset params
 #	Renderer.material.set_shader_param("mouse_pressed", false)
 #	Renderer.material.set_shader_param("random", false)
-	if ping:
-		$Viewport.set_update_mode(Viewport.UPDATE_ONCE)
-		$TextureRect.texture = $Viewport2.get_texture()
-	else:
-		$Viewport2.set_update_mode(Viewport.UPDATE_ONCE)
-		$TextureRect.texture = $Viewport.get_texture()
-	ping = !ping
+	back.set_update_mode(Viewport.UPDATE_ONCE)
+	$TextureRect.texture = front.get_texture()
+	_swap()
 
 func draw_mouse(pressed=true):
 	Renderer.material.set_shader_param("mouse_pressed", pressed)
 	var pos = get_local_mouse_position()
-	print(pos)
-
 	Renderer.material.set_shader_param("mouse_position", pos)
 
 func random(active=true):
