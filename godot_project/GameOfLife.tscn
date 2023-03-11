@@ -54,3 +54,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 texture = SubResource( 4 )
+
+[connection signal="draw" from="TextureRect" to="." method="_on_TextureRect_draw"]

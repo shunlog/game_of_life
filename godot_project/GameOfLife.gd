@@ -13,6 +13,7 @@ onready var front :Viewport = $Viewport2
 
 var t := 0.0
 var step := 0.01
+var rand_steps := 0
 
 func _ready():
 	$Viewport.size = rect_size
@@ -34,10 +35,7 @@ func step():
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	$TextureRect.texture = front.get_texture()
 	_swap()
-	
-	# reset params
-#	back.get_child(0).material.set_shader_param("random", false)
-	
+
 func set_paused(paused):
 	_set_shaders_param("paused", paused)
 
@@ -47,6 +45,9 @@ func set_mouse_pressed(pressed=true):
 func random(fill):
 	_set_shaders_param("random", true)
 	_set_shaders_param("random_fill", fill)
-	#	back.get_child(0).material.set_shader_param("random", false)
-#
-#	_set_shaders_param("random", false)
+	rand_steps = 0
+
+func _on_TextureRect_draw():
+	rand_steps += 1
+	if rand_steps == 2:
+		_set_shaders_param("random", false)
