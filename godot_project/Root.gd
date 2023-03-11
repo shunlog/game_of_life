@@ -2,8 +2,8 @@ extends Node2D
 
 var t = 0.0
 var _draw : bool = false
-var _smltn_fps : float = 0.1
-var _paused : bool = true
+var _fps : float
+var _paused : bool
 var _rand_fill : float
 
 signal pause_state_changed(paused)
@@ -14,28 +14,18 @@ func _ready():
 #		r.set_checked(aut.rules[r.rule])
 
 func _input(event):
-	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
-		$GameOfLife.set_mouse_pressed(event.pressed)
-	elif event.is_action_pressed("step"):
-		_step()
-	elif event.is_action_pressed("pause"):
+	if event.is_action_pressed("pause"):
 		_pause(!_paused)
 
 func _step():
 	$GameOfLife.step()
 
-func _process(delta):
-	if _paused:
-		_step()
-	else:
-		t += delta
-		var frame_t = (1 / _smltn_fps)
-		while t - frame_t > 0:
-			t -= frame_t
-			_step()
+func _set_fps(v):
+	_fps = v
+	$GameOfLife.fps = v
 
 func _on_HSlider_value_changed(value):
-	_smltn_fps = value
+	_set_fps(value)
 
 func _pause(paused):
 	_paused = paused

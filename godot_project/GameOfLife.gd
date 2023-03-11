@@ -12,12 +12,29 @@ onready var back :Viewport = $Viewport
 onready var front :Viewport = $Viewport2
 
 var t := 0.0
-var step := 0.01
 var passed_steps := 0
+var paused := false
+var fps := 60
 
 func _ready():
 	$Viewport.size = rect_size
 	$Viewport2.size = rect_size
+
+func _input(event):
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
+		set_mouse_pressed(event.pressed)
+	elif event.is_action_pressed("step"):
+		step()
+
+func _process(delta):
+	if paused:
+		step()
+	else:
+		t += delta
+		var frame_t = (1.0 / fps)
+		while t - frame_t > 0:
+			t -= frame_t
+			step()
 
 func _swap():
 	var tmp = back
@@ -36,8 +53,9 @@ func step():
 	$TextureRect.texture = front.get_texture()
 	_swap()
 
-func set_paused(paused):
-	_set_shaders_param("paused", paused)
+func set_paused(v):
+	paused = v
+	_set_shaders_param("paused", v)
 
 func set_mouse_pressed(pressed=true):
 	_set_shaders_param("mouse_pressed", pressed)

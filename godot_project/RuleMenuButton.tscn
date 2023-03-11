@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://MenuButtonSurvive.gd" type="Script" id=1]
+[ext_resource path="res://RuleMenuButton.gd" type="Script" id=1]
 
-[node name="MenuButtonSurvive" type="MenuButton"]
+[node name="RuleMenuButton" type="MenuButton"]
 margin_right = 270.0
 margin_bottom = 23.0
 focus_mode = 2

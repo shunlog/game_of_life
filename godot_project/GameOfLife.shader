@@ -21,7 +21,7 @@ highp float rand(vec2 co)
     return fract(sin(sn) * c);
 }
 
-float getCellContent(vec4 cc) {
+float isAlive(vec4 cc) {
     return max(cc.r, max(cc.g, cc.b)) > 0. ? 1.0 : 0.0;
 }
 
@@ -31,10 +31,9 @@ float getCellContent(vec4 cc) {
  * give me the next color for my current cell
  */
 vec4 getColor(vec4 cc, int count, float time) {
-    float wasCellAlive = getCellContent(cc); 
     // When cell is alive & has either 2 or 3 neighbours
     // it will survive until the next iteration
-    if (wasCellAlive > 0. && (count == 2 || count == 3)) {
+    if (isAlive(cc) > 0. && (count == 2 || count == 3)) {
         return cc;
     }
 
@@ -53,7 +52,7 @@ vec4 getColor(vec4 cc, int count, float time) {
 /**
  * Returns the surrounding living cell count of a given UV
  */
-int n_cnt(in sampler2D tex, vec2 uv, vec2 s) {
+int neighborsCount(in sampler2D tex, vec2 uv, vec2 s) {
     float not_current;
     float neighbours = 0.;
   
@@ -66,7 +65,7 @@ int n_cnt(in sampler2D tex, vec2 uv, vec2 s) {
 
             // Add any neighbours x value (we could also use y or z)
             vec2 nv = uv + vec2(x, y) * s;
-            neighbours += getCellContent(texture(tex, nv)) * not_current;
+            neighbours += isAlive(texture(tex, nv)) * not_current;
         }
     }
 
@@ -78,37 +77,37 @@ void fragment() {
     vec2 sz = SCREEN_PIXEL_SIZE;
 
     // How many alive cells do we have around the current cell?
-    int count = n_cnt(TEXTURE, uv, sz);
+    int count = neighborsCount(TEXTURE, uv, sz);
 
     // How far away from the mouse is the current position
     vec2 distance_to_mouse = (uv / sz) - mouse_position; 
     vec2 curr = uv/sz;
 
-	COLOR = texture(TEXTURE, uv);
-	
- 	if (!paused){
-	    if ( length( curr - vec2(100., 100.)) < 25.0) {
-	        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-	    } else {
-	        COLOR = getColor(texture(TEXTURE, uv), count, 1.0);
-	    }
-	}
+    COLOR = texture(TEXTURE, uv);
+    
+    if (!paused){
+        if ( length( curr - vec2(100., 100.)) < 25.0) {
+            COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+        } else {
+            COLOR = getColor(texture(TEXTURE, uv), count, 1.0);
+        }
+    }
     
     if (random){
         float col = rand(mouse_position * uv);
-		if (col < random_fill) col = 1.0;
-		else col = 0.;
+        if (col < random_fill) col = 1.0;
+        else col = 0.;
 
         COLOR = vec4(col, col, col, 1.0);
     }
-	
-	if(clear){
-		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-	}
+    
+    if(clear){
+        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+    }
 
     // Mouse input drawing
     if (mouse_pressed && length(distance_to_mouse) <= 5.) {
-//	 Apply some random spread to the mouse circle
+        // Apply some random spread to the mouse circle
         float col = rand(abs(distance_to_mouse) * uv);
         // Turn on pixels if value is > .5
         col = smoothstep(0.5, 0.51, col);
