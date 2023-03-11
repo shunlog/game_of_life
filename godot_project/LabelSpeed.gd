@@ -1,6 +1,6 @@
 extends Label
 
-var format := "Speed: %.3f"
+var format := "Simulation FPS: %d"
 
 func _ready():
 	pass

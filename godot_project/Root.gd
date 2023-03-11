@@ -2,7 +2,7 @@ extends Node2D
 
 var t = 0.0
 var _draw : bool = false
-var _speed : float = 0.1
+var _smltn_fps : float = 0.1
 var _paused : bool = true
 var _rand_fill : float
 
@@ -29,12 +29,13 @@ func _process(delta):
 		_step()
 	else:
 		t += delta
-		while t - _speed > 0:
-			t -= _speed
+		var frame_t = (1 / _smltn_fps)
+		while t - frame_t > 0:
+			t -= frame_t
 			_step()
 
 func _on_HSlider_value_changed(value):
-	_speed = value
+	_smltn_fps = value
 
 func _pause(paused):
 	_paused = paused

@@ -94,10 +94,10 @@ margin_left = 53.0
 margin_right = 270.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
-min_value = 0.001
-max_value = 0.1
-step = 0.001
-value = 0.01
+min_value = 1.0
+max_value = 60.0
+value = 60.0
+ticks_on_borders = true
 script = ExtResource( 4 )
 
 [node name="ButtonStep" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
