@@ -6,6 +6,7 @@ uniform vec2 mouse_position = vec2(0., 0.);
 uniform bool random = false;
 uniform float random_fill = .1;
 uniform bool paused = false;
+uniform bool clear = false;
 
 /**
  * procedural white noise
@@ -100,6 +101,10 @@ void fragment() {
 
         COLOR = vec4(col, col, col, 1.0);
     }
+	
+	if(clear){
+		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+	}
 
     // Mouse input drawing
     if (mouse_pressed && length(distance_to_mouse) <= 5.) {

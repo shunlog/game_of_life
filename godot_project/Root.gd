@@ -46,8 +46,8 @@ func _on_Random_button_down():
 	$GameOfLife.random(_rand_fill)
 
 func _on_ButtonClear_button_down():
-	pass
-#	aut.clear()
+	
+	$GameOfLife.clear()
 
 func _on_ButtonStep_button_down():
 	_step()
