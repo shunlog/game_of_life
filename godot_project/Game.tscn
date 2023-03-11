@@ -220,17 +220,16 @@ Draw cells with right click.
 Zoom in with mouse wheel."
 fit_content_height = true
 
+[node name="ResizableGridZone" parent="." instance=ExtResource( 10 )]
+margin_left = 670.0
+margin_top = 357.0
+margin_right = 770.0
+margin_bottom = 457.0
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 720, 536 )
 current = true
 script = ExtResource( 2 )
-
-[node name="ResizableGridZone" parent="." instance=ExtResource( 10 )]
-margin_left = 628.0
-margin_top = 73.0
-margin_right = 728.0
-margin_bottom = 173.0
-mouse_filter = 1
 
 [connection signal="pause_state_changed" from="." to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" method="_on_Root_pause_state_changed"]
 [connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]

@@ -13,7 +13,7 @@ func _ready():
 		r.connect("rule_updated", self, "_on_rule_updated")
 #		r.set_checked(aut.rules[r.rule])
 
-func _unhandled_input(event):
+func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		$GameOfLife.set_mouse_pressed(event.pressed)
 	elif event.is_action_pressed("step"):

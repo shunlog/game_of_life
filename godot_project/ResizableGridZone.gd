@@ -2,20 +2,20 @@ extends Control
 
 var _previousPosition: Vector2
 var _within_resize := false;
-var _wanted_position := get_global_rect().position
-var _wanted_size := rect_size
+onready var _wanted_position := rect_position
+onready var _wanted_size := rect_size
 var _pressed := false;
 export var grid_size := 20
 
-func _ready():
-	print(_wanted_position)
-	pass 
-	
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		_pressed = event.pressed
-		if event.pressed:
+		if event.pressed \
+		and (_within_resize or within_rect(get_global_mouse_position(), 
+		Rect2(rect_position, rect_position+rect_size))):
+			_pressed = true
 			_previousPosition = get_global_mouse_position()
+		else:
+			_pressed = false
 	if event is InputEventMouseMotion and _pressed:
 		var gl = get_global_mouse_position()
 		drag(_previousPosition, gl)
@@ -25,8 +25,8 @@ func within_rect(p:Vector2, r:Rect2):
 	var rp = r.position
 	var rs = r.size
 	if p.x < rp.x or p.y < rp.y or p.x > rs.x or p.y > rs.y:
-		return true
-	return false
+		return false
+	return true
 
 func drag(from:Vector2, to:Vector2):
 	if _within_resize:
