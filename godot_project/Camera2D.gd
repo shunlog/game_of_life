@@ -19,7 +19,6 @@ func _unhandled_input(event):
 			if zoom[0] < .2:
 				return
 			zoom_at_point(1/zoom_mult, event.position)
-			
 
 	elif event is InputEventMouseMotion && _moveCamera:
 		position += zoom * (_previousPosition - event.position)

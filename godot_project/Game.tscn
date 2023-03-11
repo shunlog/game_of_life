@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=8]
 [ext_resource path="res://RuleMenuButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ResizableGridZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=11]
 
 [sub_resource type="GDScript" id=3]
@@ -220,10 +221,16 @@ Zoom in with mouse wheel."
 fit_content_height = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 683, 603 )
+position = Vector2( 720, 536 )
 current = true
-zoom = Vector2( 3, 3 )
 script = ExtResource( 2 )
+
+[node name="ResizableGridZone" parent="." instance=ExtResource( 10 )]
+margin_left = 628.0
+margin_top = 73.0
+margin_right = 728.0
+margin_bottom = 173.0
+mouse_filter = 1
 
 [connection signal="pause_state_changed" from="." to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" method="_on_Root_pause_state_changed"]
 [connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
