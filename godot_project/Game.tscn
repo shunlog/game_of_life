@@ -74,6 +74,7 @@ script = SubResource( 3 )
 margin_left = 107.0
 margin_right = 149.0
 margin_bottom = 25.0
+pressed = true
 script = ExtResource( 3 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
@@ -93,10 +94,10 @@ margin_left = 53.0
 margin_right = 270.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
-min_value = 0.05
-max_value = 0.5
-step = 0.05
-value = 0.05
+min_value = 0.001
+max_value = 0.1
+step = 0.001
+value = 0.01
 script = ExtResource( 4 )
 
 [node name="ButtonStep" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
@@ -230,6 +231,5 @@ script = ExtResource( 2 )
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_button_down"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_Random_button_down"]
-[connection signal="button_up" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_ButtonRandom_button_up"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]

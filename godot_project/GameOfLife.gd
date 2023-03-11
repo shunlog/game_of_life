@@ -32,11 +32,14 @@ func step():
 	_set_shaders_param("mouse_position", pos)
 	
 	front.set_update_mode(Viewport.UPDATE_ONCE)
-	$TextureRect.texture = back.get_texture()
+	$TextureRect.texture = front.get_texture()
 	_swap()
 	
 	# reset params
-	front.get_child(0).material.set_shader_param("random", false)
+#	back.get_child(0).material.set_shader_param("random", false)
+	
+func set_paused(paused):
+	_set_shaders_param("paused", paused)
 
 func set_mouse_pressed(pressed=true):
 	_set_shaders_param("mouse_pressed", pressed)
@@ -44,3 +47,6 @@ func set_mouse_pressed(pressed=true):
 func random(fill):
 	_set_shaders_param("random", true)
 	_set_shaders_param("random_fill", fill)
+	#	back.get_child(0).material.set_shader_param("random", false)
+#
+#	_set_shaders_param("random", false)

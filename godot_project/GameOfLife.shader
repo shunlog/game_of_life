@@ -5,6 +5,7 @@ uniform bool mouse_pressed = false;
 uniform vec2 mouse_position = vec2(0., 0.);
 uniform bool random = false;
 uniform float random_fill = .1;
+uniform bool paused = false;
 
 /**
  * procedural white noise
@@ -82,12 +83,15 @@ void fragment() {
     vec2 distance_to_mouse = (uv / sz) - mouse_position; 
     vec2 curr = uv/sz;
 
- 
-    if ( length( curr - vec2(100., 100.)) < 25.0) {
-        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
-    } else {
-        COLOR = getColor(texture(TEXTURE, uv), count, 1.0);
-    }
+	COLOR = texture(TEXTURE, uv);
+	
+ 	if (!paused){
+	    if ( length( curr - vec2(100., 100.)) < 25.0) {
+	        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+	    } else {
+	        COLOR = getColor(texture(TEXTURE, uv), count, 1.0);
+	    }
+	}
     
     if (random){
         float col = rand(mouse_position * uv);

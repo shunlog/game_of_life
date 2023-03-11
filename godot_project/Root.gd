@@ -19,13 +19,15 @@ func _unhandled_input(event):
 	elif event.is_action_pressed("step"):
 		_step()
 	elif event.is_action_pressed("pause"):
-		_pause_toggle()
+		_pause(!_paused)
 
 func _step():
 	$GameOfLife.step()
 
 func _process(delta):
-	if not _paused:
+	if _paused:
+		_step()
+	else:
 		t += delta
 		while t - _speed > 0:
 			t -= _speed
@@ -34,9 +36,10 @@ func _process(delta):
 func _on_HSlider_value_changed(value):
 	_speed = value
 
-func _pause_toggle():
-	_paused = !_paused
-	emit_signal("pause_state_changed", _paused)
+func _pause(paused):
+	_paused = paused
+	emit_signal("pause_state_changed", paused)
+	$GameOfLife.set_paused(paused)
 
 func _on_Random_button_down():
 	$GameOfLife.random(_rand_fill)
@@ -44,9 +47,6 @@ func _on_Random_button_down():
 func _on_ButtonClear_button_down():
 	pass
 #	aut.clear()
-
-func _on_CheckButtonSimulation_toggled(_button_pressed):
-	_pause_toggle()
 
 func _on_ButtonStep_button_down():
 	_step()
@@ -58,6 +58,5 @@ func _on_rule_updated(rule, ls):
 func _on_SpinBoxRandFill_value_changed(value):
 	_rand_fill = value
 
-func _on_ButtonRandom_button_up():
-	pass
-#	$GameOfLife.random(false)
+func _on_CheckButtonSimulation_toggled(button_pressed):
+	_pause(!button_pressed)
