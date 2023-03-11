@@ -6,7 +6,6 @@ var _moveCamera: bool = false;
 var zoom_mult = 1.1
 
 func _unhandled_input(event):
-	
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
