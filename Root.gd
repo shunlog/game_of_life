@@ -13,23 +13,9 @@ func _ready():
 		r.connect("rule_updated", self, "_on_rule_updated")
 #		r.set_checked(aut.rules[r.rule])
 
-func _input(event):
-	if event is InputEventMouseMotion:
-		if _draw:
-	#		aut.set_cell(grid.world_to_map(get_global_mouse_position()), true)
-			$GameOfLife.draw_mouse()
-		else:
-			$GameOfLife.draw_mouse(false)
-
 func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_RIGHT:
-			if event.is_pressed():
-#				var v = grid.world_to_map(get_global_mouse_position())
-#				aut.toggle_cell(v)
-				_draw = true
-			else:
-				_draw = false
+	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
+		$GameOfLife.set_mouse_pressed(event.pressed)
 	elif event.is_action_pressed("step"):
 		_step()
 	elif event.is_action_pressed("pause"):
