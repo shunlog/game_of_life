@@ -3,10 +3,10 @@
 [ext_resource path="res://ResizableGridZone.gd" type="Script" id=1]
 
 [node name="ResizableGridZone" type="Control"]
-margin_left = 165.0
-margin_top = 56.0
-margin_right = 365.0
-margin_bottom = 256.0
+margin_left = 170.0
+margin_top = 77.0
+margin_right = 370.0
+margin_bottom = 277.0
 mouse_default_cursor_shape = 6
 script = ExtResource( 1 )
 
@@ -14,5 +14,19 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 border_color = Color( 1, 0.537255, 0, 1 )
-border_width = 4.0
+border_width = 3.0
 editor_only = false
+
+[node name="BRCorner" type="Control" parent="."]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VerticalLine" type="Line2D" parent="BRCorner"]
+points = PoolVector2Array( -10, -30, -10, -10 )
+width = 2.0
+
+[node name="HorizontalLine" type="Line2D" parent="BRCorner"]
+points = PoolVector2Array( -30, -10, -10, -10 )
+width = 2.0
