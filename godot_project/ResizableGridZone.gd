@@ -7,32 +7,22 @@ onready var _wanted_size := rect_size
 var _pressed := false;
 export var grid_size := 20
 
-func _input(event):
+func _gui_input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT:
-		if event.pressed \
-		and (_within_resize or within_rect(get_global_mouse_position(), 
-		Rect2(rect_position, rect_position+rect_size))):
-			_pressed = true
+		_pressed = event.pressed
+		if event.pressed:
+			_within_resize = $ResizeCorner._has_point(event.position)
 			_previousPosition = get_global_mouse_position()
-		else:
-			_pressed = false
 	if event is InputEventMouseMotion and _pressed:
 		var gl = get_global_mouse_position()
 		drag(_previousPosition, gl)
 		_previousPosition = gl
 
-func within_rect(p:Vector2, r:Rect2):
-	var rp = r.position
-	var rs = r.size
-	if p.x < rp.x or p.y < rp.y or p.x > rs.x or p.y > rs.y:
-		return false
-	return true
-
 func drag(from:Vector2, to:Vector2):
 	if _within_resize:
 		_wanted_size += to - from
 		rect_size = snap_position(_wanted_size)
-	elif not _within_resize:
+	else:
 		_wanted_position += to - from
 		rect_position = snap_position(_wanted_position)
 
