@@ -27,23 +27,28 @@ float isAlive(vec4 cc) {
 
 /**
  * Given the current cells color
- * and the surrounding cell colors
- * give me the next color for my current cell
+ * and the count of alive neighbors, return the next color
  */
 vec4 getColor(vec4 cc, int count, float time) {
-    // When cell is alive & has either 2 or 3 neighbours
-    // it will survive until the next iteration
-    if (isAlive(cc) > 0. && (count == 2 || count == 3)) {
-        return cc;
+    uint s_bits = uint(12); // bitwise
+    uint b_bits = uint(8);
+
+    uint bit = uint(1);
+    bool survives = false;
+    bool isBorn = false;
+    for (int i = 0; i < 8; i++) {
+        survives = survives || ((count == i) && ((s_bits & bit) != uint(0)));
+        isBorn = isBorn || ((count == i) && ((b_bits & bit) != uint(0)));
+        bit = bit << uint(1);
     }
 
-    // If the cell is dead but has 3 neighbours
-    // it will spring into life
-    else if (count == 3) {
+    if (isAlive(cc) > 0. && survives){
+        return cc;
+    }
+    else if (isBorn) {
         return vec4(sin(time), cos(time), 1.0, 1.0);
     }
 
-    // For all other cases the cells are dead
     return vec4(0.0, 0.0, 0.0, 1.0);
 }
 
@@ -58,11 +63,9 @@ int neighborsCount(in sampler2D tex, vec2 uv, vec2 s) {
   
     for (float x = -1.; x < 2.; x++) {
         for (float y = -1.; y < 2.; y++) {
-
             // We don't want to add our current square
             // this will equal zero only when we have x=0 & y=0
             not_current = min(1., abs(x) + abs(y));
-
             // Add any neighbours x value (we could also use y or z)
             vec2 nv = uv + vec2(x, y) * s;
             neighbours += isAlive(texture(tex, nv)) * not_current;
