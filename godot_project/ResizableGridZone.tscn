@@ -45,6 +45,3 @@ width = 2.0
 rotation = -3.14159
 points = PoolVector2Array( -30, -10, -10, -10 )
 width = 2.0
-
-[connection signal="mouse_entered" from="ResizeCorner" to="." method="_on_ResizeCorner_mouse_entered"]
-[connection signal="mouse_exited" from="ResizeCorner" to="." method="_on_ResizeCorner_mouse_exited"]

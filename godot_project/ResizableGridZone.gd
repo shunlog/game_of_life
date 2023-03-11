@@ -21,18 +21,18 @@ func _gui_input(event):
 func drag(from:Vector2, to:Vector2):
 	if _within_resize:
 		_wanted_size += to - from
-		rect_size = snap_position(_wanted_size)
+		rect_size = snap_to_grid(_wanted_size)
+		rect_size = vclamp(rect_size, Vector2(grid_size, grid_size), Vector2(INF, INF))
 	else:
 		_wanted_position += to - from
-		rect_position = snap_position(_wanted_position)
+		rect_position = snap_to_grid(_wanted_position)
 
-func snap_position(p:Vector2):
+func vclamp(v, vmin, vmax):
+	v.x = min(max(v.x, vmin.x), vmax.x)
+	v.y = min(max(v.y, vmin.y), vmax.y)
+	return v
+	
+func snap_to_grid(p:Vector2) -> Vector2:
 	p.x = int(p.x - int(p.x) % grid_size)
 	p.y = int(p.y - int(p.y) % grid_size)
 	return p
-
-func _on_ResizeCorner_mouse_entered():
-	_within_resize = true
-
-func _on_ResizeCorner_mouse_exited():
-	_within_resize = false
