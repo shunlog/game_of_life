@@ -41,5 +41,6 @@ func step():
 func set_mouse_pressed(pressed=true):
 	_set_shaders_param("mouse_pressed", pressed)
 
-func random(active=true):
-	_set_shaders_param("random", active)
+func random(fill):
+	_set_shaders_param("random", true)
+	_set_shaders_param("random_fill", fill)

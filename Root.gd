@@ -39,7 +39,7 @@ func _pause_toggle():
 	emit_signal("pause_state_changed", _paused)
 
 func _on_Random_button_down():
-	$GameOfLife.random()
+	$GameOfLife.random(_rand_fill)
 
 func _on_ButtonClear_button_down():
 	pass
@@ -55,11 +55,8 @@ func _on_rule_updated(rule, ls):
 	pass
 #	aut.rules[rule] = ls
 
-
 func _on_SpinBoxRandFill_value_changed(value):
-	print("slider", value)
 	_rand_fill = value
-
 
 func _on_ButtonRandom_button_up():
 	pass

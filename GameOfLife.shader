@@ -4,6 +4,7 @@ shader_type canvas_item;
 uniform bool mouse_pressed = false;
 uniform vec2 mouse_position = vec2(0., 0.);
 uniform bool random = false;
+uniform float random_fill = .1;
 
 /**
  * procedural white noise
@@ -89,10 +90,9 @@ void fragment() {
     }
     
     if (random){
-//	 float col = rand(abs(mouse_position) * uv * 2.);
         float col = rand(mouse_position * uv);
-        // Turn on pixels if value is > .5
-        col = smoothstep(0.5, 0.51, col);
+		if (col < random_fill) col = 1.0;
+		else col = 0.;
 
         COLOR = vec4(col, col, col, 1.0);
     }

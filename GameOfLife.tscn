@@ -10,12 +10,14 @@ shader = ExtResource( 4 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
 shader_param/random = false
+shader_param/random_fill = 0.1
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
 shader_param/random = false
+shader_param/random_fill = 0.1
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport2")
