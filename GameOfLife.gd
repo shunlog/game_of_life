@@ -28,12 +28,12 @@ func _set_shaders_param(p, v):
 	Renderer2.material.set_shader_param(p, v)
 
 func step():
-	# reset params
-#	Renderer.material.set_shader_param("mouse_pressed", false)
-#	Renderer.material.set_shader_param("random", false)
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	$TextureRect.texture = back.get_texture()
 	_swap()
+	
+	# reset params
+	front.get_child(0).material.set_shader_param("random", false)
 
 func draw_mouse(pressed=true):
 	_set_shaders_param("mouse_pressed", pressed)

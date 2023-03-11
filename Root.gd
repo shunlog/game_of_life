@@ -75,6 +75,6 @@ func _on_SpinBoxRandFill_value_changed(value):
 	_rand_fill = value
 
 
-
 func _on_ButtonRandom_button_up():
-	$GameOfLife.random(false)
+	pass
+#	$GameOfLife.random(false)
