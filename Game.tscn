@@ -230,5 +230,6 @@ script = ExtResource( 2 )
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_button_down"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_Random_button_down"]
+[connection signal="button_up" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_ButtonRandom_button_up"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]

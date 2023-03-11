@@ -7,7 +7,7 @@ extends Control
 # Then the CA (Cellular Automata) will ping-pong
 # back and forth between the two viewports
 onready var Renderer = $Viewport/Renderer
-var ping = false
+onready var Renderer2 = $Viewport2/Renderer
 onready var back :Viewport = $Viewport
 onready var front :Viewport = $Viewport2
 
@@ -23,18 +23,22 @@ func _swap():
 	back = front
 	front = tmp
 
+func _set_shaders_param(p, v):
+	Renderer.material.set_shader_param(p, v)
+	Renderer2.material.set_shader_param(p, v)
+
 func step():
 	# reset params
 #	Renderer.material.set_shader_param("mouse_pressed", false)
 #	Renderer.material.set_shader_param("random", false)
-	back.set_update_mode(Viewport.UPDATE_ONCE)
-	$TextureRect.texture = front.get_texture()
+	front.set_update_mode(Viewport.UPDATE_ONCE)
+	$TextureRect.texture = back.get_texture()
 	_swap()
 
 func draw_mouse(pressed=true):
-	Renderer.material.set_shader_param("mouse_pressed", pressed)
+	_set_shaders_param("mouse_pressed", pressed)
 	var pos = get_local_mouse_position()
-	Renderer.material.set_shader_param("mouse_position", pos)
+	_set_shaders_param("mouse_position", pos)
 
 func random(active=true):
-	Renderer.material.set_shader_param("random", active)
+	_set_shaders_param("random", active)

@@ -54,8 +54,6 @@ func _pause_toggle():
 
 func _on_Random_button_down():
 	$GameOfLife.random()
-	_step()
-	$GameOfLife.random(false)
 
 func _on_ButtonClear_button_down():
 	pass
@@ -76,3 +74,7 @@ func _on_SpinBoxRandFill_value_changed(value):
 	print("slider", value)
 	_rand_fill = value
 
+
+
+func _on_ButtonRandom_button_up():
+	$GameOfLife.random(false)
