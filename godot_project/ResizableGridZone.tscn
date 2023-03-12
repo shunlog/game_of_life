@@ -1,11 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://ResizableGridZone.gd" type="Script" id=1]
-[ext_resource path="res://ResizeCorner.gd" type="Script" id=2]
 
 [node name="ResizableGridZone" type="Control"]
-margin_right = 200.0
-margin_bottom = 200.0
+margin_right = 279.0
+margin_bottom = 63.0
 mouse_filter = 1
 script = ExtResource( 1 )
 
@@ -27,7 +26,6 @@ margin_left = -40.0
 margin_top = -40.0
 mouse_filter = 1
 mouse_default_cursor_shape = 12
-script = ExtResource( 2 )
 
 [node name="BR" type="Control" parent="ResizeCorner"]
 anchor_left = 1.0
@@ -45,3 +43,6 @@ width = 2.0
 rotation = -3.14159
 points = PoolVector2Array( -30, -10, -10, -10 )
 width = 2.0
+
+[connection signal="mouse_entered" from="ResizeCorner" to="." method="_on_ResizeCorner_mouse_entered"]
+[connection signal="mouse_exited" from="ResizeCorner" to="." method="_on_ResizeCorner_mouse_exited"]
