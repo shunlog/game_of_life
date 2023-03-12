@@ -12,7 +12,6 @@ func _create_checkboxes(node, rule, values):
 		node.add_child(cb)
 		cb.pressed = values[i]
 		cb.connect("toggled", self, "_on_cb_toggled", [rule, i])
-		# set defaults
 
 func _ready():
 	var arr8 := []

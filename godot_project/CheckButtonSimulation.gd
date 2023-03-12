@@ -1,8 +1,10 @@
 extends CheckButton
 
-
 func _ready():
 	emit_signal("toggled", pressed)
 
-func _on_Root_pause_state_changed(paused):
-	set_pressed_no_signal(!paused)
+func _input(event):
+	if event.is_action_pressed("toggle_pause"):
+		pressed = !pressed
+	if event.is_action_pressed("pause"):
+		pressed = false

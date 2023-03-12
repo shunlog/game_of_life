@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ResizableGridZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=11]
+[ext_resource path="res://ButtonStep.gd" type="Script" id=12]
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Label
@@ -112,6 +113,7 @@ margin_top = 90.0
 margin_right = 270.0
 margin_bottom = 113.0
 text = "Step (s)"
+script = ExtResource( 12 )
 
 [node name="HBoxContainer4" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 118.0
@@ -178,11 +180,10 @@ position = Vector2( 720, 536 )
 current = true
 script = ExtResource( 2 )
 
-[connection signal="pause_state_changed" from="." to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" method="_on_Root_pause_state_changed"]
 [connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="." method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
-[connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_button_down"]
+[connection signal="pressed" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_pressed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_Random_button_down"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]

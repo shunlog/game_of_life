@@ -8,22 +8,6 @@
 
 config_version=4
 
-_global_script_classes=[ {
-"base": "Node",
-"class": "Automaton",
-"language": "GDScript",
-"path": "res://Automaton.gd"
-}, {
-"base": "Node2D",
-"class": "Grid",
-"language": "GDScript",
-"path": "res://Grid.gd"
-} ]
-_global_script_class_icons={
-"Automaton": "",
-"Grid": ""
-}
-
 [application]
 
 config/name="My Game of Life"
@@ -52,10 +36,14 @@ step={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-pause={
+toggle_pause={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":80,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
+}
+pause={
+"deadzone": 0.5,
+"events": [  ]
 }
 
 [physics]

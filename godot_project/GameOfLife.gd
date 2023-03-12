@@ -12,7 +12,6 @@ onready var back :Viewport = $Viewport
 onready var front :Viewport = $Viewport2
 
 var t := 0.0
-var passed_steps := 0
 var paused := false
 var fps := 60
 # some parameters need to be set after a few updates of the shader,
@@ -56,7 +55,7 @@ func set_paused(v):
 func set_mouse_pressed(pressed=true):
 	_set_shaders_param("mouse_pressed", pressed)
 
-func random(fill):
+func random_fill(fill):
 	_set_shaders_param("random", true)
 	_set_shaders_param("random_fill", fill)
 	scheduled_params.append({"frames": 2, "param": "random", "value": false})

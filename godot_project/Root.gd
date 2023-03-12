@@ -1,53 +1,28 @@
 extends Node2D
 
-var t = 0.0
-var _draw : bool = false
 var _fps : float
 var _paused : bool
 var _rand_fill : float
 
-signal pause_state_changed(paused)
-
-func _ready():
-	for r in get_tree().get_nodes_in_group("rules"):
-		r.connect("rule_updated", self, "_on_rule_updated")
-#		r.set_checked(aut.rules[r.rule])
-
-func _input(event):
-	if event.is_action_pressed("pause"):
-		_pause(!_paused)
-	elif event.is_action_pressed("step"):
-		_step_once()
-
 func _step_once():
-	print("step")
-	_pause(true)
 	$GameOfLife.unpause_one_step()
 
 func _set_fps(v):
 	_fps = v
 	$GameOfLife.fps = v
 
+func _pause(paused):
+	_paused = paused
+	$GameOfLife.set_paused(paused)
+
 func _on_HSlider_value_changed(value):
 	_set_fps(value)
 
-func _pause(paused):
-	_paused = paused
-	emit_signal("pause_state_changed", paused)
-	$GameOfLife.set_paused(paused)
-
 func _on_Random_button_down():
-	$GameOfLife.random(_rand_fill)
+	$GameOfLife.random_fill(_rand_fill)
 
 func _on_ButtonClear_button_down():
 	$GameOfLife.clear()
-
-func _on_ButtonStep_button_down():
-	_step_once()
-
-func _on_rule_updated(rule, ls):
-	pass
-#	aut.rules[rule] = ls
 
 func _on_SpinBoxRandFill_value_changed(value):
 	_rand_fill = value
@@ -57,3 +32,6 @@ func _on_CheckButtonSimulation_toggled(button_pressed):
 
 func _on_Zone_0_rules_changed(rules):
 	$GameOfLife.set_rules(rules)
+
+func _on_ButtonStep_pressed():
+	_step_once()
