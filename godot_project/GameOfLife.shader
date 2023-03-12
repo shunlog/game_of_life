@@ -8,6 +8,9 @@ uniform float random_fill = .1;
 uniform bool paused = false;
 uniform bool clear = false;
 
+uniform int s_bits = 12; // bitwise
+uniform int b_bits = 8;
+
 /**
  * procedural white noise
  */
@@ -30,16 +33,13 @@ float isAlive(vec4 cc) {
  * and the count of alive neighbors, return the next color
  */
 vec4 getColor(vec4 cc, int count, float time) {
-    uint s_bits = uint(12); // bitwise
-    uint b_bits = uint(8);
-
-    uint bit = uint(1);
+    int bit = 1;
     bool survives = false;
     bool isBorn = false;
     for (int i = 0; i < 8; i++) {
-        survives = survives || ((count == i) && ((s_bits & bit) != uint(0)));
-        isBorn = isBorn || ((count == i) && ((b_bits & bit) != uint(0)));
-        bit = bit << uint(1);
+        survives = survives || ((count == i) && ((s_bits & bit) != 0));
+        isBorn = isBorn || ((count == i) && ((b_bits & bit) != 0));
+        bit = bit << 1;
     }
 
     if (isAlive(cc) > 0. && survives){
