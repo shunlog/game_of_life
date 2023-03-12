@@ -24,8 +24,8 @@ highp float rand(vec2 co)
     return fract(sin(sn) * c);
 }
 
-float isAlive(vec4 cc) {
-    return max(cc.r, max(cc.g, cc.b)) > 0. ? 1.0 : 0.0;
+bool isAlive(vec4 cc) {
+    return max(cc.r, max(cc.g, cc.b)) > 0. ? true : false;
 }
 
 /**
@@ -36,16 +36,16 @@ vec4 getColor(vec4 cc, int count, float time) {
     int bit = 1;
     bool survives = false;
     bool isBorn = false;
-    for (int i = 0; i < 8; i++) {
+    for (int i = 0; i <= 8; i++) {
         survives = survives || ((count == i) && ((survival_rules & bit) != 0));
         isBorn = isBorn || ((count == i) && ((birth_rules & bit) != 0));
         bit = bit << 1;
     }
 
-    if (isAlive(cc) > 0. && survives){
+    if (isAlive(cc) && survives){
         return cc;
     }
-    else if (isBorn) {
+    else if (!isAlive(cc) && isBorn) {
         return vec4(sin(time), cos(time), 1.0, 1.0);
     }
 
@@ -65,10 +65,11 @@ int neighborsCount(in sampler2D tex, vec2 uv, vec2 s) {
         for (float y = -1.; y < 2.; y++) {
             // We don't want to add our current square
             // this will equal zero only when we have x=0 & y=0
-            not_current = min(1., abs(x) + abs(y));
+			if(min(1., abs(x) + abs(y)) == 0.) continue;
             // Add any neighbours x value (we could also use y or z)
             vec2 nv = uv + vec2(x, y) * s;
-            neighbours += isAlive(texture(tex, nv)) * not_current;
+			if (isAlive(texture(tex, nv)))
+            	neighbours += 1.;
         }
     }
 
