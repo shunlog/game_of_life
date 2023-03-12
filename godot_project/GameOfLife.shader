@@ -8,8 +8,8 @@ uniform float random_fill = .1;
 uniform bool paused = false;
 uniform bool clear = false;
 
-uniform int s_bits = 12; // bitwise
-uniform int b_bits = 8;
+uniform int survival_rules = 12; // bitwise
+uniform int birth_rules = 8;
 
 /**
  * procedural white noise
@@ -37,8 +37,8 @@ vec4 getColor(vec4 cc, int count, float time) {
     bool survives = false;
     bool isBorn = false;
     for (int i = 0; i < 8; i++) {
-        survives = survives || ((count == i) && ((s_bits & bit) != 0));
-        isBorn = isBorn || ((count == i) && ((b_bits & bit) != 0));
+        survives = survives || ((count == i) && ((survival_rules & bit) != 0));
+        isBorn = isBorn || ((count == i) && ((birth_rules & bit) != 0));
         bit = bit << 1;
     }
 

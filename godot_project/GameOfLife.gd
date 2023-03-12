@@ -69,6 +69,23 @@ func clear():
 	_set_shaders_param("clear", true)
 	passed_steps = 0
 
+func set_rules(rules):
+	var s = _arr2bin(rules[Global.Rules.survival])
+	var b = _arr2bin(rules[Global.Rules.birth])
+	_set_shaders_param("survival_rules", s)
+	_set_shaders_param("birth_rules", b)
+
+func _arr2bin(a:Array):
+	# convert an array of booleans "a" with into an integer "n" such that
+	# n[i (starting from the right)] == 1 if a[i] else 0
+	# example [false, true] -> 0b10
+	var b := 0
+	for i in range(len(a)-1, -1, -1):
+		b = b << 1
+		if a[i]:
+			b += 1
+	return b
+
 func _on_TextureRect_draw():
 	passed_steps += 1
 	if passed_steps == 2:

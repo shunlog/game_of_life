@@ -13,8 +13,8 @@ shader_param/random = false
 shader_param/random_fill = 0.1
 shader_param/paused = false
 shader_param/clear = false
-shader_param/s_bits = 12
-shader_param/b_bits = 8
+shader_param/survival_rules = 12
+shader_param/birth_rules = 8
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
@@ -24,8 +24,8 @@ shader_param/random = false
 shader_param/random_fill = 0.1
 shader_param/paused = false
 shader_param/clear = false
-shader_param/s_bits = 12
-shader_param/b_bits = 8
+shader_param/survival_rules = 12
+shader_param/birth_rules = 8
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport2")

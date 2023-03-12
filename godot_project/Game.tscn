@@ -140,12 +140,12 @@ margin_right = 270.0
 margin_bottom = 169.0
 text = "Clear"
 
-[node name="TabContainer" type="TabContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="ZonesRulesTabContainer" type="TabContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 174.0
 margin_right = 270.0
 margin_bottom = 238.0
 
-[node name="Zone 0" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer" instance=ExtResource( 9 )]
+[node name="Zone 0" parent="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -153,7 +153,7 @@ margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Zone 1" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer" instance=ExtResource( 9 )]
+[node name="Zone 1" parent="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 9 )]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -186,3 +186,4 @@ script = ExtResource( 2 )
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_Random_button_down"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
+[connection signal="rules_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 0" to="." method="_on_Zone_0_rules_changed"]
