@@ -68,38 +68,38 @@ margin_bottom = 24.4
 text = "FPS"
 script = ExtResource( 5 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="PauseHBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 30.0
 margin_right = 270.0
 margin_bottom = 55.0
 
-[node name="LabelPaused" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="LabelPaused" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
 margin_top = -1.0
 margin_right = 104.4
 margin_bottom = 24.4
 text = "Simulation (p)"
 script = SubResource( 3 )
 
-[node name="CheckButtonSimulation" type="CheckButton" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2"]
+[node name="CheckButtonSimulation" type="CheckButton" parent="HUD/Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
 margin_left = 107.0
 margin_right = 149.0
 margin_bottom = 25.0
 pressed = true
 script = ExtResource( 3 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="SpeedHBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 60.0
 margin_right = 270.0
 margin_bottom = 85.0
 
-[node name="LabelSpeed" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="LabelSpeed" type="Label" parent="HUD/Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer"]
 margin_top = -1.0
 margin_right = 50.4
 margin_bottom = 24.4
 text = "Speed"
 script = ExtResource( 7 )
 
-[node name="HSliderSpeed" type="HSlider" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer"]
+[node name="HSliderSpeed" type="HSlider" parent="HUD/Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer"]
 margin_left = 53.0
 margin_right = 270.0
 margin_bottom = 13.0
@@ -117,19 +117,19 @@ margin_bottom = 113.0
 text = "Step (s)"
 script = ExtResource( 12 )
 
-[node name="HBoxContainer4" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="FillHBoxContainer" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 118.0
 margin_right = 270.0
 margin_bottom = 141.0
 
-[node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
+[node name="ButtonRandom" type="Button" parent="HUD/Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_right = 205.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
 text = "Random fill (r)"
 script = ExtResource( 14 )
 
-[node name="SpinBoxRandFill" type="SpinBox" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
+[node name="SpinBoxRandFill" type="SpinBox" parent="HUD/Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_left = 208.0
 margin_right = 270.0
 margin_bottom = 23.0
@@ -168,7 +168,7 @@ margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
+[node name="HelpRichTextLabel" type="RichTextLabel" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 243.0
 margin_right = 270.0
 margin_bottom = 349.0
@@ -184,11 +184,11 @@ position = Vector2( 720, 536 )
 current = true
 script = ExtResource( 2 )
 
-[connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer2/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
-[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="." method="_on_HSlider_value_changed"]
-[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
+[connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
+[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="HUD/Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
 [connection signal="pressed" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_pressed"]
-[connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/ButtonRandom" to="." method="_on_Random_button_down"]
-[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
+[connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/ButtonRandom" to="." method="_on_Random_button_down"]
+[connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
 [connection signal="rules_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 0" to="." method="_on_Zone_0_rules_changed"]
