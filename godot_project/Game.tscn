@@ -30,6 +30,12 @@ margin_top = 219.0
 margin_right = 599.0
 margin_bottom = 319.0
 
+[node name="ResizableGridZone" parent="." instance=ExtResource( 10 )]
+margin_left = 670.0
+margin_top = 357.0
+margin_right = 770.0
+margin_bottom = 457.0
+
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="HUD"]
@@ -166,12 +172,6 @@ Pan with left click.
 Draw cells with right click.
 Zoom in with mouse wheel."
 fit_content_height = true
-
-[node name="ResizableGridZone" parent="." instance=ExtResource( 10 )]
-margin_left = 670.0
-margin_top = 357.0
-margin_right = 770.0
-margin_bottom = 457.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 720, 536 )
