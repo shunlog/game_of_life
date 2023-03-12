@@ -15,6 +15,9 @@ var t := 0.0
 var passed_steps := 0
 var paused := false
 var fps := 60
+# some parameters need to be set after a few updates of the shader,
+# so we schedule them in this array of dicts (see _on_TextureRect_draw) 
+var scheduled_params := []
 
 func _ready():
 	$Viewport.size = rect_size
@@ -36,15 +39,6 @@ func _process(delta):
 			t -= frame_t
 			step()
 
-func _swap():
-	var tmp = back
-	back = front
-	front = tmp
-
-func _set_shaders_param(p, v):
-	Renderer.material.set_shader_param(p, v)
-	Renderer2.material.set_shader_param(p, v)
-
 func step():
 	var pos = get_local_mouse_position()
 	_set_shaders_param("mouse_position", pos)
@@ -63,17 +57,26 @@ func set_mouse_pressed(pressed=true):
 func random(fill):
 	_set_shaders_param("random", true)
 	_set_shaders_param("random_fill", fill)
-	passed_steps = 0
+	scheduled_params.append({"frames": 2, "param": "random", "value": false})
 
 func clear():
 	_set_shaders_param("clear", true)
-	passed_steps = 0
+	scheduled_params.append({"frames": 2, "param": "clear", "value": false})
 
 func set_rules(rules):
 	var s = _arr2bin(rules[Global.Rules.survival])
 	var b = _arr2bin(rules[Global.Rules.birth])
 	_set_shaders_param("survival_rules", s)
 	_set_shaders_param("birth_rules", b)
+
+func _swap():
+	var tmp = back
+	back = front
+	front = tmp
+
+func _set_shaders_param(p, v):
+	Renderer.material.set_shader_param(p, v)
+	Renderer2.material.set_shader_param(p, v)
 
 func _arr2bin(a:Array):
 	# convert an array of booleans "a" with into an integer "n" such that
@@ -87,7 +90,8 @@ func _arr2bin(a:Array):
 	return b
 
 func _on_TextureRect_draw():
-	passed_steps += 1
-	if passed_steps == 2:
-		_set_shaders_param("clear", false)
-		_set_shaders_param("random", false)
+	for d in scheduled_params:
+		d["frames"] -= 1
+		if d["frames"] == 0:
+			_set_shaders_param(d["param"], d["value"])
+			scheduled_params.erase(d)  # i hope this is safe
