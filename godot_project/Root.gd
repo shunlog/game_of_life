@@ -16,9 +16,13 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("pause"):
 		_pause(!_paused)
+	elif event.is_action_pressed("step"):
+		_step_once()
 
-func _step():
-	$GameOfLife.step()
+func _step_once():
+	print("step")
+	_pause(true)
+	$GameOfLife.unpause_one_step()
 
 func _set_fps(v):
 	_fps = v
@@ -39,7 +43,7 @@ func _on_ButtonClear_button_down():
 	$GameOfLife.clear()
 
 func _on_ButtonStep_button_down():
-	_step()
+	_step_once()
 
 func _on_rule_updated(rule, ls):
 	pass

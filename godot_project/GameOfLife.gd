@@ -26,8 +26,6 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
 		set_mouse_pressed(event.pressed)
-	elif event.is_action_pressed("step"):
-		step()
 
 func _process(delta):
 	if paused:
@@ -46,6 +44,10 @@ func step():
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	$TextureRect.texture = front.get_texture()
 	_swap()
+
+func unpause_one_step():
+	_set_shaders_param("paused", false)
+	scheduled_params.append({"frames": 2, "param": "paused", "value": true})
 
 func set_paused(v):
 	paused = v
