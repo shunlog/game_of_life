@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://ResizableGridZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=11]
 [ext_resource path="res://ButtonStep.gd" type="Script" id=12]
+[ext_resource path="res://ButtonClear.gd" type="Script" id=13]
+[ext_resource path="res://ButtonRandom.gd" type="Script" id=14]
 
 [sub_resource type="GDScript" id=3]
 script/source = "extends Label
@@ -124,7 +126,8 @@ margin_bottom = 141.0
 margin_right = 205.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
-text = "Random fill"
+text = "Random fill (r)"
+script = ExtResource( 14 )
 
 [node name="SpinBoxRandFill" type="SpinBox" parent="HUD/Panel/ScrollContainer/VBoxContainer/HBoxContainer4"]
 margin_left = 208.0
@@ -140,7 +143,8 @@ script = ExtResource( 11 )
 margin_top = 146.0
 margin_right = 270.0
 margin_bottom = 169.0
-text = "Clear"
+text = "Clear (c)"
+script = ExtResource( 13 )
 
 [node name="ZonesRulesTabContainer" type="TabContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 174.0
