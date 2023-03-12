@@ -8,7 +8,7 @@
 [ext_resource path="res://GameOfLife.tscn" type="PackedScene" id=6]
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=8]
-[ext_resource path="res://RuleMenuButton.tscn" type="PackedScene" id=9]
+[ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=9]
 [ext_resource path="res://ResizableGridZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=11]
 
@@ -137,9 +137,9 @@ text = "Clear"
 [node name="TabContainer" type="TabContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 174.0
 margin_right = 270.0
-margin_bottom = 236.0
+margin_bottom = 238.0
 
-[node name="Zone 0" type="PanelContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer"]
+[node name="Zone 0" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer" instance=ExtResource( 9 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -147,36 +147,19 @@ margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer/Zone 0"]
-margin_left = 2.0
-margin_top = 2.0
-margin_right = 260.0
-margin_bottom = 25.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer/Zone 0/HBoxContainer3"]
-margin_right = 127.0
-margin_bottom = 23.0
-size_flags_horizontal = 3
-
-[node name="MenuButtonSurvive" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer/Zone 0/HBoxContainer3/VBoxContainer" instance=ExtResource( 9 )]
-margin_right = 127.0
-text = "Survival"
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer/Zone 0/HBoxContainer3"]
-margin_left = 130.0
-margin_right = 258.0
-margin_bottom = 23.0
-size_flags_horizontal = 3
-
-[node name="MenuButtonBirth" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer/Zone 0/HBoxContainer3/VBoxContainer2" instance=ExtResource( 9 )]
-margin_right = 128.0
-text = "Birth"
-rule = 1
+[node name="Zone 1" parent="HUD/Panel/ScrollContainer/VBoxContainer/TabContainer" instance=ExtResource( 9 )]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 31.0
+margin_right = -4.0
+margin_bottom = -4.0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
-margin_top = 241.0
+margin_top = 243.0
 margin_right = 270.0
-margin_bottom = 347.0
+margin_bottom = 349.0
 text = "**Help**
 
 Pan with left click.

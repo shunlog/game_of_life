@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://ZoneRules.gd" type="Script" id=1]
+
+[node name="Zone 0" type="PanelContainer"]
+margin_right = 245.0
+margin_bottom = 177.0
+script = ExtResource( 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 238.0
+margin_bottom = 170.0
+
+[node name="Survival" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 74.0
+margin_bottom = 163.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Survival"]
+margin_right = 74.0
+margin_bottom = 14.0
+text = "Survival"
+
+[node name="Birth" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 78.0
+margin_right = 152.0
+margin_bottom = 163.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/Birth"]
+margin_right = 74.0
+margin_bottom = 14.0
+text = "Birth"
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="HBoxContainer"]
+margin_left = 156.0
+margin_right = 231.0
+margin_bottom = 163.0
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer3"]
+margin_right = 75.0
+margin_bottom = 14.0
+text = "Kamikaze"
