@@ -39,9 +39,7 @@ func _process(delta):
 func step():
 	var pos = get_local_mouse_position()
 	_set_shaders_param("mouse_position", pos)
-	
 	front.set_update_mode(Viewport.UPDATE_ONCE)
-	$TextureRect.texture = front.get_texture()
 	_swap()
 
 func unpause_one_step():
@@ -74,6 +72,7 @@ func _swap():
 	var tmp = back
 	back = front
 	front = tmp
+	$TextureRect.texture = front.get_texture()
 
 func _set_shaders_param(p, v):
 	Renderer.material.set_shader_param(p, v)
