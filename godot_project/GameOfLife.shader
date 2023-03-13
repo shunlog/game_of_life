@@ -10,6 +10,9 @@ uniform bool clear = false;
 
 uniform int survival_rules = 12; // bitwise
 uniform int birth_rules = 8;
+// zone 1 will have creeping ivy for now
+uniform int survival_rules2 = 60; // bitwise
+uniform int birth_rules2 = 8;
 
 /**
  * procedural white noise
@@ -32,13 +35,13 @@ bool isAlive(vec4 cc) {
  * Given the current cells color
  * and the count of alive neighbors, return the next color
  */
-vec4 getColor(vec4 cc, int count, float time) {
+vec4 getColor(vec4 cc, int count, float time, int sr, int br) {
     int bit = 1;
     bool survives = false;
     bool isBorn = false;
     for (int i = 0; i <= 8; i++) {
-        survives = survives || ((count == i) && ((survival_rules & bit) != 0));
-        isBorn = isBorn || ((count == i) && ((birth_rules & bit) != 0));
+        survives = survives || ((count == i) && ((sr & bit) != 0));
+        isBorn = isBorn || ((count == i) && ((br & bit) != 0));
         bit = bit << 1;
     }
 
@@ -89,12 +92,16 @@ void fragment() {
 
     COLOR = texture(TEXTURE, uv);
     
+	int sr, br;
     if (!paused){
-        if ( length( curr - vec2(100., 100.)) < 25.0) {
-            COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+        if ( length( curr - vec2(200., 200.)) < 75.0) {
+			sr = survival_rules2;
+            br = birth_rules2;
         } else {
-            COLOR = getColor(texture(TEXTURE, uv), count, 1.0);
+			sr = survival_rules;
+            br = birth_rules;
         }
+		COLOR = getColor(texture(TEXTURE, uv), count, 1.0, sr, br);
     }
     
     if (random){

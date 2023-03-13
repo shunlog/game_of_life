@@ -27,10 +27,6 @@ func _ready():
 script = ExtResource( 1 )
 
 [node name="GameOfLife" parent="." instance=ExtResource( 6 )]
-margin_left = 399.0
-margin_top = 219.0
-margin_right = 599.0
-margin_bottom = 319.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 

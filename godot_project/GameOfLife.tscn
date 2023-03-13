@@ -15,6 +15,8 @@ shader_param/paused = false
 shader_param/clear = false
 shader_param/survival_rules = 12
 shader_param/birth_rules = 8
+shader_param/survival_rules2 = 60
+shader_param/birth_rules2 = 8
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
@@ -26,13 +28,15 @@ shader_param/paused = false
 shader_param/clear = false
 shader_param/survival_rules = 12
 shader_param/birth_rules = 8
+shader_param/survival_rules2 = 60
+shader_param/birth_rules2 = 8
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport2")
 
 [node name="GameOfLife" type="Control"]
-margin_right = 200.0
-margin_bottom = 100.0
+margin_right = 400.0
+margin_bottom = 400.0
 rect_scale = Vector2( 5, 5 )
 mouse_filter = 2
 script = ExtResource( 3 )
