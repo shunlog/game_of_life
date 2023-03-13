@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
 [ext_resource path="res://Camera2D.gd" type="Script" id=2]
@@ -9,7 +9,6 @@
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=8]
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://ResizableGridZone.tscn" type="PackedScene" id=10]
 [ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=11]
 [ext_resource path="res://ButtonStep.gd" type="Script" id=12]
 [ext_resource path="res://ButtonClear.gd" type="Script" id=13]
@@ -32,12 +31,6 @@ margin_left = 399.0
 margin_top = 219.0
 margin_right = 599.0
 margin_bottom = 319.0
-
-[node name="ResizableGridZone" parent="." instance=ExtResource( 10 )]
-margin_left = 670.0
-margin_top = 357.0
-margin_right = 770.0
-margin_bottom = 457.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
