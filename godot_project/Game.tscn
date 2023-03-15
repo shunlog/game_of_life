@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Root.gd" type="Script" id=1]
-[ext_resource path="res://Camera2D.gd" type="Script" id=2]
+[ext_resource path="res://MovableCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=3]
 [ext_resource path="res://HSliderSpeed.gd" type="Script" id=4]
 [ext_resource path="res://LabelFPS.gd" type="Script" id=5]
@@ -169,10 +169,7 @@ Draw cells with right click.
 Zoom in with mouse wheel."
 fit_content_height = true
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 720, 536 )
-current = true
-script = ExtResource( 2 )
+[node name="MovableCamera" parent="." instance=ExtResource( 2 )]
 
 [connection signal="toggled" from="HUD/Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="." method="_on_HSlider_value_changed"]
