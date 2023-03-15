@@ -4,7 +4,6 @@ export var zoom_mult := 1.1
 export var max_zoom := .2
 export var min_zoom := 10
 
-var _previousPosition: Vector2 = Vector2(0, 0);
 var _moveCamera: bool = false;
 
 func _unhandled_input(event):
@@ -13,17 +12,13 @@ func _unhandled_input(event):
 			zoom_at_point(zoom_mult, event.position)
 		elif (event.button_index == BUTTON_WHEEL_UP):
 			zoom_at_point(1/zoom_mult, event.position)
-	if event is InputEventMouseButton:
-		if event.button_index == BUTTON_LEFT:
+		elif event.button_index == BUTTON_LEFT:
 			if event.is_pressed():
-				_previousPosition = event.position;
 				_moveCamera = true;
 			else:
 				_moveCamera = false;
-
 	elif event is InputEventMouseMotion && _moveCamera:
-		position += zoom * (_previousPosition - event.position)
-		_previousPosition = event.position;
+		position += zoom * -event.relative
 		
 func zoom_at_point(zoom_change, point):
 	var c0 = global_position
