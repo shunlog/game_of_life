@@ -156,6 +156,7 @@ margin_left = 4.0
 margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
+zone = 1
 
 [node name="HelpRichTextLabel" type="RichTextLabel" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 243.0
@@ -180,4 +181,5 @@ script = ExtResource( 2 )
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/ButtonRandom" to="." method="_on_Random_button_down"]
 [connection signal="value_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="HUD/Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
-[connection signal="rules_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 0" to="." method="_on_Zone_0_rules_changed"]
+[connection signal="rules_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 0" to="." method="_on_Zone_rules_changed"]
+[connection signal="rules_changed" from="HUD/Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 1" to="." method="_on_Zone_rules_changed"]

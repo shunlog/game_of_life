@@ -62,11 +62,15 @@ func clear():
 	_set_shaders_param("clear", true)
 	scheduled_params.append({"frames": 2, "param": "clear", "value": false})
 
-func set_rules(rules):
+func set_rules(zone, rules):
 	var s = _arr2bin(rules[Global.Rules.survival])
 	var b = _arr2bin(rules[Global.Rules.birth])
-	_set_shaders_param("survival_rules", s)
-	_set_shaders_param("birth_rules", b)
+	if zone == 0:
+		_set_shaders_param("survival_rules", s)
+		_set_shaders_param("birth_rules", b)
+	elif zone == 1:
+		_set_shaders_param("survival_rules2", s)
+		_set_shaders_param("birth_rules2", b)
 
 func _swap():
 	var tmp = back

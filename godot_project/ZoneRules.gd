@@ -1,6 +1,7 @@
 extends PanelContainer
 
 signal rules_changed(rules)
+export var zone := 0
 
 var rules := {Global.Rules.survival: [],
 			  Global.Rules.birth: []}
@@ -30,4 +31,4 @@ func _ready():
 
 func _on_cb_toggled(pressed, rule, id):
 	rules[rule][id] = pressed
-	emit_signal("rules_changed", rules)
+	emit_signal("rules_changed", self.zone, rules)

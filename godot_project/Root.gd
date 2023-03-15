@@ -30,8 +30,8 @@ func _on_SpinBoxRandFill_value_changed(value):
 func _on_CheckButtonSimulation_toggled(button_pressed):
 	_pause(!button_pressed)
 
-func _on_Zone_0_rules_changed(rules):
-	$GameOfLife.set_rules(rules)
+func _on_Zone_rules_changed(zone, rules):
+	$GameOfLife.set_rules(zone, rules)
 
 func _on_ButtonStep_pressed():
 	_step_once()

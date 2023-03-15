@@ -68,11 +68,11 @@ int neighborsCount(in sampler2D tex, vec2 uv, vec2 s) {
         for (float y = -1.; y < 2.; y++) {
             // We don't want to add our current square
             // this will equal zero only when we have x=0 & y=0
-			if(min(1., abs(x) + abs(y)) == 0.) continue;
+            if(min(1., abs(x) + abs(y)) == 0.) continue;
             // Add any neighbours x value (we could also use y or z)
             vec2 nv = uv + vec2(x, y) * s;
-			if (isAlive(texture(tex, nv)))
-            	neighbours += 1.;
+            if (isAlive(texture(tex, nv)))
+                neighbours += 1.;
         }
     }
 
@@ -92,16 +92,16 @@ void fragment() {
 
     COLOR = texture(TEXTURE, uv);
     
-	int sr, br;
+    int sr, br;
     if (!paused){
         if ( length( curr - vec2(200., 200.)) < 75.0) {
-			sr = survival_rules2;
+            sr = survival_rules2;
             br = birth_rules2;
         } else {
-			sr = survival_rules;
+            sr = survival_rules;
             br = birth_rules;
         }
-		COLOR = getColor(texture(TEXTURE, uv), count, 1.0, sr, br);
+        COLOR = getColor(texture(TEXTURE, uv), count, 1.0, sr, br);
     }
     
     if (random){
