@@ -157,6 +157,10 @@ margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
 zone = 1
+rules = {
+0: [ false, false, true, true, true, false, false, false, false ],
+1: [ false, false, false, true, false, false, false, false, false ]
+}
 
 [node name="HelpRichTextLabel" type="RichTextLabel" parent="HUD/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 243.0
