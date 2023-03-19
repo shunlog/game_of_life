@@ -21,6 +21,8 @@ var scheduled_params := []
 func _ready():
 	$Viewport.size = rect_size
 	$Viewport2.size = rect_size
+	_set_shaders_param("bitmap", $Bitmap.texture)
+	
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:

@@ -7,6 +7,7 @@ uniform bool random = false;
 uniform float random_fill = .1;
 uniform bool paused = false;
 uniform bool clear = false;
+uniform sampler2D bitmap;
 
 uniform int survival_rules = 12; // bitwise
 uniform int birth_rules = 8;
@@ -94,7 +95,7 @@ void fragment() {
     
     int sr, br;
     if (!paused){
-        if ( length( curr - vec2(200., 200.)) < 75.0) {
+        if (texture(bitmap, uv).rgb == vec3(.0, .0, .0)){
             sr = survival_rules2;
             br = birth_rules2;
         } else {
