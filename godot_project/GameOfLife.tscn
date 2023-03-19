@@ -37,7 +37,6 @@ viewport_path = NodePath("Viewport2")
 [node name="GameOfLife" type="Control"]
 margin_right = 400.0
 margin_bottom = 400.0
-rect_scale = Vector2( 5, 5 )
 mouse_filter = 2
 script = ExtResource( 3 )
 

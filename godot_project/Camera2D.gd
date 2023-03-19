@@ -2,7 +2,7 @@ extends Camera2D
 
 export var zoom_mult := 1.1
 export var max_zoom := .2
-export var min_zoom := 10
+export var min_zoom := 10.0
 
 var _moveCamera: bool = false;
 
