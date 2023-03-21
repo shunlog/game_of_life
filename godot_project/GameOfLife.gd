@@ -74,6 +74,15 @@ func set_rules(zone, rules):
 		_set_shaders_param("survival_rules2", s)
 		_set_shaders_param("birth_rules2", b)
 
+func set_colors(zone, colors):
+	print(colors)
+	if zone == 0:
+		_set_shaders_param("color_alive0", colors[0])
+		_set_shaders_param("color_dead0", colors[1])
+	elif zone == 1:
+		_set_shaders_param("color_alive1", colors[0])
+		_set_shaders_param("color_dead1", colors[1])
+
 func _swap():
 	var tmp = back
 	back = front

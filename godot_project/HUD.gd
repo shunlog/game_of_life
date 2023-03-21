@@ -39,3 +39,7 @@ func _on_HSliderSpeed_value_changed(value):
 
 func _on_ButtonRandom_button_down():
 	GOL.random_fill(_rand_fill)
+
+func _on_Zone_colors_changed(zone, colors):
+	if GOL:
+		GOL.set_colors(zone, colors)

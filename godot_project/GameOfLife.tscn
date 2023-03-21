@@ -18,6 +18,10 @@ shader_param/survival_rules = 12
 shader_param/birth_rules = 8
 shader_param/survival_rules2 = 60
 shader_param/birth_rules2 = 8
+shader_param/color_alive0 = Plane( 1, 0, 0, 1 )
+shader_param/color_alive1 = Plane( 0, 1, 0, 1 )
+shader_param/color_dead0 = Plane( 0, 0, 0, 1 )
+shader_param/color_dead1 = Plane( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
@@ -31,6 +35,10 @@ shader_param/survival_rules = 12
 shader_param/birth_rules = 8
 shader_param/survival_rules2 = 60
 shader_param/birth_rules2 = 8
+shader_param/color_alive0 = Plane( 1, 0, 0, 1 )
+shader_param/color_alive1 = Plane( 0, 1, 0, 1 )
+shader_param/color_dead0 = Plane( 0, 0, 0, 1 )
+shader_param/color_dead1 = Plane( 0, 0, 0, 1 )
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport2")

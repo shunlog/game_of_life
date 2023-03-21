@@ -15,9 +15,11 @@ uniform int birth_rules = 8;
 uniform int survival_rules2 = 60; // bitwise
 uniform int birth_rules2 = 8;
 
-/**
- * procedural white noise
- */
+uniform vec4 color_alive0 = vec4(1.0, .0, .0, 1.);
+uniform vec4 color_alive1 = vec4(.0, 1.0, .0, 1.);
+uniform vec4 color_dead0 = vec4(.0, .0, .0, 1.);
+uniform vec4 color_dead1 = vec4(.0, .0, .0, 1.);
+
 highp float rand(vec2 co)
 {
     highp float a = 12.9898;
@@ -28,101 +30,103 @@ highp float rand(vec2 co)
     return fract(sin(sn) * c);
 }
 
-bool isAlive(vec4 cc) {
-    return max(cc.r, max(cc.g, cc.b)) > 0. ? true : false;
-}
-
 /**
- * Given the current cells color
- * and the count of alive neighbors, return the next color
+ * Given the current cells state,
+ * the count of alive neighbors,
+ * and the survival and birth rules,
+ * return the next state
  */
-vec4 getColor(vec4 cc, int count, float time, int sr, int br) {
+int next_state(bool alive, int nc, int sr, int br) {
     int bit = 1;
     bool survives = false;
-    bool isBorn = false;
+    bool is_born = false;
+
     for (int i = 0; i <= 8; i++) {
-        survives = survives || ((count == i) && ((sr & bit) != 0));
-        isBorn = isBorn || ((count == i) && ((br & bit) != 0));
+        survives = survives || ((nc == i) && ((sr & bit) != 0));
+        is_born = is_born || ((nc == i) && ((br & bit) != 0));
         bit = bit << 1;
     }
 
-    if (isAlive(cc) && survives){
-        return cc;
-    }
-    else if (!isAlive(cc) && isBorn) {
-        return vec4(sin(time), cos(time), 1.0, 1.0);
+    if (alive && survives){
+        return 0;
     }
 
-    return vec4(0.0, 0.0, 0.0, 1.0);
+    if (!alive && is_born) {
+        return 1;
+    }
+
+    return 2;
 }
 
-// For all other cases the cells are dead
+bool alive(vec4 cur){
+    return (max(max(abs(cur.r - color_alive0.r),
+                    abs(cur.g - color_alive0.g)),
+                abs(cur.b - color_alive0.b)) < 0.01)
+        || (max(max(abs(cur.r - color_alive1.r),
+                    abs(cur.g - color_alive1.g)),
+                abs(cur.b - color_alive1.b)) < 0.01);
+}
 
-/**
- * Returns the surrounding living cell count of a given UV
- */
-int neighborsCount(in sampler2D tex, vec2 uv, vec2 s) {
-    float not_current;
-    float neighbours = 0.;
-  
-    for (float x = -1.; x < 2.; x++) {
-        for (float y = -1.; y < 2.; y++) {
-            // We don't want to add our current square
-            // this will equal zero only when we have x=0 & y=0
-            if(min(1., abs(x) + abs(y)) == 0.) continue;
-            // Add any neighbours x value (we could also use y or z)
-            vec2 nv = uv + vec2(x, y) * s;
-            if (isAlive(texture(tex, nv)))
-                neighbours += 1.;
+int neighbors(vec2 uv, sampler2D tex, vec2 sz){
+    int cnt = 0;
+
+    for (int dx = -1; dx <= 1; dx++){
+        for (int dy = -1; dy <= 1; dy++){
+            if(dx == 0 && dy == 0) continue;
+            vec2 nv = uv;
+            nv.x += float(dx) * sz.x;
+            nv.y += float(dy) * sz.y;
+            vec4 cur = texture(tex, nv);
+            if (alive(cur)){
+                cnt += 1;
+            }
         }
     }
 
-    return int(neighbours);
+    return cnt;
 }
 
 void fragment() {
-    vec2 uv = SCREEN_UV;
-    vec2 sz = SCREEN_PIXEL_SIZE;
-
-    // How many alive cells do we have around the current cell?
-    int count = neighborsCount(TEXTURE, uv, sz);
-
-    // How far away from the mouse is the current position
-    vec2 distance_to_mouse = (uv / sz) - mouse_position; 
-    vec2 curr = uv/sz;
-
-    COLOR = texture(TEXTURE, uv);
-    
     int sr, br;
+    vec4 color_alive, color_dead;
+
+    if (texture(bitmap, SCREEN_UV).rgb == vec3(.0, .0, .0)){
+        sr = survival_rules2;
+        br = birth_rules2;
+        color_alive = color_alive1;
+        color_dead = color_dead1;
+    } else {
+        sr = survival_rules;
+        br = birth_rules;
+        color_alive = color_alive0;
+        color_dead = color_dead0;
+    }
+
+    vec2 distance_to_mouse = (SCREEN_UV / SCREEN_PIXEL_SIZE) - mouse_position;
+    COLOR = texture(TEXTURE, SCREEN_UV);
+    bool alive = alive(texture(TEXTURE, SCREEN_UV));
+    int nc = neighbors(SCREEN_UV, TEXTURE, SCREEN_PIXEL_SIZE);
+    
     if (!paused){
-        if (texture(bitmap, uv).rgb == vec3(.0, .0, .0)){
-            sr = survival_rules2;
-            br = birth_rules2;
+        int ns = next_state(alive, nc, sr, br);
+        if ((ns == 0) || (ns == 1)){
+            COLOR = color_alive;
         } else {
-            sr = survival_rules;
-            br = birth_rules;
+            COLOR = color_dead;
         }
-        COLOR = getColor(texture(TEXTURE, uv), count, 1.0, sr, br);
     }
     
     if (random){
-        float col = rand(mouse_position * uv);
-        if (col < random_fill) col = 1.0;
-        else col = 0.;
-
-        COLOR = vec4(col, col, col, 1.0);
+        float r = rand(mouse_position * SCREEN_UV);
+        COLOR = r < random_fill ? color_alive : color_dead;
     }
     
     if(clear){
-        COLOR = vec4(0.0, 0.0, 0.0, 1.0);
+        COLOR = color_dead;
     }
 
-    // Mouse input drawing
     if (mouse_pressed && length(distance_to_mouse) <= 5.) {
-        // Apply some random spread to the mouse circle
-        float col = rand(abs(distance_to_mouse) * uv);
-        // Turn on pixels if value is > .5
-        col = smoothstep(0.5, 0.51, col);
-        COLOR = vec4(col, col, col, 1.0);
+        float r = rand(abs(distance_to_mouse) * SCREEN_UV);
+        COLOR = r < .5 ? color_alive : color_dead;
     }
 }
