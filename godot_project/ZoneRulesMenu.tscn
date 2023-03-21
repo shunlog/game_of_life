@@ -60,7 +60,7 @@ margin_right = 36.0
 margin_bottom = 17.0
 text = "Alive:"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer2"]
+[node name="AliveColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 40.0
 margin_right = 231.0
 margin_bottom = 20.0
@@ -77,11 +77,11 @@ margin_right = 37.0
 margin_bottom = 17.0
 text = "Dead:"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer3"]
+[node name="DeadColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer3"]
 margin_left = 41.0
 margin_right = 231.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 
-[connection signal="color_changed" from="VBoxContainer/HBoxContainer2/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
-[connection signal="color_changed" from="VBoxContainer/HBoxContainer3/ColorPickerButton" to="." method="_on_ColorPickerButton_color_changed"]
+[connection signal="color_changed" from="VBoxContainer/HBoxContainer2/AliveColorPickerButton" to="." method="_on_AliveColorPickerButton_color_changed"]
+[connection signal="color_changed" from="VBoxContainer/HBoxContainer3/DeadColorPickerButton" to="." method="_on_DeadColorPickerButton_color_changed"]

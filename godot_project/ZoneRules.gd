@@ -1,37 +1,38 @@
 extends PanelContainer
 
-signal rules_changed(rules)
-signal colors_changed(colors)
+signal rule_changed(pressed, rule, id)
+signal color_changed(state, color)
 
 export var zone := 0
-export var rules := {
-	Global.Rules.survival: [false, false, true, true,
-				false, false, false, false, false],
-	Global.Rules.birth: [false, false, false, true,
-			 false, false, false, false, false],
-}
-export var colors := [Color.white, Color.black]
 
+var _checkboxes = {Global.Rules.survival: [], Global.Rules.birth: []}
 
 func _ready():
-	_create_checkboxes($VBoxContainer/HBoxContainer/Survival, Global.Rules.survival, rules[Global.Rules.survival])
-	_create_checkboxes($VBoxContainer/HBoxContainer/Birth, Global.Rules.birth, rules[Global.Rules.birth])
-	emit_signal("rules_changed", self.zone, rules)
-	emit_signal("colors_changed", self.zone, colors)
+	_create_checkboxes($VBoxContainer/HBoxContainer/Survival, Global.Rules.survival)
+	_create_checkboxes($VBoxContainer/HBoxContainer/Birth, Global.Rules.birth)
 
-func _create_checkboxes(node, rule, values):
-	for i in range(len(values)):
+func _create_checkboxes(node, rule):
+	for i in range(9):
 		var cb = CheckBox.new()
 		cb.text = str(i)
 		node.add_child(cb)
-		cb.pressed = values[i]
 		cb.connect("toggled", self, "_on_cb_toggled", [rule, i])
+		_checkboxes[rule].append(cb)
+
+func set_checkboxes(rules):
+	for r in [Global.Rules.survival, Global.Rules.birth]:
+		for i in range(9):
+			_checkboxes[r][i].pressed = rules[r][i]
+
+func set_color(colors):
+	$VBoxContainer/HBoxContainer2/AliveColorPickerButton.color = colors[true]
+	$VBoxContainer/HBoxContainer3/DeadColorPickerButton.color = colors[false]
 
 func _on_cb_toggled(pressed, rule, id):
-	rules[rule][id] = pressed
-	emit_signal("rules_changed", self.zone, rules)
+	emit_signal("rule_changed", self.zone, pressed, rule, id)
 
-func _on_ColorPickerButton_color_changed(_color):
-	colors[0] = $VBoxContainer/HBoxContainer2/ColorPickerButton.color
-	colors[1] = $VBoxContainer/HBoxContainer3/ColorPickerButton.color
-	emit_signal("colors_changed", self.zone, colors)
+func _on_AliveColorPickerButton_color_changed(color):
+	emit_signal("color_changed", true, color)
+
+func _on_DeadColorPickerButton_color_changed(color):
+	emit_signal("color_changed", false, color)

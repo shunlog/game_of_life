@@ -1,45 +1,40 @@
 extends CanvasLayer
 
-var _fps : float
-var _paused : bool
-var _rand_fill : float
-onready var GOL = null
+onready var GOL setget set_GOL
 
-func _step_once():
-	GOL.unpause_one_step()
-
-func _set_fps(v):
-	_fps = v
-	if GOL:
-		GOL.fps = v
-
-func _pause(paused):
-	_paused = paused
-	if GOL:
-		GOL.set_paused(paused)
+func set_GOL(v):
+	GOL = v
+	$Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation.pressed = !GOL.paused
+	$Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed.set_value(GOL.fps)
+	$Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill.value = GOL.rand_fill_treshold
+	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0.set_checkboxes(GOL.rules[0])
+	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1.set_checkboxes(GOL.rules[1])
+	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0.set_color(GOL.colors[0])
+	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1.set_color(GOL.colors[1])
 
 func _on_ButtonClear_button_down():
 	GOL.clear()
 
 func _on_SpinBoxRandFill_value_changed(value):
-	_rand_fill = value
+	GOL.rand_fill_treshold = value
 
 func _on_CheckButtonSimulation_toggled(button_pressed):
-	_pause(!button_pressed)
-
-func _on_Zone_rules_changed(zone, rules):
-	if GOL:
-		GOL.set_rules(zone, rules)
+	GOL.set_paused(!button_pressed)
 
 func _on_ButtonStep_pressed():
-	_step_once()
+	GOL.unpause_one_step()
 
 func _on_HSliderSpeed_value_changed(value):
-	_set_fps(value)
+	GOL.fps = value
 
 func _on_ButtonRandom_button_down():
-	GOL.random_fill(_rand_fill)
+	GOL.random_fill()
 
-func _on_Zone_colors_changed(zone, colors):
-	if GOL:
-		GOL.set_colors(zone, colors)
+func _on_Zone_rule_changed(zone, pressed, rule, id):
+	GOL.set_rule(zone, pressed, rule, id)
+
+func _on_Zone0_color_changed(state, color):
+	GOL.set_color(0, state, color)
+
+func _on_Zone1_color_changed(state, color):
+	GOL.set_color(1, state, color)

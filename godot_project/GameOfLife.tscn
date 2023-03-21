@@ -48,6 +48,20 @@ margin_right = 800.0
 margin_bottom = 400.0
 mouse_filter = 2
 script = ExtResource( 3 )
+rules = [ {
+0: [ false, false, true, true, false, false, false, false, false ],
+1: [ false, false, false, true, false, false, false, false, false ]
+}, {
+0: [ false, false, true, true, true, false, false, false, false ],
+1: [ false, false, false, true, false, false, false, false, false ]
+} ]
+colors = [ {
+false: Color( 0.0666667, 0.0666667, 0.254902, 1 ),
+true: Color( 0.0196078, 0.643137, 0.94902, 1 )
+}, {
+false: Color( 0.0352941, 0.176471, 0.0352941, 1 ),
+true: Color( 0, 0.921569, 0, 1 )
+} ]
 
 [node name="Viewport" type="Viewport" parent="."]
 transparent_bg = true

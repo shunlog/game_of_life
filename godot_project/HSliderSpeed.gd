@@ -1,5 +1,5 @@
 extends HSlider
 
-
-func _ready():
-	emit_signal("value_changed", value)
+func set_value(v):
+	value = v
+	emit_signal("value_changed", v)

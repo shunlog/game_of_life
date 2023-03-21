@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://LabelFPS.gd" type="Script" id=1]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=2]
@@ -7,19 +7,9 @@
 [ext_resource path="res://ButtonClear.gd" type="Script" id=5]
 [ext_resource path="res://HSliderSpeed.gd" type="Script" id=6]
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
-[ext_resource path="res://SpinBoxRandFill.gd" type="Script" id=8]
 [ext_resource path="res://HUD.gd" type="Script" id=10]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=11]
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=12]
-
-[sub_resource type="GDScript" id=3]
-script/source = "extends Label
-
-
-func _ready():
-	pass
-
-"
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 10 )
@@ -61,7 +51,6 @@ margin_top = -1.0
 margin_right = 104.4
 margin_bottom = 24.4
 text = "Simulation (p)"
-script = SubResource( 3 )
 
 [node name="CheckButtonSimulation" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
 margin_left = 107.0
@@ -120,7 +109,6 @@ min_value = 0.01
 max_value = 1.0
 step = 0.01
 value = 0.5
-script = ExtResource( 8 )
 
 [node name="ButtonClear" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 146.0
@@ -134,7 +122,7 @@ margin_top = 174.0
 margin_right = 270.0
 margin_bottom = 294.0
 
-[node name="Zone 0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
+[node name="Zone0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 4.0
@@ -142,7 +130,7 @@ margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
 
-[node name="Zone 1" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
+[node name="Zone1" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -151,10 +139,6 @@ margin_top = 31.0
 margin_right = -4.0
 margin_bottom = -4.0
 zone = 1
-rules = {
-0: [ false, false, true, true, true, false, false, false, false ],
-1: [ false, false, false, true, false, false, false, false, false ]
-}
 
 [node name="HelpRichTextLabel" type="RichTextLabel" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 299.0
@@ -174,7 +158,7 @@ fit_content_height = true
 [connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/ButtonRandom" to="." method="_on_ButtonRandom_button_down"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
-[connection signal="colors_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 0" to="." method="_on_Zone_colors_changed"]
-[connection signal="rules_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 0" to="." method="_on_Zone_rules_changed"]
-[connection signal="colors_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 1" to="." method="_on_Zone_colors_changed"]
-[connection signal="rules_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone 1" to="." method="_on_Zone_rules_changed"]
+[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone0_color_changed"]
+[connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone_rule_changed"]
+[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone1_color_changed"]
+[connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone_rule_changed"]
