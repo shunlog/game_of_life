@@ -23,7 +23,9 @@ export var rules := [{Global.Rules.survival: [false, false, true, true,
 			  Global.Rules.birth: [false, false, false, true,
 					   false, false, false, false, false]}]
 export var colors := [{true: Color.aqua, false: Color.darkblue},
-					  {true: Color.green, false: Color.darkgreen}]
+					  {true: Color.green, false: Color.darkgreen},
+					Color.red]
+export var infectivity := .5
 
 # some parameters need to be set after a few updates of the shader,
 # so we schedule them in this array of dicts (see _on_TextureRect_draw) 
@@ -88,14 +90,22 @@ func _update_rule_params():
 	_set_shaders_param("rule1b", _arr2bin(rules[1][Global.Rules.birth]))
 
 func set_color(zone, state, color):
-	colors[zone][state] = color
+	if state == null:
+		colors[zone] = color
+	else:
+		colors[zone][state] = color
 	_update_color_params()
+	
+func set_infectivity(v):
+	infectivity = v
+	_set_shaders_param("isp", infectivity)
 
 func _update_color_params():
 	_set_shaders_param("color0a", colors[0][true])
 	_set_shaders_param("color0d", colors[0][false])
 	_set_shaders_param("color1a", colors[1][true])
 	_set_shaders_param("color1d", colors[1][false])
+	_set_shaders_param("color2", colors[2])
 
 func _swap():
 	var tmp = back

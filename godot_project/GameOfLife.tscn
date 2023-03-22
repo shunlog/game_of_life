@@ -22,6 +22,8 @@ shader_param/color0a = Plane( 1, 0, 0, 1 )
 shader_param/color1a = Plane( 0, 1, 0, 1 )
 shader_param/color0d = Plane( 0, 0, 0, 1 )
 shader_param/color1d = Plane( 0, 0, 0, 1 )
+shader_param/color2 = Plane( 0.99, 0, 0.5, 1 )
+shader_param/isp = 0.5
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
@@ -39,6 +41,8 @@ shader_param/color0a = Plane( 1, 0, 0, 1 )
 shader_param/color1a = Plane( 0, 1, 0, 1 )
 shader_param/color0d = Plane( 0, 0, 0, 1 )
 shader_param/color1d = Plane( 0, 0, 0, 1 )
+shader_param/color2 = Plane( 0.99, 0, 0.5, 1 )
+shader_param/isp = 0.5
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport2")
@@ -55,13 +59,7 @@ rules = [ {
 0: [ false, false, true, true, true, false, false, false, false ],
 1: [ false, false, false, true, false, false, false, false, false ]
 } ]
-colors = [ {
-false: Color( 0.0666667, 0.0666667, 0.254902, 1 ),
-true: Color( 0.0196078, 0.643137, 0.94902, 1 )
-}, {
-false: Color( 0.0352941, 0.176471, 0.0352941, 1 ),
-true: Color( 0, 0.921569, 0, 1 )
-} ]
+infectivity = 0.45
 
 [node name="Viewport" type="Viewport" parent="."]
 transparent_bg = true

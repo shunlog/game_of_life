@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://LabelFPS.gd" type="Script" id=1]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ButtonClear.gd" type="Script" id=5]
 [ext_resource path="res://HSliderSpeed.gd" type="Script" id=6]
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
+[ext_resource path="res://InfectionLabel.gd" type="Script" id=8]
 [ext_resource path="res://HUD.gd" type="Script" id=10]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=11]
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=12]
@@ -140,6 +141,49 @@ margin_right = -4.0
 margin_bottom = -4.0
 zone = 1
 
+[node name="Infection" type="PanelContainer" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer"]
+visible = false
+margin_right = 4.0
+margin_bottom = 4.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection"]
+margin_left = 2.0
+margin_top = 2.0
+margin_right = 6.0
+margin_bottom = 25.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
+margin_right = 6.4
+margin_bottom = 25.4
+text = "Cell color:"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
+margin_right = 4.0
+margin_bottom = 23.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer"]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2"]
+margin_right = 6.4
+margin_bottom = 25.4
+text = "Infectivity"
+script = ExtResource( 8 )
+
+[node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2"]
+margin_right = 40.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.01
+value = 0.5
+
 [node name="HelpRichTextLabel" type="RichTextLabel" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 299.0
 margin_right = 270.0
@@ -162,3 +206,6 @@ fit_content_height = true
 [connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone_rule_changed"]
 [connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone1_color_changed"]
 [connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone_rule_changed"]
+[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/ColorPickerButton" to="." method="_on_infected_color_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_infectivity_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider" to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/Label" method="_on_infectivity_value_changed"]

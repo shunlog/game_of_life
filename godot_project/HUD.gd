@@ -11,6 +11,8 @@ func set_GOL(v):
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1.set_checkboxes(GOL.rules[1])
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0.set_color(GOL.colors[0])
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1.set_color(GOL.colors[1])
+	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/ColorPickerButton.color = GOL.colors[2]
+	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider.value = GOL.infectivity
 
 func _on_ButtonClear_button_down():
 	GOL.clear()
@@ -38,3 +40,9 @@ func _on_Zone0_color_changed(state, color):
 
 func _on_Zone1_color_changed(state, color):
 	GOL.set_color(1, state, color)
+
+func _on_infected_color_changed(color):
+	GOL.set_color(2, null, color)
+
+func _on_infectivity_value_changed(value):
+	GOL.set_infectivity(value)
