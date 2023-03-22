@@ -59,6 +59,13 @@ rules = [ {
 0: [ false, false, true, true, true, false, false, false, false ],
 1: [ false, false, false, true, false, false, false, false, false ]
 } ]
+colors = [ {
+false: Color( 0.160784, 0.160784, 0.368627, 1 ),
+true: Color( 0.133333, 0.576471, 0.815686, 1 )
+}, {
+false: Color( 0.160784, 0.301961, 0.160784, 1 ),
+true: Color( 0.133333, 0.882353, 0.133333, 1 )
+}, Color( 1, 0, 0, 1 ) ]
 infectivity = 0.45
 
 [node name="Viewport" type="Viewport" parent="."]
