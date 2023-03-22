@@ -9,16 +9,15 @@ uniform bool paused = false;
 uniform bool clear = false;
 uniform sampler2D bitmap;
 
-uniform int survival_rules = 12; // bitwise
-uniform int birth_rules = 8;
-// zone 1 will have creeping ivy for now
-uniform int survival_rules2 = 60; // bitwise
-uniform int birth_rules2 = 8;
+uniform int rule0s = 12;
+uniform int rule0b = 8;
+uniform int rule1s = 60;
+uniform int rule1b = 8;
 
-uniform vec4 color_alive0 = vec4(1.0, .0, .0, 1.);
-uniform vec4 color_alive1 = vec4(.0, 1.0, .0, 1.);
-uniform vec4 color_dead0 = vec4(.0, .0, .0, 1.);
-uniform vec4 color_dead1 = vec4(.0, .0, .0, 1.);
+uniform vec4 color0a = vec4(1.0, .0, .0, 1.);
+uniform vec4 color1a = vec4(.0, 1.0, .0, 1.);
+uniform vec4 color0d = vec4(.0, .0, .0, 1.);
+uniform vec4 color1d = vec4(.0, .0, .0, 1.);
 
 highp float rand(vec2 co)
 {
@@ -59,12 +58,12 @@ int next_state(bool alive, int nc, int sr, int br) {
 }
 
 bool alive(vec4 cur){
-    return (max(max(abs(cur.r - color_alive0.r),
-                    abs(cur.g - color_alive0.g)),
-                abs(cur.b - color_alive0.b)) < 0.01)
-        || (max(max(abs(cur.r - color_alive1.r),
-                    abs(cur.g - color_alive1.g)),
-                abs(cur.b - color_alive1.b)) < 0.01);
+    return (max(max(abs(cur.r - color0a.r),
+                    abs(cur.g - color0a.g)),
+                abs(cur.b - color0a.b)) < 0.01)
+        || (max(max(abs(cur.r - color1a.r),
+                    abs(cur.g - color1a.g)),
+                abs(cur.b - color1a.b)) < 0.01);
 }
 
 int neighbors(vec2 uv, sampler2D tex, vec2 sz){
@@ -91,15 +90,15 @@ void fragment() {
     vec4 color_alive, color_dead;
 
     if (texture(bitmap, SCREEN_UV).rgb == vec3(.0, .0, .0)){
-        sr = survival_rules2;
-        br = birth_rules2;
-        color_alive = color_alive1;
-        color_dead = color_dead1;
+        sr = rule1s;
+        br = rule1b;
+        color_alive = color1a;
+        color_dead = color1d;
     } else {
-        sr = survival_rules;
-        br = birth_rules;
-        color_alive = color_alive0;
-        color_dead = color_dead0;
+        sr = rule0s;
+        br = rule0b;
+        color_alive = color0a;
+        color_dead = color0d;
     }
 
     vec2 distance_to_mouse = (SCREEN_UV / SCREEN_PIXEL_SIZE) - mouse_position;

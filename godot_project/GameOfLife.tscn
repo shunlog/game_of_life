@@ -14,14 +14,14 @@ shader_param/random = false
 shader_param/random_fill = 0.1
 shader_param/paused = false
 shader_param/clear = false
-shader_param/survival_rules = 12
-shader_param/birth_rules = 8
-shader_param/survival_rules2 = 60
-shader_param/birth_rules2 = 8
-shader_param/color_alive0 = Plane( 1, 0, 0, 1 )
-shader_param/color_alive1 = Plane( 0, 1, 0, 1 )
-shader_param/color_dead0 = Plane( 0, 0, 0, 1 )
-shader_param/color_dead1 = Plane( 0, 0, 0, 1 )
+shader_param/rule0s = 12
+shader_param/rule0b = 8
+shader_param/rule1s = 60
+shader_param/rule1b = 8
+shader_param/color0a = Plane( 1, 0, 0, 1 )
+shader_param/color1a = Plane( 0, 1, 0, 1 )
+shader_param/color0d = Plane( 0, 0, 0, 1 )
+shader_param/color1d = Plane( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = ExtResource( 4 )
@@ -31,14 +31,14 @@ shader_param/random = false
 shader_param/random_fill = 0.1
 shader_param/paused = false
 shader_param/clear = false
-shader_param/survival_rules = 12
-shader_param/birth_rules = 8
-shader_param/survival_rules2 = 60
-shader_param/birth_rules2 = 8
-shader_param/color_alive0 = Plane( 1, 0, 0, 1 )
-shader_param/color_alive1 = Plane( 0, 1, 0, 1 )
-shader_param/color_dead0 = Plane( 0, 0, 0, 1 )
-shader_param/color_dead1 = Plane( 0, 0, 0, 1 )
+shader_param/rule0s = 12
+shader_param/rule0b = 8
+shader_param/rule1s = 60
+shader_param/rule1b = 8
+shader_param/color0a = Plane( 1, 0, 0, 1 )
+shader_param/color1a = Plane( 0, 1, 0, 1 )
+shader_param/color0d = Plane( 0, 0, 0, 1 )
+shader_param/color1d = Plane( 0, 0, 0, 1 )
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport2")

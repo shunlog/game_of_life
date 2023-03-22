@@ -82,20 +82,20 @@ func set_rule(zone, pressed, rule, id):
 	_update_rule_params()
 
 func _update_rule_params():
-	_set_shaders_param("survival_rules", _arr2bin(rules[0][Global.Rules.survival]))
-	_set_shaders_param("birth_rules", _arr2bin(rules[0][Global.Rules.birth]))
-	_set_shaders_param("survival_rules2", _arr2bin(rules[1][Global.Rules.survival]))
-	_set_shaders_param("birth_rules2", _arr2bin(rules[1][Global.Rules.birth]))
+	_set_shaders_param("rule0s", _arr2bin(rules[0][Global.Rules.survival]))
+	_set_shaders_param("rule0b", _arr2bin(rules[0][Global.Rules.birth]))
+	_set_shaders_param("rule1s", _arr2bin(rules[1][Global.Rules.survival]))
+	_set_shaders_param("rule1b", _arr2bin(rules[1][Global.Rules.birth]))
 
 func set_color(zone, state, color):
 	colors[zone][state] = color
 	_update_color_params()
 
 func _update_color_params():
-	_set_shaders_param("color_alive0", colors[0][true])
-	_set_shaders_param("color_dead0", colors[0][false])
-	_set_shaders_param("color_alive1", colors[1][true])
-	_set_shaders_param("color_dead1", colors[1][false])
+	_set_shaders_param("color0a", colors[0][true])
+	_set_shaders_param("color0d", colors[0][false])
+	_set_shaders_param("color1a", colors[1][true])
+	_set_shaders_param("color1d", colors[1][false])
 
 func _swap():
 	var tmp = back
