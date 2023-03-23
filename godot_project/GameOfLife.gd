@@ -41,6 +41,12 @@ func _ready():
 	_set_shaders_param("bitmap", $Bitmap.texture)
 	_update_rule_params()
 	_update_color_params()
+	_set_shaders_param("paused", paused)
+	_set_shaders_param("pen_size", pen_size)
+	_set_shaders_param("pen_type", pen_type)
+	_set_shaders_param("pen_randomness", pen_randomness)
+	_set_shaders_param("rand_fill_treshold", rand_fill_treshold)
+	_set_shaders_param("infectivity", infectivity)
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
@@ -151,3 +157,4 @@ func _on_TextureRect_draw():
 		if d["frames"] == 0:
 			_set_shaders_param(d["param"], d["value"])
 			_scheduled_params.erase(d)  # i hope this is safe
+

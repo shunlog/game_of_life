@@ -8,7 +8,7 @@ uniform int pen_size = 1;
 uniform float pen_randomness = .5;
 
 uniform bool random = false;
-uniform float random_fill = .1;
+uniform float rand_fill_treshold = .1;
 uniform bool paused = false;
 uniform bool clear = false;
 uniform sampler2D bitmap;
@@ -160,7 +160,7 @@ void fragment() {
     
     if (random){
         float r = rand(SCREEN_UV);
-        COLOR = r < random_fill ? color_alive : color_dead;
+        COLOR = r < rand_fill_treshold ? color_alive : color_dead;
     }
     
     if(clear){
