@@ -1,4 +1,4 @@
-extends Control
+class_name GameOfLife extends Control
 
 # We've turned off the viewport rendering in the
 # Godot editor to improve battery life & development time

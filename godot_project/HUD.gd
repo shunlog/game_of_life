@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-onready var GOL setget set_GOL
+onready var GOL :GameOfLife setget set_GOL
 
 func set_GOL(v):
 	GOL = v
