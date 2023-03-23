@@ -10,6 +10,9 @@
 shader = ExtResource( 4 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
+shader_param/pen_type = 1
+shader_param/pen_size = 1
+shader_param/pen_randomness = 0.5
 shader_param/random = false
 shader_param/random_fill = 0.1
 shader_param/paused = false
@@ -29,6 +32,9 @@ shader_param/isp = 0.5
 shader = ExtResource( 4 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
+shader_param/pen_type = 1
+shader_param/pen_size = 1
+shader_param/pen_randomness = 0.5
 shader_param/random = false
 shader_param/random_fill = 0.1
 shader_param/paused = false
@@ -52,6 +58,8 @@ margin_right = 800.0
 margin_bottom = 400.0
 mouse_filter = 2
 script = ExtResource( 3 )
+pen_size = 15
+pen_randomness = 0.4
 rules = [ {
 0: [ false, false, true, true, false, false, false, false, false ],
 1: [ false, false, false, true, false, false, false, false, false ]

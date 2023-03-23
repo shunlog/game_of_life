@@ -13,6 +13,9 @@ onready var front :Viewport = $Viewport2
 
 export var paused := false
 export var fps := 60
+export var pen_size := 1 setget set_pen_size
+export var pen_type := 1 setget set_pen_type
+export var pen_randomness := .5 setget set_pen_randomness
 export var rand_fill_treshold := .5
 export var rules := [{Global.Rules.survival: [false, false, true, true,
 						  false, false, false, false, false],
@@ -25,7 +28,7 @@ export var rules := [{Global.Rules.survival: [false, false, true, true,
 export var colors := [{true: Color.aqua, false: Color.darkblue},
 					  {true: Color.green, false: Color.darkgreen},
 					Color.red]
-export var infectivity := .5
+export var infectivity := .5 setget set_infectivity
 
 # some parameters need to be set after a few updates of the shader,
 # so we schedule them in this array of dicts (see _on_TextureRect_draw) 
@@ -83,6 +86,18 @@ func set_rule(zone, pressed, rule, id):
 	self.rules[zone][rule][id] = pressed
 	_update_rule_params()
 
+func set_pen_size(v):
+	pen_size = v
+	_set_shaders_param("pen_size", v)
+
+func set_pen_type(v):
+	pen_type = v
+	_set_shaders_param("pen_type", v)
+	
+func set_pen_randomness(v):
+	pen_randomness = v
+	_set_shaders_param("pen_randomness", v)
+
 func _update_rule_params():
 	_set_shaders_param("rule0s", _arr2bin(rules[0][Global.Rules.survival]))
 	_set_shaders_param("rule0b", _arr2bin(rules[0][Global.Rules.birth]))
@@ -95,7 +110,7 @@ func set_color(zone, state, color):
 	else:
 		colors[zone][state] = color
 	_update_color_params()
-	
+
 func set_infectivity(v):
 	infectivity = v
 	_set_shaders_param("isp", infectivity)
@@ -114,8 +129,10 @@ func _swap():
 	$TextureRect.texture = front.get_texture()
 
 func _set_shaders_param(p, v):
-	Renderer.material.set_shader_param(p, v)
-	Renderer2.material.set_shader_param(p, v)
+	if Renderer:
+		Renderer.material.set_shader_param(p, v)
+	if Renderer2:
+		Renderer2.material.set_shader_param(p, v)
 
 func _arr2bin(a:Array):
 	# convert an array of booleans "a" with into an integer "n" such that

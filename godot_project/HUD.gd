@@ -13,6 +13,8 @@ func set_GOL(v):
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1.set_color(GOL.colors[1])
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/ColorPickerButton.color = GOL.colors[2]
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider.value = GOL.infectivity
+	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider.value = GOL.pen_size
+	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2.value = GOL.pen_randomness
 
 func _on_ButtonClear_button_down():
 	GOL.clear()
@@ -45,4 +47,13 @@ func _on_infected_color_changed(color):
 	GOL.set_color(2, null, color)
 
 func _on_infectivity_value_changed(value):
-	GOL.set_infectivity(value)
+	GOL.infectivity = value
+
+func _on_pen_size_HSlider_value_changed(value):
+	GOL.pen_size = value
+
+func _on_PenTypeOptionButton_pen_type_changed(id):
+	GOL.pen_type = id
+
+func _on_PenRandom_value_changed(value):
+	GOL.pen_randomness = value

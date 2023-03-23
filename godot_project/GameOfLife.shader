@@ -3,6 +3,10 @@ shader_type canvas_item;
 // Controlled from GDscript
 uniform bool mouse_pressed = false;
 uniform vec2 mouse_position = vec2(0., 0.);
+uniform int pen_type = 1;
+uniform int pen_size = 1;
+uniform float pen_randomness = .5;
+
 uniform bool random = false;
 uniform float random_fill = .1;
 uniform bool paused = false;
@@ -163,9 +167,17 @@ void fragment() {
         COLOR = color_dead;
     }
 
-    if (mouse_pressed && length(distance_to_mouse) <= 1.) {
+    if (mouse_pressed && length(distance_to_mouse) <= float(pen_size) / 2.) {
+		vec4 c;
+		if (pen_type == 2){
+			c = color2;
+		} else if (pen_type == 1){
+			c = color_alive;
+		} else {
+			c = color_dead;
+		}
         float r = rand(abs(distance_to_mouse) * SCREEN_UV);
-        //COLOR = r < .5 ? color_alive : color_dead;
-        COLOR = color2;
+		if (r < pen_randomness)
+        	COLOR = c;
     }
 }

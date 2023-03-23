@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://LabelFPS.gd" type="Script" id=1]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=2]
@@ -8,9 +8,12 @@
 [ext_resource path="res://HSliderSpeed.gd" type="Script" id=6]
 [ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
 [ext_resource path="res://InfectionLabel.gd" type="Script" id=8]
+[ext_resource path="res://RadiusLabel.gd" type="Script" id=9]
 [ext_resource path="res://HUD.gd" type="Script" id=10]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=11]
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://PenTypeOptionButton.gd" type="Script" id=13]
+[ext_resource path="res://PenRandomLabel.gd" type="Script" id=14]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 10 )
@@ -118,10 +121,75 @@ margin_bottom = 169.0
 text = "Clear (c)"
 script = ExtResource( 5 )
 
-[node name="ZonesRulesTabContainer" type="TabContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 174.0
 margin_right = 270.0
+margin_bottom = 178.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 182.0
+margin_right = 270.0
+margin_bottom = 207.4
+text = "Pen settings"
+align = 1
+
+[node name="GridBoxContainer" type="GridContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 213.0
+margin_right = 270.0
+margin_bottom = 266.0
+columns = 2
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
+margin_top = -1.0
+margin_right = 69.0
+margin_bottom = 24.4
+text = "Size:"
+script = ExtResource( 9 )
+
+[node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
+margin_left = 72.0
+margin_right = 270.0
+margin_bottom = 13.0
+size_flags_horizontal = 3
+min_value = 1.0
+value = 1.0
+
+[node name="Label2" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
+margin_top = 27.0
+margin_right = 69.4
+margin_bottom = 52.4
+text = "Random:"
+script = ExtResource( 14 )
+
+[node name="HSlider2" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
+margin_left = 72.0
+margin_top = 28.0
+margin_right = 270.0
+margin_bottom = 41.0
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 1.0
+step = 0.1
+value = 0.1
+
+[node name="PenTypeOptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 271.0
+margin_right = 270.0
 margin_bottom = 294.0
+text = "Alive"
+items = [ "Alive", null, false, 1, null, "Dead", null, false, 0, null, "Infected", null, false, 2, null ]
+selected = 0
+script = ExtResource( 13 )
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 299.0
+margin_right = 270.0
+margin_bottom = 303.0
+
+[node name="ZonesRulesTabContainer" type="TabContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 308.0
+margin_right = 270.0
+margin_bottom = 428.0
 
 [node name="Zone0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
 anchor_right = 1.0
@@ -185,9 +253,9 @@ step = 0.01
 value = 0.5
 
 [node name="HelpRichTextLabel" type="RichTextLabel" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 299.0
+margin_top = 433.0
 margin_right = 270.0
-margin_bottom = 405.0
+margin_bottom = 539.0
 text = "**Help**
 
 Pan with left click.
@@ -202,6 +270,12 @@ fit_content_height = true
 [connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/ButtonRandom" to="." method="_on_ButtonRandom_button_down"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
 [connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider" to="." method="_on_pen_size_HSlider_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/Label" method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2" to="." method="_on_PenRandom_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/Label2" method="_on_HSlider2_value_changed"]
+[connection signal="item_selected" from="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" to="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" method="_on_PenTypeOptionButton_item_selected"]
+[connection signal="pen_type_changed" from="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" to="." method="_on_PenTypeOptionButton_pen_type_changed"]
 [connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone0_color_changed"]
 [connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone_rule_changed"]
 [connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone1_color_changed"]
