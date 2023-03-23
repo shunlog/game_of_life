@@ -7,6 +7,7 @@
 [ext_resource path="res://earth.png" type="Texture" id=5]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
@@ -29,6 +30,7 @@ shader_param/color2 = Plane( 0.99, 0, 0.5, 1 )
 shader_param/isp = 0.5
 
 [sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/mouse_pressed = false
 shader_param/mouse_position = Vector2( 0, 0 )
@@ -54,9 +56,6 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="GameOfLife" type="Control"]
-margin_right = 800.0
-margin_bottom = 400.0
-mouse_filter = 2
 script = ExtResource( 3 )
 pen_size = 15
 pen_randomness = 0.4
@@ -102,8 +101,8 @@ texture = SubResource( 4 )
 
 [node name="Bitmap" type="TextureRect" parent="."]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 800.0
+margin_bottom = 400.0
 texture = ExtResource( 5 )
 
 [connection signal="draw" from="TextureRect" to="." method="_on_TextureRect_draw"]

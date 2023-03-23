@@ -17,3 +17,23 @@ min_zoom = 1.0
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
 [node name="GameOfLife" parent="." instance=ExtResource( 6 )]
+margin_left = 545.0
+margin_top = -9.0
+margin_right = 545.0
+margin_bottom = -9.0
+
+[node name="GameOfLife2" parent="." instance=ExtResource( 6 )]
+margin_left = 533.0
+margin_top = 437.0
+margin_right = 533.0
+margin_bottom = 437.0
+colors = [ {
+false: Color( 0, 0, 0, 1 ),
+true: Color( 0.133333, 0.576471, 0.815686, 1 )
+}, {
+false: Color( 0.160784, 0.301961, 0.160784, 1 ),
+true: Color( 0.133333, 0.882353, 0.133333, 1 )
+}, Color( 1, 0, 0, 1 ) ]
+
+[connection signal="mouse_entered" from="GameOfLife" to="." method="_on_GameOfLife_mouse_entered"]
+[connection signal="mouse_entered" from="GameOfLife2" to="." method="_on_GameOfLife2_mouse_entered"]

@@ -36,6 +36,7 @@ var _scheduled_params := []
 var _t := 0.0
 
 func _ready():
+	rect_size = $Bitmap.rect_size
 	$Viewport.size = rect_size
 	$Viewport2.size = rect_size
 	_set_shaders_param("bitmap", $Bitmap.texture)
