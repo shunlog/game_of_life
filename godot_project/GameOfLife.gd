@@ -81,7 +81,7 @@ func set_mouse_pressed(pressed=true):
 
 func random_fill():
 	_set_shaders_param("random", true)
-	_set_shaders_param("random_fill", rand_fill_treshold)
+	_set_shaders_param("rand_fill_treshold", rand_fill_treshold)
 	_scheduled_params.append({"frames": 2, "param": "random", "value": false})
 
 func clear():
