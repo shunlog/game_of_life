@@ -38,7 +38,7 @@ highp float rand(vec2 co)
     highp float c = 43758.5453;
     highp float dt= dot(co.xy ,vec2(a,b));
     highp float sn= mod(dt,3.14);
-    return fract(sin(sn) * c);
+    return fract(sin(sn) * c * TIME);
 }
 
 /**
@@ -96,7 +96,7 @@ bool infected_neighbors(vec2 uv, vec2 sz, sampler2D tex){
             nv.x += float(dx) * sz.x;
             nv.y += float(dy) * sz.y;
             if (infected(texture(tex, nv))){
-                inf = inf || (rand(vec2(TIME, uv.x*uv.y)) < isp);
+                inf = inf || (rand(uv) < isp);
             }
         }
     }
@@ -159,7 +159,7 @@ void fragment() {
     }
     
     if (random){
-        float r = rand(mouse_position * SCREEN_UV);
+        float r = rand(SCREEN_UV);
         COLOR = r < random_fill ? color_alive : color_dead;
     }
     
@@ -176,7 +176,7 @@ void fragment() {
 		} else {
 			c = color_dead;
 		}
-        float r = rand(abs(distance_to_mouse) * SCREEN_UV);
+        float r = rand(SCREEN_UV);
 		if (r < pen_randomness)
         	COLOR = c;
     }
