@@ -21,12 +21,6 @@ func set_GOL_scene(idx: int):
 	add_child(GOL)
 	$HUD.GOL = GOL
 
-func _on_GameOfLife_mouse_entered():
-	$HUD.GOL = $GameOfLife
-
-func _on_GameOfLife2_mouse_entered():
-	$HUD.GOL = $GameOfLife2
-
 func get_scenes_in_dir(path) -> Array:
 	var dir = Directory.new()
 	if dir.open(path) != OK:
