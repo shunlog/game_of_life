@@ -56,6 +56,7 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="GameOfLife" type="Control"]
+mouse_filter = 2
 script = ExtResource( 3 )
 pen_size = 15
 pen_randomness = 0.4

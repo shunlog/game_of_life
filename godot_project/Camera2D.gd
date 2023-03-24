@@ -6,7 +6,7 @@ export var min_zoom := 10.0
 
 var _moveCamera: bool = false;
 
-func _input(event):
+func _unhandled_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_WHEEL_DOWN:
 			zoom_at_point(zoom_mult, event.position)
