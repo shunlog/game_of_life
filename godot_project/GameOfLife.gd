@@ -65,6 +65,7 @@ func _process(delta):
 
 func step():
 	var pos = get_local_mouse_position()
+	pos = Vector2(round(pos.x-.5)+.5, round(pos.y-.5)+.5)
 	_set_shaders_param("mouse_position", pos)
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	_swap()
