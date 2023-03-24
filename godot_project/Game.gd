@@ -5,7 +5,9 @@ var GOL :GameOfLife = null
 
 func _ready():
 	set_GOL_scene(0)
-	
+	populate_GOL_options_menu()
+
+func populate_GOL_options_menu():
 	var idx := 0
 	for s in GOL_scenes:
 		var n = s.split('/')[-1].split('.')[0]
