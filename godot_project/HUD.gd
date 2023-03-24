@@ -14,6 +14,7 @@ func set_GOL(v):
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/ColorPickerButton.color = GOL.colors[2]
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider.value = GOL.infectivity
 	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider.value = GOL.pen_size
+	$Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton.selected = $Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton.get_item_index(GOL.pen_type)
 	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2.value = GOL.pen_randomness
 
 func _on_ButtonClear_button_down():
