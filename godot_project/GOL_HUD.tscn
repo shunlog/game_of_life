@@ -52,13 +52,13 @@ margin_bottom = 55.0
 
 [node name="LabelPaused" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
 margin_top = -1.0
-margin_right = 104.4
+margin_right = 105.4
 margin_bottom = 24.4
-text = "Simulation (p)"
+text = "Simulation (R)"
 
 [node name="CheckButtonSimulation" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
-margin_left = 107.0
-margin_right = 149.0
+margin_left = 108.0
+margin_right = 150.0
 margin_bottom = 25.0
 pressed = true
 script = ExtResource( 2 )
@@ -90,7 +90,7 @@ script = ExtResource( 6 )
 margin_top = 90.0
 margin_right = 270.0
 margin_bottom = 113.0
-text = "Step (s)"
+text = "Step (S)"
 script = ExtResource( 3 )
 
 [node name="FillHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
@@ -102,7 +102,7 @@ margin_bottom = 141.0
 margin_right = 205.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
-text = "Random fill (r)"
+text = "Random fill (F)"
 script = ExtResource( 4 )
 
 [node name="SpinBoxRandFill" type="SpinBox" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
@@ -118,7 +118,7 @@ value = 0.5
 margin_top = 146.0
 margin_right = 270.0
 margin_bottom = 169.0
-text = "Clear (c)"
+text = "Clear (C)"
 script = ExtResource( 5 )
 
 [node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
@@ -176,8 +176,8 @@ value = 0.1
 margin_top = 271.0
 margin_right = 270.0
 margin_bottom = 294.0
-text = "Alive"
-items = [ "Alive", null, false, 1, null, "Dead", null, false, 0, null, "Infected", null, false, 2, null ]
+text = "Alive (A)"
+items = [ "Alive (A)", null, false, 1, null, "Dead (D)", null, false, 0, null, "Infected (I)", null, false, 2, null ]
 selected = 0
 script = ExtResource( 13 )
 
