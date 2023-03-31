@@ -11,10 +11,9 @@
 script = ExtResource( 1 )
 
 [node name="MovableCamera" parent="." instance=ExtResource( 2 )]
-position = Vector2( 242, 182 )
+position = Vector2( -644, 379 )
 zoom = Vector2( 0.5, 0.5 )
 max_zoom = 0.02
-min_zoom = 2.0
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
@@ -62,10 +61,16 @@ margin_right = 240.0
 margin_bottom = 51.0
 text = "Game of Life scene"
 
-[node name="Button" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer"]
+[node name="CenterCameraButton2" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer"]
 margin_top = 54.0
 margin_right = 240.0
 margin_bottom = 77.0
+text = "Center camera"
+
+[node name="Button" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer"]
+margin_top = 80.0
+margin_right = 240.0
+margin_bottom = 103.0
 text = "Show help"
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/Control/VBoxContainer"]
@@ -116,4 +121,5 @@ There are two zones with separate rules and colors, and also a separate type of 
 fit_content_height = true
 
 [connection signal="item_selected" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/CenterCameraButton2" to="." method="_on_CenterCameraButton2_pressed"]
 [connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/Button" to="." method="_on_ShowHelpButton_pressed"]

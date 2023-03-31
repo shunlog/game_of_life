@@ -6,6 +6,9 @@ var GOL :GameOfLife = null
 func _ready():
 	set_GOL_scene(0)
 	populate_GOL_options_menu()
+	
+func _center_camera():
+	$MovableCamera.center_on_rect(Rect2(GOL.rect_position, GOL.rect_size))
 
 func populate_GOL_options_menu():
 	var idx := 0
@@ -20,6 +23,7 @@ func set_GOL_scene(idx: int):
 	GOL = load(GOL_scenes[idx]).instance()
 	add_child(GOL)
 	$HUD/Control/VBoxContainer/MarginContainer/GOLControl.GOL = GOL
+	_center_camera()
 
 func get_scenes_in_dir(path) -> Array:
 	var dir = Directory.new()
@@ -43,3 +47,6 @@ func _on_OptionButton_item_selected(index):
 
 func _on_ShowHelpButton_pressed():
 	$HUD/Control/HelpPopupDialog.show()
+
+func _on_CenterCameraButton2_pressed():
+	_center_camera()
