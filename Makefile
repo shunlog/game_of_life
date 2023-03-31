@@ -9,4 +9,4 @@ exports/html.zip: exports/html
 	zip -r exports/html.zip exports/html
 
 itch: exports/html.zip
-	butler push exports/html.zip shunlog/game-of-life-shader:html
+	butler push exports/html.zip shunlog/gol:html
