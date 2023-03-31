@@ -30,6 +30,7 @@ export var colors := [{true: Color.aqua, false: Color.darkblue},
 					Color.red]
 export var infectivity := .5 setget set_infectivity
 export var bitmap : Texture
+export var conf : Texture
 
 onready var grid_visible := true setget set_grid_visible
 
@@ -37,6 +38,8 @@ onready var grid_visible := true setget set_grid_visible
 # so we schedule them in this array of dicts (see _on_TextureRect_draw) 
 var _scheduled_params := []
 var _t := 0.0
+var _steps := 0
+var _draw := true
 
 func _ready():
 	set_bitmap(bitmap)
@@ -48,6 +51,7 @@ func _ready():
 	_set_shaders_param("pen_randomness", pen_randomness)
 	_set_shaders_param("rand_fill_treshold", rand_fill_treshold)
 	_set_shaders_param("infectivity", infectivity)
+	_setup_conf()
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == BUTTON_RIGHT:
@@ -63,6 +67,13 @@ func _process(delta):
 			_t -= frame_t
 			step()
 
+func _setup_conf():
+	Renderer.texture = conf
+	front.set_update_mode(Viewport.UPDATE_ONCE)
+	yield(VisualServer, "frame_post_draw")
+	Renderer.texture = $Viewport2.get_texture()
+
+	
 func step():
 	var pos = get_local_mouse_position()
 	pos = Vector2(round(pos.x-.5)+.5, round(pos.y-.5)+.5)
@@ -166,6 +177,7 @@ func _arr2bin(a:Array):
 	return b
 
 func _on_TextureRect_draw():
+	_draw = true
 	for d in _scheduled_params:
 		d["frames"] -= 1
 		if d["frames"] == 0:
