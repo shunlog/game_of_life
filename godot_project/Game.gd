@@ -14,7 +14,7 @@ func populate_GOL_options_menu():
 	var idx := 0
 	for s in GOL_scenes:
 		var n = s.split('/')[-1].split('.')[0]
-		$HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/OptionButton.add_item(n, idx)
+		$HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/OptionButton.add_item(n, idx)
 		idx += 1
 
 func set_GOL_scene(idx: int):
