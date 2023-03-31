@@ -37,10 +37,7 @@ var _scheduled_params := []
 var _t := 0.0
 
 func _ready():
-	rect_size = $Bitmap.rect_size
-	$Viewport.size = rect_size
-	$Viewport2.size = rect_size
-	_set_shaders_param("bitmap", $Bitmap.texture)
+	_set_bitmap()
 	_update_rule_params()
 	_update_color_params()
 	_set_shaders_param("paused", paused)
@@ -70,6 +67,12 @@ func step():
 	_set_shaders_param("mouse_position", pos)
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	_swap()
+
+func _set_bitmap():
+	rect_size = $Bitmap.rect_size
+	$Viewport.size = rect_size
+	$Viewport2.size = rect_size
+	_set_shaders_param("bitmap", $Bitmap.texture)
 
 func unpause_one_step():
 	_set_shaders_param("paused", false)
