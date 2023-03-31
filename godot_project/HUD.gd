@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 onready var GOL :GameOfLife setget set_GOL
 

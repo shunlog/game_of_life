@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
 [ext_resource path="res://MovableCamera.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GOL_HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=4]
+[ext_resource path="res://LabelFPS.gd" type="Script" id=5]
+[ext_resource path="res://PopupDialog.gd" type="Script" id=6]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,28 +16,100 @@ zoom = Vector2( 0.5, 0.5 )
 max_zoom = 0.02
 min_zoom = 2.0
 
-[node name="HUD" parent="." instance=ExtResource( 3 )]
+[node name="HUD" type="CanvasLayer" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Control" type="Control" parent="HUD"]
+anchor_bottom = 1.0
+margin_right = 300.0
+theme = ExtResource( 4 )
 
-[node name="Panel" type="Panel" parent="CanvasLayer"]
-anchor_left = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -227.0
-margin_top = 30.0
-margin_right = -27.0
-margin_bottom = -950.0
 
-[node name="VBoxContainer" type="HBoxContainer" parent="CanvasLayer/Panel"]
+[node name="MarginContainer2" type="MarginContainer" parent="HUD/Control/VBoxContainer"]
+margin_right = 300.0
+margin_bottom = 215.0
+size_flags_vertical = 3
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+
+[node name="Panel" type="Panel" parent="HUD/Control/VBoxContainer/MarginContainer2"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 280.0
+margin_bottom = 215.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 52.0
-margin_bottom = -80.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 
-[node name="OptionButton" type="OptionButton" parent="CanvasLayer/Panel/VBoxContainer"]
-margin_right = 152.0
-margin_bottom = 20.0
+[node name="LabelFPS" type="Label" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer"]
+margin_top = -1.0
+margin_right = 240.0
+margin_bottom = 24.4
+text = "FPS"
+script = ExtResource( 5 )
+
+[node name="OptionButton" type="OptionButton" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer"]
+margin_top = 28.0
+margin_right = 240.0
+margin_bottom = 51.0
 text = "Game of Life scene"
 
-[connection signal="item_selected" from="CanvasLayer/Panel/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[node name="Button" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer"]
+margin_top = 54.0
+margin_right = 240.0
+margin_bottom = 77.0
+text = "Show help"
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Control/VBoxContainer"]
+margin_top = 218.0
+margin_right = 300.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+
+[node name="GOLControl" parent="HUD/Control/VBoxContainer/MarginContainer" instance=ExtResource( 3 )]
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 280.0
+margin_bottom = 842.0
+
+[node name="HelpPopupDialog" type="PopupDialog" parent="HUD/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+rect_pivot_offset = Vector2( -1554, 149 )
+theme = ExtResource( 4 )
+script = ExtResource( 6 )
+
+[node name="HelpRichTextLabel" type="RichTextLabel" parent="HUD/Control/HelpPopupDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+bbcode_enabled = true
+bbcode_text = "[center]Help[/center]
+
+- Pan with left click.
+- Draw cells with right click.
+- Zoom in with mouse wheel."
+text = "Help
+
+- Pan with left click.
+- Draw cells with right click.
+- Zoom in with mouse wheel."
+fit_content_height = true
+
+[connection signal="item_selected" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/Button" to="." method="_on_ShowHelpButton_pressed"]

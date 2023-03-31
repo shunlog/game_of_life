@@ -1,0 +1,12 @@
+extends PopupDialog
+
+
+func _ready():
+	show()
+	
+func show():
+	popup_centered(get_viewport_rect().size / 1.5)
+	
+func _input(event):
+	if event is InputEventMouseButton:
+		hide()

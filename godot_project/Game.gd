@@ -11,7 +11,7 @@ func populate_GOL_options_menu():
 	var idx := 0
 	for s in GOL_scenes:
 		var n = s.split('/')[-1].split('.')[0]
-		$CanvasLayer/Panel/VBoxContainer/OptionButton.add_item(n, idx)
+		$HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/OptionButton.add_item(n, idx)
 		idx += 1
 
 func set_GOL_scene(idx: int):
@@ -19,7 +19,7 @@ func set_GOL_scene(idx: int):
 		GOL.queue_free()
 	GOL = load(GOL_scenes[idx]).instance()
 	add_child(GOL)
-	$HUD.GOL = GOL
+	$HUD/Control/VBoxContainer/MarginContainer/GOLControl.GOL = GOL
 
 func get_scenes_in_dir(path) -> Array:
 	var dir = Directory.new()
@@ -40,3 +40,6 @@ func get_scenes_in_dir(path) -> Array:
 
 func _on_OptionButton_item_selected(index):
 	set_GOL_scene(index)
+
+func _on_ShowHelpButton_pressed():
+	$HUD/Control/HelpPopupDialog.show()
