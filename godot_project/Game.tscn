@@ -101,14 +101,18 @@ anchor_bottom = 1.0
 bbcode_enabled = true
 bbcode_text = "[center]Help[/center]
 
-- Pan with left click.
-- Draw cells with right click.
-- Zoom in with mouse wheel."
+- Pan with left click
+- Draw cells with right click
+- Zoom in with mouse wheel
+
+There are two zones with separate rules and colors, and also a separate type of \"infected\" cells that recolor the neighboring normal cells according to a probability. "
 text = "Help
 
-- Pan with left click.
-- Draw cells with right click.
-- Zoom in with mouse wheel."
+- Pan with left click
+- Draw cells with right click
+- Zoom in with mouse wheel
+
+There are two zones with separate rules and colors, and also a separate type of \"infected\" cells that recolor the neighboring normal cells according to a probability. "
 fit_content_height = true
 
 [connection signal="item_selected" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
