@@ -58,3 +58,6 @@ func _on_PenTypeOptionButton_pen_type_changed(id):
 
 func _on_PenRandom_value_changed(value):
 	GOL.pen_randomness = value
+
+func _on_GridCheckButtonSimulation_toggled(button_pressed):
+	GOL.grid_visible = button_pressed

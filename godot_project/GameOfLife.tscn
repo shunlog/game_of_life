@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Renderer.gd" type="Script" id=1]
 [ext_resource path="res://Renderer2.gd" type="Script" id=2]
 [ext_resource path="res://GameOfLife.gd" type="Script" id=3]
 [ext_resource path="res://GameOfLife.shader" type="Shader" id=4]
 [ext_resource path="res://GOL_scenes/bitmaps/earth.png" type="Texture" id=5]
+[ext_resource path="res://Grid.gd" type="Script" id=6]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -105,5 +106,8 @@ visible = false
 margin_right = 800.0
 margin_bottom = 400.0
 texture = ExtResource( 5 )
+
+[node name="Grid" type="Node2D" parent="."]
+script = ExtResource( 6 )
 
 [connection signal="draw" from="TextureRect" to="." method="_on_TextureRect_draw"]

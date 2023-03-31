@@ -1,5 +1,7 @@
 extends Camera2D
 
+signal zoom_changed(v)
+
 export var zoom_mult := 1.1
 export var max_zoom := .2
 var min_zoom := 100.0
@@ -30,6 +32,7 @@ func zoom_at_point(zoom_change, point):
 		return
 	zoom = z1
 	global_position = c1
+	emit_signal("zoom_changed", zoom)
 
 func center_on_rect(r:Rect2):
 	position = (r.position + r.size)/2

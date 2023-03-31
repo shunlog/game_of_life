@@ -120,6 +120,7 @@ text = "Help
 There are two zones with separate rules and colors, and also a separate type of \"infected\" cells that recolor the neighboring normal cells according to a probability. "
 fit_content_height = true
 
+[connection signal="zoom_changed" from="MovableCamera" to="." method="_on_MovableCamera_zoom_changed"]
 [connection signal="item_selected" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/CenterCameraButton2" to="." method="_on_CenterCameraButton2_pressed"]
 [connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/VBoxContainer/Button" to="." method="_on_ShowHelpButton_pressed"]

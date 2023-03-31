@@ -50,3 +50,6 @@ func _on_ShowHelpButton_pressed():
 
 func _on_CenterCameraButton2_pressed():
 	_center_camera()
+
+func _on_MovableCamera_zoom_changed(v):
+	GOL.set_zoom(v)

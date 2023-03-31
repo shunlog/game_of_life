@@ -29,6 +29,7 @@ export var colors := [{true: Color.aqua, false: Color.darkblue},
 					  {true: Color.green, false: Color.darkgreen},
 					Color.red]
 export var infectivity := .5 setget set_infectivity
+onready var grid_visible := true setget set_grid_visible
 
 # some parameters need to be set after a few updates of the shader,
 # so we schedule them in this array of dicts (see _on_TextureRect_draw) 
@@ -123,6 +124,9 @@ func set_infectivity(v):
 	infectivity = v
 	_set_shaders_param("isp", infectivity)
 
+func set_zoom(v: Vector2):
+	$Grid.zoom = v.x
+
 func _update_color_params():
 	_set_shaders_param("color0a", colors[0][true])
 	_set_shaders_param("color0d", colors[0][false])
@@ -159,4 +163,11 @@ func _on_TextureRect_draw():
 		if d["frames"] == 0:
 			_set_shaders_param(d["param"], d["value"])
 			_scheduled_params.erase(d)  # i hope this is safe
+
+func set_grid_visible(v):
+	grid_visible = v
+	if v:
+		$Grid.show()
+	else:
+		$Grid.hide()
 
