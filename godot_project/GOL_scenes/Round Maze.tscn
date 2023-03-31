@@ -70,7 +70,7 @@ false: Color( 0, 0, 0, 1 ),
 true: Color( 0, 0.101961, 1, 1 )
 }, Color( 0, 1, 0.0862745, 1 ) ]
 infectivity = 0.8
-bitmap_path = ExtResource( 2 )
+bitmap = ExtResource( 2 )
 
 [node name="Renderer" parent="Viewport" index="0"]
 material = SubResource( 1 )

@@ -64,4 +64,8 @@ func _on_GridCheckButtonSimulation_toggled(button_pressed):
 
 
 func _on_BitmapFileDialog_file_selected(path):
-	GOL.set_bitmap(path)
+	var img = Image.new()
+	img.load(path)
+	var tex = ImageTexture.new()
+	tex.create_from_image(img)
+	GOL.set_bitmap(tex)

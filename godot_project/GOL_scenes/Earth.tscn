@@ -54,7 +54,7 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="Earth" instance=ExtResource( 1 )]
-bitmap_path = ExtResource( 3 )
+bitmap = ExtResource( 3 )
 
 [node name="Renderer" parent="Viewport" index="0"]
 material = SubResource( 1 )
