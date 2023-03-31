@@ -1,7 +1,7 @@
 extends PopupDialog
 
-
 func _ready():
+	yield(get_tree().root, "ready")
 	show()
 	
 func show():
