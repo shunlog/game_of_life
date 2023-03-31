@@ -61,3 +61,7 @@ func _on_PenRandom_value_changed(value):
 
 func _on_GridCheckButtonSimulation_toggled(button_pressed):
 	GOL.grid_visible = button_pressed
+
+
+func _on_BitmapFileDialog_file_selected(path):
+	GOL.set_bitmap(path)

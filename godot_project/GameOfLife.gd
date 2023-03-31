@@ -29,6 +29,8 @@ export var colors := [{true: Color.aqua, false: Color.darkblue},
 					  {true: Color.green, false: Color.darkgreen},
 					Color.red]
 export var infectivity := .5 setget set_infectivity
+export var bitmap_path : Texture
+
 onready var grid_visible := true setget set_grid_visible
 
 # some parameters need to be set after a few updates of the shader,
@@ -37,7 +39,7 @@ var _scheduled_params := []
 var _t := 0.0
 
 func _ready():
-	_set_bitmap()
+	set_bitmap(bitmap_path.resource_path)
 	_update_rule_params()
 	_update_color_params()
 	_set_shaders_param("paused", paused)
@@ -68,11 +70,19 @@ func step():
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	_swap()
 
-func _set_bitmap():
-	rect_size = $Bitmap.rect_size
-	$Viewport.size = rect_size
-	$Viewport2.size = rect_size
-	_set_shaders_param("bitmap", $Bitmap.texture)
+func set_bitmap(path: String):
+	var img = Image.new()
+	var tex = ImageTexture.new()
+	img.load(path)
+	tex.create_from_image(img)
+	
+	$TextureRect.rect_size = tex.get_size()
+	back.size = tex.get_size() 
+	front.size = tex.get_size()
+	rect_size = tex.get_size()
+	$Grid.update()
+
+	_set_shaders_param("bitmap", tex)
 
 func unpause_one_step():
 	_set_shaders_param("paused", false)

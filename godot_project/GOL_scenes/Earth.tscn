@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GameOfLife.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameOfLife.shader" type="Shader" id=2]
+[ext_resource path="res://GOL_scenes/bitmaps/earth.png" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -53,6 +54,7 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="Earth" instance=ExtResource( 1 )]
+bitmap_path = ExtResource( 3 )
 
 [node name="Renderer" parent="Viewport" index="0"]
 material = SubResource( 1 )

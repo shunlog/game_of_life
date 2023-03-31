@@ -61,6 +61,7 @@ true: Color( 1, 0.231373, 0.890196, 1 )
 false: Color( 0, 0.360784, 0.423529, 1 ),
 true: Color( 0.0823529, 0.854902, 0.87451, 1 )
 }, Color( 1, 0, 0, 1 ) ]
+bitmap_path = ExtResource( 2 )
 
 [node name="Renderer" parent="Viewport" index="0"]
 material = SubResource( 1 )
@@ -70,8 +71,3 @@ material = SubResource( 2 )
 
 [node name="TextureRect" parent="." index="2"]
 texture = SubResource( 3 )
-
-[node name="Bitmap" parent="." index="3"]
-margin_right = 512.0
-margin_bottom = 512.0
-texture = ExtResource( 2 )
