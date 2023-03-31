@@ -1,6 +1,5 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://LabelFPS.gd" type="Script" id=1]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=2]
 [ext_resource path="res://ButtonStep.gd" type="Script" id=3]
 [ext_resource path="res://ButtonRandom.gd" type="Script" id=4]
@@ -39,16 +38,9 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
 
-[node name="LabelFPS" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_right = 380.0
-margin_bottom = 14.0
-text = "FPS"
-script = ExtResource( 1 )
-
 [node name="PauseHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 19.0
 margin_right = 380.0
-margin_bottom = 59.0
+margin_bottom = 40.0
 
 [node name="LabelPaused" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
 margin_top = 13.0
@@ -64,9 +56,9 @@ pressed = true
 script = ExtResource( 2 )
 
 [node name="GridHBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 64.0
+margin_top = 45.0
 margin_right = 380.0
-margin_bottom = 104.0
+margin_bottom = 85.0
 
 [node name="GridLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2"]
 margin_top = 13.0
@@ -82,9 +74,9 @@ pressed = true
 script = ExtResource( 11 )
 
 [node name="SpeedHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 109.0
+margin_top = 90.0
 margin_right = 380.0
-margin_bottom = 125.0
+margin_bottom = 106.0
 
 [node name="LabelSpeed" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer"]
 margin_top = 1.0
@@ -105,16 +97,16 @@ ticks_on_borders = true
 script = ExtResource( 6 )
 
 [node name="ButtonStep" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 130.0
+margin_top = 111.0
 margin_right = 380.0
-margin_bottom = 150.0
+margin_bottom = 131.0
 text = "Step (S)"
 script = ExtResource( 3 )
 
 [node name="FillHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 155.0
+margin_top = 136.0
 margin_right = 380.0
-margin_bottom = 179.0
+margin_bottom = 160.0
 
 [node name="ButtonRandom" type="Button" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_right = 302.0
@@ -133,28 +125,28 @@ step = 0.01
 value = 0.5
 
 [node name="ButtonClear" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 184.0
+margin_top = 165.0
 margin_right = 380.0
-margin_bottom = 204.0
+margin_bottom = 185.0
 text = "Clear (C)"
 script = ExtResource( 5 )
 
 [node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 209.0
+margin_top = 190.0
 margin_right = 380.0
-margin_bottom = 213.0
+margin_bottom = 194.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 218.0
+margin_top = 199.0
 margin_right = 380.0
-margin_bottom = 232.0
+margin_bottom = 213.0
 text = "Pen settings"
 align = 1
 
 [node name="GridBoxContainer" type="GridContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 237.0
+margin_top = 218.0
 margin_right = 380.0
-margin_bottom = 273.0
+margin_bottom = 254.0
 columns = 2
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
@@ -191,23 +183,23 @@ step = 0.1
 value = 0.1
 
 [node name="PenTypeOptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 278.0
+margin_top = 259.0
 margin_right = 380.0
-margin_bottom = 298.0
+margin_bottom = 279.0
 text = "Alive (A)"
 items = [ "Alive (A)", null, false, 1, null, "Dead (D)", null, false, 0, null, "Infected (I)", null, false, 2, null ]
 selected = 0
 script = ExtResource( 13 )
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 303.0
+margin_top = 284.0
 margin_right = 380.0
-margin_bottom = 307.0
+margin_bottom = 288.0
 
 [node name="ZonesRulesTabContainer" type="TabContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 312.0
+margin_top = 293.0
 margin_right = 380.0
-margin_bottom = 424.0
+margin_bottom = 405.0
 
 [node name="Zone0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
 anchor_right = 1.0
