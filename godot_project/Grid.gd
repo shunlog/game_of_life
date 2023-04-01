@@ -12,12 +12,12 @@ func _set_zoom(v):
 func _draw():
 	var sz = get_parent().rect_size
 	if zoom  < .2:
-		for x in range(sz.y):
+		for x in range(sz.y+1):
 			draw_line(Vector2(0, x), Vector2(sz.x, x), Color("#555"), 1.0)
-		for y in range(sz.x):
+		for y in range(sz.x+1):
 			draw_line(Vector2(y, 0), Vector2(y, sz.y), Color("#555"), 1.0)
 	if zoom  < .5:
-		for x in range(0, sz.y, 20):
+		for x in range(0, sz.y+1, 20):
 			draw_line(Vector2(0, x), Vector2(sz.x, x), Color("#eee"), 1.0)
-		for y in range(0, sz.x, 20):
+		for y in range(0, sz.x+1, 20):
 			draw_line(Vector2(y, 0), Vector2(y, sz.y), Color("#eee"), 1.0)
