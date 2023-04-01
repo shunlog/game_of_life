@@ -92,7 +92,6 @@ func set_rect_size(tex: Texture):
 	rect_size = tex.get_size()
 	$Grid.update()
 
-
 func unpause_one_step():
 	_set_shaders_param("paused", false)
 	_scheduled_params.append({"frames": 2, "param": "paused", "value": true})
