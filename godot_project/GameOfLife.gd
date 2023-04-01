@@ -13,6 +13,7 @@ onready var front :Viewport = $Viewport2
 
 export var paused := false
 export var fps := 60
+export var grid_visible := true setget set_grid_visible
 export var glow := true setget set_glow
 export var pen_size := 1 setget set_pen_size
 export var pen_type := 1 setget set_pen_type
@@ -32,8 +33,6 @@ export var colors := [{true: Color.aqua, false: Color.darkblue},
 export var infectivity := .5 setget set_infectivity
 export var bitmap : Texture
 export var conf : Texture
-
-onready var grid_visible := true setget set_grid_visible
 
 # some parameters need to be set after a few updates of the shader,
 # so we schedule them in this array of dicts (see _on_TextureRect_draw) 

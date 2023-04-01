@@ -54,6 +54,7 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="GOL" instance=ExtResource( 2 )]
+grid_visible = false
 glow = false
 pen_size = 100
 pen_type = 0
