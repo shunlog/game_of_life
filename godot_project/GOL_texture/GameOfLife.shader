@@ -42,6 +42,14 @@ highp float rand(vec2 co)
     return fract(sin(sn) * c);
 }
 
+vec2 wrap_vec2(vec2 v){
+	if (v.x < 0.) v.x = 1.;
+	else if (v.x > 1.) v.x = 0.;
+	if (v.y < 0.) v.y = 1.;
+	else if (v.y > 1.) v.y = 0.;
+	return v;
+}
+
 /**
  * Given the current cells state,
  * the count of alive neighbors,
@@ -96,6 +104,7 @@ bool infected_neighbors(vec2 uv, vec2 sz, sampler2D tex){
             vec2 nv = uv;
             nv.x += float(dx) * sz.x;
             nv.y += float(dy) * sz.y;
+			nv = wrap_vec2(nv);
             if (infected(texture(tex, nv))){
                 inf = inf || (rand(uv) < isp);
             }
@@ -113,13 +122,13 @@ int neighbors(vec2 uv, sampler2D tex, vec2 sz){
             vec2 nv = uv;
             nv.x += float(dx) * sz.x;
             nv.y += float(dy) * sz.y;
+			nv = wrap_vec2(nv);
             vec4 col = texture(tex, nv);
             if (alive(col)){
                 cnt += 1;
             }
         }
     }
-
     return cnt;
 }
 
