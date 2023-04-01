@@ -30,6 +30,7 @@ uniform vec4 color2 = vec4(.99, .0, .5, 1.);
 // infection spread probability
 uniform float isp = .5;
 
+const float treshold = 0.1;
 
 highp float rand(vec2 co)
 {
@@ -72,19 +73,19 @@ int next_state(bool alive, int nc, int sr, int br) {
 bool alive(vec4 col){
     return (max(max(abs(col.r - color0a.r),
                     abs(col.g - color0a.g)),
-                abs(col.b - color0a.b)) < 0.01)
+                abs(col.b - color0a.b)) < treshold)
         || (max(max(abs(col.r - color1a.r),
                     abs(col.g - color1a.g)),
-                abs(col.b - color1a.b)) < 0.01)
+                abs(col.b - color1a.b)) < treshold)
 		|| (max(max(abs(col.r - color2.r),
                     abs(col.g - color2.g)),
-                abs(col.b - color2.b)) < 0.01);
+                abs(col.b - color2.b)) < treshold);
 }
 
 bool infected(vec4 col){
 	return (max(max(abs(col.r - color2.r),
                     abs(col.g - color2.g)),
-                abs(col.b - color2.b)) < 0.01);
+                abs(col.b - color2.b)) < treshold);
 }
 
 bool infected_neighbors(vec2 uv, vec2 sz, sampler2D tex){
