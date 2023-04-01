@@ -42,7 +42,11 @@ var _steps := 0
 var _draw := true
 
 func _ready():
-	set_bitmap(bitmap)
+	if bitmap:
+		_set_shaders_param("bitmap", bitmap)
+		set_rect_size(bitmap)
+	else:
+		set_rect_size(conf)
 	_update_rule_params()
 	_update_color_params()
 	_set_shaders_param("paused", paused)
@@ -81,14 +85,13 @@ func step():
 	front.set_update_mode(Viewport.UPDATE_ONCE)
 	_swap()
 
-func set_bitmap(tex: Texture):
+func set_rect_size(tex: Texture):
 	$TextureRect.rect_size = tex.get_size()
 	back.size = tex.get_size() 
 	front.size = tex.get_size()
 	rect_size = tex.get_size()
 	$Grid.update()
 
-	_set_shaders_param("bitmap", tex)
 
 func unpause_one_step():
 	_set_shaders_param("paused", false)
