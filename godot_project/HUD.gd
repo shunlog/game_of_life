@@ -16,6 +16,7 @@ func set_GOL(v):
 	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider.value = GOL.pen_size
 	$Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton.selected = $Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton.get_item_index(GOL.pen_type)
 	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2.value = GOL.pen_randomness
+	$Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2/GridCheckButtonSimulation.pressed = GOL.grid_visible
 
 func _on_ButtonClear_button_down():
 	GOL.clear()
