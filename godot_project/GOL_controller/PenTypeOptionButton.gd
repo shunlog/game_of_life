@@ -1,21 +1,29 @@
 extends OptionButton
 
-signal pen_type_changed(id)
+var GOL : GameOfLife = null
 
-func _ready():
-	pass
+func _on_GOLController_GOL_changed(node):
+	GOL = node
+	self.selected = get_item_index(GOL.pen_type)
 
 func _on_PenTypeOptionButton_item_selected(index):
-	emit_signal("pen_type_changed", get_item_id(index))
+	# the setter is triggered only via code
+	self.selected = index
 
 func _input(event):
 	if event.is_action_pressed("pen_type_alive"):
-		_set_selected(0)
+		self.selected = 0
 	elif event.is_action_pressed("pen_type_dead"):
-		_set_selected(1)
+		self.selected = 1
 	elif event.is_action_pressed("pen_type_infected"):
-		_set_selected(2)
+		self.selected = 2
 
+func _set(property, value):
+	# add setter for inherited var
+	if property == "selected":
+		_set_selected(value)
+	
 func _set_selected(v):
 	selected = v
-	emit_signal("pen_type_changed", get_item_id(v))
+	GOL.pen_type = get_item_id(v)
+

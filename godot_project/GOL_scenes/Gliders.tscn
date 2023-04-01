@@ -54,6 +54,9 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="Default" instance=ExtResource( 2 )]
+grid_visible = false
+pen_size = 1
+pen_randomness = 1.0
 colors = [ {
 false: Color( 0, 0, 0, 1 ),
 true: Color( 1, 1, 1, 1 )

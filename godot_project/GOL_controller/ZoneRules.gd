@@ -1,12 +1,16 @@
 extends PanelContainer
 
-signal rule_changed(pressed, rule, id)
-signal color_changed(state, color)
-
 export var zone := 0
 
 var _checkboxes = {Global.Rules.survival: [], Global.Rules.birth: []}
 
+var GOL : GameOfLife = null
+
+func _on_GOLController_GOL_changed(node):
+	GOL = node
+	set_checkboxes(GOL.rules[zone])
+	set_color(GOL.colors[zone])
+	
 func _ready():
 	_create_checkboxes($VBoxContainer/HBoxContainer/Survival, Global.Rules.survival)
 	_create_checkboxes($VBoxContainer/HBoxContainer/Birth, Global.Rules.birth)
@@ -29,10 +33,10 @@ func set_color(colors):
 	$VBoxContainer/HBoxContainer3/DeadColorPickerButton.color = colors[false]
 
 func _on_cb_toggled(pressed, rule, id):
-	emit_signal("rule_changed", self.zone, pressed, rule, id)
+	GOL.set_rule(zone, pressed, rule, id)
 
 func _on_AliveColorPickerButton_color_changed(color):
-	emit_signal("color_changed", true, color)
+	GOL.set_color(zone, 1, color)
 
 func _on_DeadColorPickerButton_color_changed(color):
-	emit_signal("color_changed", false, color)
+	GOL.set_color(zone, 0, color)

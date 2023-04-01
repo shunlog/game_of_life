@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://GOL_controller/GlowCheckButton.gd" type="Script" id=1]
 [ext_resource path="res://GOL_controller/CheckButtonSimulation.gd" type="Script" id=2]
@@ -13,6 +13,11 @@
 [ext_resource path="res://GOL_controller/ButtonClear.gd" type="Script" id=11]
 [ext_resource path="res://GOL_controller/ButtonStep.gd" type="Script" id=12]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=13]
+[ext_resource path="res://GOL_controller/FillSlider.gd" type="Script" id=14]
+[ext_resource path="res://GOL_controller/PenSizeHSlider.gd" type="Script" id=15]
+[ext_resource path="res://GOL_controller/PenOpacityHSlider.gd" type="Script" id=16]
+[ext_resource path="res://GOL_controller/InfectedColorPickerButton.gd" type="Script" id=17]
+[ext_resource path="res://GOL_controller/InfectedSpreadHSlider.gd" type="Script" id=18]
 
 [node name="GOLController" type="Control"]
 anchor_bottom = 1.0
@@ -56,19 +61,19 @@ margin_bottom = 40.0
 pressed = true
 script = ExtResource( 2 )
 
-[node name="GridHBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+[node name="GridHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 45.0
 margin_right = 380.0
 margin_bottom = 85.0
 hint_tooltip = "Toggle grid [G]"
 
-[node name="GridLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2"]
+[node name="GridLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer"]
 margin_top = 13.0
 margin_right = 27.0
 margin_bottom = 27.0
 text = "Grid"
 
-[node name="GridCheckButtonSimulation" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2"]
+[node name="GridCheckButton" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer"]
 margin_left = 31.0
 margin_right = 107.0
 margin_bottom = 40.0
@@ -142,7 +147,7 @@ margin_top = 181.0
 margin_right = 380.0
 margin_bottom = 201.0
 
-[node name="ButtonRandom" type="Button" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
+[node name="FillButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_right = 188.0
 margin_bottom = 20.0
 hint_tooltip = "Make a portion of cells alive [F]"
@@ -150,7 +155,7 @@ size_flags_horizontal = 3
 text = "Fill"
 script = ExtResource( 4 )
 
-[node name="SliderRandFill" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
+[node name="FillSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_left = 192.0
 margin_right = 380.0
 margin_bottom = 16.0
@@ -160,8 +165,9 @@ max_value = 1.0
 step = 0.001
 value = 0.5
 exp_edit = true
+script = ExtResource( 14 )
 
-[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SliderRandFill"]
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillSlider"]
 visible = false
 margin_right = 24.0
 margin_bottom = 14.0
@@ -224,15 +230,16 @@ margin_right = 49.0
 margin_bottom = 15.0
 text = "Size"
 
-[node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
+[node name="PenSizeHSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
 margin_left = 53.0
 margin_right = 380.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
 value = 1.0
+script = ExtResource( 15 )
 
-[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider"]
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenSizeHSlider"]
 visible = false
 margin_right = 24.0
 margin_bottom = 14.0
@@ -252,7 +259,7 @@ margin_right = 49.0
 margin_bottom = 35.0
 text = "Opacity"
 
-[node name="HSlider2" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
+[node name="PenOpacityHSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
 margin_left = 53.0
 margin_top = 20.0
 margin_right = 380.0
@@ -262,8 +269,9 @@ min_value = 0.1
 max_value = 1.0
 step = 0.1
 value = 0.1
+script = ExtResource( 16 )
 
-[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2"]
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenOpacityHSlider"]
 visible = false
 margin_right = 24.0
 margin_bottom = 14.0
@@ -341,10 +349,11 @@ hint_tooltip = "Color of living infected cells"
 mouse_filter = 1
 text = "Color"
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
+[node name="InfectedColorPickerButton" type="ColorPickerButton" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
 margin_right = 4.0
 margin_bottom = 23.0
 size_flags_horizontal = 3
+script = ExtResource( 17 )
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer"]
 margin_right = 40.0
@@ -355,15 +364,16 @@ margin_right = 6.4
 margin_bottom = 25.4
 text = "Infectivity"
 
-[node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2"]
+[node name="InfectedSpreadHSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2"]
 margin_right = 40.0
 margin_bottom = 13.0
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
 value = 0.5
+script = ExtResource( 18 )
 
-[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider"]
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/InfectedSpreadHSlider"]
 margin_right = 24.0
 margin_bottom = 14.0
 size_flags_horizontal = 4
@@ -376,23 +386,34 @@ __meta__ = {
 "_edit_initialized_": true
 }
 
-[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
-[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2/GridCheckButtonSimulation" to="." method="_on_GridCheckButtonSimulation_toggled"]
-[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="." method="_on_GlowCheckButton_toggled"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="." method="_on_HSliderSpeed_value_changed"]
-[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_pressed"]
-[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/ButtonRandom" to="." method="_on_ButtonRandom_button_down"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SliderRandFill" to="." method="_on_SliderRandFill_value_changed"]
-[connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer/GridCheckButton" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/ButtonStep" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillButton" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillSlider" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/ButtonClear" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenSizeHSlider" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenOpacityHSlider" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/InfectedColorPickerButton" method="_on_GOLController_GOL_changed"]
+[connection signal="GOL_changed" from="." to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/InfectedSpreadHSlider" method="_on_GOLController_GOL_changed"]
+[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" to="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" method="_on_CheckButtonSimulation_toggled"]
+[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer/GridCheckButton" to="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer/GridCheckButton" method="_on_GridCheckButton_toggled"]
+[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" method="_on_GlowCheckButton_toggled"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" method="_on_HSliderSpeed_value_changed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ButtonStep" to="Panel/ScrollContainer/VBoxContainer/ButtonStep" method="_on_ButtonStep_pressed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillButton" to="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillButton" method="_on_FillButton_pressed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillSlider" to="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillSlider" method="_on_FillSlider_value_changed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ButtonClear" to="Panel/ScrollContainer/VBoxContainer/ButtonClear" method="_on_ButtonClear_pressed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" method="_on_LoadBitmapButton_pressed"]
-[connection signal="file_selected" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton/BitmapFileDialog" to="." method="_on_BitmapFileDialog_file_selected"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider" to="." method="_on_pen_size_HSlider_value_changed"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2" to="." method="_on_PenRandom_value_changed"]
+[connection signal="file_selected" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton/BitmapFileDialog" to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" method="_on_BitmapFileDialog_file_selected"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenSizeHSlider" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenSizeHSlider" method="_on_PenSizeHSlider_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenOpacityHSlider" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenOpacityHSlider" method="_on_PenOpacityHSlider_value_changed"]
 [connection signal="item_selected" from="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" to="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" method="_on_PenTypeOptionButton_item_selected"]
-[connection signal="pen_type_changed" from="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" to="." method="_on_PenTypeOptionButton_pen_type_changed"]
-[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone0_color_changed"]
-[connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone_rule_changed"]
-[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone1_color_changed"]
-[connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone_rule_changed"]
-[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/ColorPickerButton" to="." method="_on_infected_color_changed"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_infectivity_value_changed"]
+[connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/InfectedColorPickerButton" to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/InfectedColorPickerButton" method="_on_InfectedColorPickerButton_color_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/InfectedSpreadHSlider" to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/InfectedSpreadHSlider" method="_on_InfectedSpreadHSlider_value_changed"]

@@ -11,7 +11,7 @@ onready var Renderer2 = $Viewport2/Renderer
 onready var back :Viewport = $Viewport
 onready var front :Viewport = $Viewport2
 
-export var paused := false
+export var paused := false setget set_paused
 export var fps := 60
 export var grid_visible := true setget set_grid_visible
 export var glow := true setget set_glow
@@ -31,7 +31,7 @@ export var colors := [{true: Color.aqua, false: Color.darkblue},
 					  {true: Color.green, false: Color.darkgreen},
 					Color.red]
 export var infectivity := .5 setget set_infectivity
-export var bitmap : Texture
+export var bitmap : Texture setget set_bitmap
 export var conf : Texture
 
 # some parameters need to be set after a few updates of the shader,
@@ -71,6 +71,11 @@ func _process(delta):
 			_t -= frame_t
 			step()
 
+func set_bitmap(v):
+	bitmap = v
+	_set_shaders_param("bitmap", bitmap)
+	set_rect_size(bitmap)
+
 func _setup_conf():
 	Renderer.texture = conf
 	front.set_update_mode(Viewport.UPDATE_ONCE)
@@ -86,6 +91,7 @@ func step():
 	_swap()
 
 func set_rect_size(tex: Texture):
+	yield(self, "ready")
 	$TextureRect.rect_size = tex.get_size()
 	back.size = tex.get_size() 
 	front.size = tex.get_size()
@@ -188,10 +194,7 @@ func _on_TextureRect_draw():
 
 func set_grid_visible(v):
 	grid_visible = v
-	if v:
-		$Grid.show()
-	else:
-		$Grid.hide()
+	$Grid.visible = v
 
 func set_glow(v):
 	glow = v
