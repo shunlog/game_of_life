@@ -8,7 +8,7 @@ func _ready():
 	populate_GOL_options_menu()
 	
 func _center_camera():
-	$MovableCamera.center_on_rect(Rect2(GOL.rect_position, GOL.rect_size))
+	$ZoomCamera.center_on_rect(Rect2(GOL.rect_position, GOL.rect_size))
 
 func populate_GOL_options_menu():
 	var idx := 0

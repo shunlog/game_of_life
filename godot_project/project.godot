@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "GameOfLife",
 "language": "GDScript",
-"path": "res://GameOfLife.gd"
+"path": "res://GOL_texture/GameOfLife.gd"
 } ]
 _global_script_class_icons={
 "GameOfLife": ""
@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="My Game of Life"
-run/main_scene="res://Game.tscn"
+run/main_scene="res://main/Main.tscn"
 config/icon="res://icon.png"
 
 [autoload]

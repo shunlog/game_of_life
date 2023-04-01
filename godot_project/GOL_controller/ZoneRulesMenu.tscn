@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://ZoneRules.gd" type="Script" id=1]
+[ext_resource path="res://GOL_controller/ZoneRules.gd" type="Script" id=1]
 
 [node name="Zone 0" type="PanelContainer"]
 margin_right = 245.0
