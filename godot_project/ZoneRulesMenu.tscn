@@ -25,6 +25,8 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Survival"]
 margin_right = 113.0
 margin_bottom = 14.0
+hint_tooltip = "A cell survives if it has this many neighbors"
+mouse_filter = 1
 text = "Survival"
 
 [node name="Birth" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
@@ -36,6 +38,8 @@ size_flags_horizontal = 3
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/Birth"]
 margin_right = 114.0
 margin_bottom = 14.0
+hint_tooltip = "A dead cell becomes alive if it has this many neighbors"
+mouse_filter = 1
 text = "Birth"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
@@ -45,12 +49,14 @@ margin_bottom = 38.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_top = 3.0
-margin_right = 36.0
+margin_right = 32.0
 margin_bottom = 17.0
-text = "Alive:"
+hint_tooltip = "Color of living cells"
+mouse_filter = 1
+text = "Alive"
 
 [node name="AliveColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 40.0
+margin_left = 36.0
 margin_right = 231.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
@@ -62,12 +68,14 @@ margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
-margin_right = 37.0
+margin_right = 33.0
 margin_bottom = 17.0
-text = "Dead:"
+hint_tooltip = "Color of dead cells"
+mouse_filter = 1
+text = "Dead"
 
 [node name="DeadColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer3"]
-margin_left = 41.0
+margin_left = 37.0
 margin_right = 231.0
 margin_bottom = 20.0
 size_flags_horizontal = 3

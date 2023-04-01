@@ -65,7 +65,7 @@ script = ExtResource( 5 )
 margin_top = 28.0
 margin_right = 240.0
 margin_bottom = 51.0
-text = "Game of Life scene"
+hint_tooltip = "Select a preset scene"
 
 [node name="CenterCameraButton2" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 54.0

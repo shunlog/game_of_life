@@ -43,16 +43,17 @@ custom_constants/separation = 5
 [node name="PauseHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_right = 380.0
 margin_bottom = 40.0
+hint_tooltip = "Run the simulation [P]"
 
 [node name="LabelPaused" type="Label" parent="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
 margin_top = 13.0
-margin_right = 88.0
+margin_right = 68.0
 margin_bottom = 27.0
-text = "Simulation (R)"
+text = "Simulation"
 
 [node name="CheckButtonSimulation" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer"]
-margin_left = 92.0
-margin_right = 168.0
+margin_left = 72.0
+margin_right = 148.0
 margin_bottom = 40.0
 pressed = true
 script = ExtResource( 2 )
@@ -61,16 +62,17 @@ script = ExtResource( 2 )
 margin_top = 45.0
 margin_right = 380.0
 margin_bottom = 85.0
+hint_tooltip = "Toggle grid [G]"
 
 [node name="GridLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2"]
 margin_top = 13.0
-margin_right = 83.0
+margin_right = 27.0
 margin_bottom = 27.0
-text = "Show grid (G)"
+text = "Grid"
 
 [node name="GridCheckButtonSimulation" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2"]
-margin_left = 87.0
-margin_right = 163.0
+margin_left = 31.0
+margin_right = 107.0
 margin_bottom = 40.0
 pressed = true
 script = ExtResource( 11 )
@@ -79,16 +81,17 @@ script = ExtResource( 11 )
 margin_top = 90.0
 margin_right = 380.0
 margin_bottom = 130.0
+hint_tooltip = "Toggle glow [W]"
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer"]
 margin_top = 13.0
-margin_right = 36.0
+margin_right = 32.0
 margin_bottom = 27.0
-text = "Glow:"
+text = "Glow"
 
 [node name="GlowCheckButton" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer"]
-margin_left = 40.0
-margin_right = 116.0
+margin_left = 36.0
+margin_right = 112.0
 margin_bottom = 40.0
 script = ExtResource( 15 )
 
@@ -96,6 +99,7 @@ script = ExtResource( 15 )
 margin_top = 135.0
 margin_right = 380.0
 margin_bottom = 151.0
+hint_tooltip = "Simulation steps per second"
 
 [node name="LabelSpeed" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer"]
 margin_top = 1.0
@@ -119,7 +123,8 @@ script = ExtResource( 6 )
 margin_top = 156.0
 margin_right = 380.0
 margin_bottom = 176.0
-text = "Step (S)"
+hint_tooltip = "Simulation step [S]"
+text = "Step"
 script = ExtResource( 3 )
 
 [node name="FillHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
@@ -130,8 +135,9 @@ margin_bottom = 205.0
 [node name="ButtonRandom" type="Button" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_right = 302.0
 margin_bottom = 24.0
+hint_tooltip = "Make a portion of cells alive [F]"
 size_flags_horizontal = 3
-text = "Random fill (F)"
+text = "Fill"
 script = ExtResource( 4 )
 
 [node name="SpinBoxRandFill" type="SpinBox" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
@@ -148,13 +154,15 @@ exp_edit = true
 margin_top = 210.0
 margin_right = 380.0
 margin_bottom = 230.0
-text = "Clear (C)"
+hint_tooltip = "Make all cells dead [C]"
+text = "Clear"
 script = ExtResource( 5 )
 
 [node name="LoadBitmapButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 235.0
 margin_right = 380.0
 margin_bottom = 255.0
+hint_tooltip = "Doesn't work in the browser"
 text = "Load bitmap..."
 script = ExtResource( 1 )
 
@@ -222,8 +230,12 @@ value = 0.1
 margin_top = 329.0
 margin_right = 380.0
 margin_bottom = 349.0
-text = "Alive (A)"
-items = [ "Alive (A)", null, false, 1, null, "Dead (D)", null, false, 0, null, "Infected (I)", null, false, 2, null ]
+hint_tooltip = "Select what type of cells to draw:
+Alive [A]
+Dead [D]
+Infected [I]"
+text = "Alive"
+items = [ "Alive", null, false, 1, null, "Dead", null, false, 0, null, "Infected", null, false, 2, null ]
 selected = 0
 script = ExtResource( 13 )
 
@@ -236,6 +248,7 @@ margin_bottom = 358.0
 margin_top = 363.0
 margin_right = 380.0
 margin_bottom = 475.0
+hint_tooltip = "Modify properties of zones and types of cells"
 
 [node name="Zone0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
 anchor_right = 1.0
@@ -273,7 +286,8 @@ margin_bottom = 40.0
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
 margin_right = 6.4
 margin_bottom = 25.4
-text = "Cell color:"
+hint_tooltip = "Color of living infected cells"
+text = "Color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
 margin_right = 4.0
