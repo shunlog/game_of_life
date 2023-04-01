@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://LoadBitmapButton.gd" type="Script" id=1]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://PenTypeOptionButton.gd" type="Script" id=13]
 [ext_resource path="res://PenRandomLabel.gd" type="Script" id=14]
+[ext_resource path="res://GlowCheckButton.gd" type="Script" id=15]
 
 [node name="HUD" type="Control"]
 anchor_bottom = 1.0
@@ -74,10 +75,27 @@ margin_bottom = 40.0
 pressed = true
 script = ExtResource( 11 )
 
-[node name="SpeedHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+[node name="GlowHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 90.0
 margin_right = 380.0
-margin_bottom = 106.0
+margin_bottom = 130.0
+
+[node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer"]
+margin_top = 13.0
+margin_right = 36.0
+margin_bottom = 27.0
+text = "Glow:"
+
+[node name="GlowCheckButton" type="CheckButton" parent="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer"]
+margin_left = 40.0
+margin_right = 116.0
+margin_bottom = 40.0
+script = ExtResource( 15 )
+
+[node name="SpeedHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
+margin_top = 135.0
+margin_right = 380.0
+margin_bottom = 151.0
 
 [node name="LabelSpeed" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer"]
 margin_top = 1.0
@@ -98,16 +116,16 @@ ticks_on_borders = true
 script = ExtResource( 6 )
 
 [node name="ButtonStep" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 111.0
+margin_top = 156.0
 margin_right = 380.0
-margin_bottom = 131.0
+margin_bottom = 176.0
 text = "Step (S)"
 script = ExtResource( 3 )
 
 [node name="FillHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 136.0
+margin_top = 181.0
 margin_right = 380.0
-margin_bottom = 160.0
+margin_bottom = 205.0
 
 [node name="ButtonRandom" type="Button" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
 margin_right = 302.0
@@ -127,16 +145,16 @@ value = 0.5
 exp_edit = true
 
 [node name="ButtonClear" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 165.0
+margin_top = 210.0
 margin_right = 380.0
-margin_bottom = 185.0
+margin_bottom = 230.0
 text = "Clear (C)"
 script = ExtResource( 5 )
 
 [node name="LoadBitmapButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 190.0
+margin_top = 235.0
 margin_right = 380.0
-margin_bottom = 210.0
+margin_bottom = 255.0
 text = "Load bitmap..."
 script = ExtResource( 1 )
 
@@ -150,21 +168,21 @@ access = 2
 filters = PoolStringArray( "*.png" )
 
 [node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 215.0
+margin_top = 260.0
 margin_right = 380.0
-margin_bottom = 219.0
+margin_bottom = 264.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 224.0
+margin_top = 269.0
 margin_right = 380.0
-margin_bottom = 238.0
+margin_bottom = 283.0
 text = "Pen settings"
 align = 1
 
 [node name="GridBoxContainer" type="GridContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 243.0
+margin_top = 288.0
 margin_right = 380.0
-margin_bottom = 279.0
+margin_bottom = 324.0
 columns = 2
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
@@ -201,23 +219,23 @@ step = 0.1
 value = 0.1
 
 [node name="PenTypeOptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 284.0
+margin_top = 329.0
 margin_right = 380.0
-margin_bottom = 304.0
+margin_bottom = 349.0
 text = "Alive (A)"
 items = [ "Alive (A)", null, false, 1, null, "Dead (D)", null, false, 0, null, "Infected (I)", null, false, 2, null ]
 selected = 0
 script = ExtResource( 13 )
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 309.0
+margin_top = 354.0
 margin_right = 380.0
-margin_bottom = 313.0
+margin_bottom = 358.0
 
 [node name="ZonesRulesTabContainer" type="TabContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 318.0
+margin_top = 363.0
 margin_right = 380.0
-margin_bottom = 430.0
+margin_bottom = 475.0
 
 [node name="Zone0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
 anchor_right = 1.0
@@ -282,6 +300,7 @@ value = 0.5
 
 [connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
 [connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2/GridCheckButtonSimulation" to="." method="_on_GridCheckButtonSimulation_toggled"]
+[connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="." method="_on_GlowCheckButton_toggled"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="." method="_on_HSliderSpeed_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_pressed"]

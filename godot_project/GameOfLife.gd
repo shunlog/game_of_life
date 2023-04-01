@@ -13,6 +13,7 @@ onready var front :Viewport = $Viewport2
 
 export var paused := false
 export var fps := 60
+export var glow := true setget set_glow
 export var pen_size := 1 setget set_pen_size
 export var pen_type := 1 setget set_pen_type
 export var pen_randomness := .5 setget set_pen_randomness
@@ -193,3 +194,6 @@ func set_grid_visible(v):
 	else:
 		$Grid.hide()
 
+func set_glow(v):
+	glow = v
+	$WorldEnvironment.environment.glow_enabled = v

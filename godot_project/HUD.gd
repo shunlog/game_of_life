@@ -17,6 +17,7 @@ func set_GOL(v):
 	$Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton.selected = $Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton.get_item_index(GOL.pen_type)
 	$Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2.value = GOL.pen_randomness
 	$Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2/GridCheckButtonSimulation.pressed = GOL.grid_visible
+	$Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton.pressed = GOL.glow
 
 func _on_ButtonClear_button_down():
 	GOL.clear()
@@ -63,10 +64,12 @@ func _on_PenRandom_value_changed(value):
 func _on_GridCheckButtonSimulation_toggled(button_pressed):
 	GOL.grid_visible = button_pressed
 
-
 func _on_BitmapFileDialog_file_selected(path):
 	var img = Image.new()
 	img.load(path)
 	var tex = ImageTexture.new()
 	tex.create_from_image(img)
 	GOL.set_bitmap(tex)
+
+func _on_GlowCheckButton_toggled(button_pressed):
+	GOL.glow = button_pressed

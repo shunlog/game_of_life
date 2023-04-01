@@ -54,9 +54,9 @@ shader_param/isp = 0.5
 viewport_path = NodePath("Viewport2")
 
 [node name="GOL" instance=ExtResource( 2 )]
-paused = true
+glow = false
 pen_size = 100
-pen_type = 2
+pen_type = 0
 pen_randomness = 1.0
 rand_fill_treshold = 0.01
 rules = [ {
