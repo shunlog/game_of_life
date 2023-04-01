@@ -19,6 +19,7 @@ func populate_GOL_options_menu():
 
 func set_GOL_scene(idx: int):
 	if GOL:
+		remove_child(GOL)
 		GOL.queue_free()
 	GOL = load(GOL_scenes[idx]).instance()
 	add_child(GOL)
