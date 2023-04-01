@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://LoadBitmapButton.gd" type="Script" id=1]
 [ext_resource path="res://CheckButtonSimulation.gd" type="Script" id=2]
@@ -6,15 +6,13 @@
 [ext_resource path="res://ButtonRandom.gd" type="Script" id=4]
 [ext_resource path="res://ButtonClear.gd" type="Script" id=5]
 [ext_resource path="res://HSliderSpeed.gd" type="Script" id=6]
-[ext_resource path="res://LabelSpeed.gd" type="Script" id=7]
-[ext_resource path="res://InfectionLabel.gd" type="Script" id=8]
-[ext_resource path="res://RadiusLabel.gd" type="Script" id=9]
 [ext_resource path="res://HUD.gd" type="Script" id=10]
 [ext_resource path="res://GridCheckButtonSimulation.gd" type="Script" id=11]
 [ext_resource path="res://ZoneRulesMenu.tscn" type="PackedScene" id=12]
 [ext_resource path="res://PenTypeOptionButton.gd" type="Script" id=13]
-[ext_resource path="res://PenRandomLabel.gd" type="Script" id=14]
 [ext_resource path="res://GlowCheckButton.gd" type="Script" id=15]
+[ext_resource path="res://addons/SliderLabel/SliderLabel.gd" type="Script" id=16]
+[ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=17]
 
 [node name="HUD" type="Control"]
 anchor_bottom = 1.0
@@ -106,7 +104,6 @@ margin_top = 1.0
 margin_right = 39.0
 margin_bottom = 15.0
 text = "Speed"
-script = ExtResource( 7 )
 
 [node name="HSliderSpeed" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer"]
 margin_left = 43.0
@@ -119,6 +116,19 @@ value = 60.0
 ticks_on_borders = true
 script = ExtResource( 6 )
 
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed"]
+margin_right = 24.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+theme_type_variation = "SliderLabel"
+text = "100"
+align = 1
+valign = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_initialized_": true
+}
+
 [node name="ButtonStep" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 156.0
 margin_right = 380.0
@@ -130,38 +140,53 @@ script = ExtResource( 3 )
 [node name="FillHBoxContainer" type="HBoxContainer" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 181.0
 margin_right = 380.0
-margin_bottom = 205.0
+margin_bottom = 201.0
 
 [node name="ButtonRandom" type="Button" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
-margin_right = 302.0
-margin_bottom = 24.0
+margin_right = 188.0
+margin_bottom = 20.0
 hint_tooltip = "Make a portion of cells alive [F]"
 size_flags_horizontal = 3
 text = "Fill"
 script = ExtResource( 4 )
 
-[node name="SpinBoxRandFill" type="SpinBox" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
-margin_left = 306.0
+[node name="SliderRandFill" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer"]
+margin_left = 192.0
 margin_right = 380.0
-margin_bottom = 24.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
 min_value = 0.001
 max_value = 1.0
 step = 0.001
 value = 0.5
 exp_edit = true
 
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SliderRandFill"]
+visible = false
+margin_right = 24.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+theme_type_variation = "SliderLabel"
+text = "100"
+align = 1
+valign = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_initialized_": true
+}
+
 [node name="ButtonClear" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 210.0
+margin_top = 206.0
 margin_right = 380.0
-margin_bottom = 230.0
+margin_bottom = 226.0
 hint_tooltip = "Make all cells dead [C]"
 text = "Clear"
 script = ExtResource( 5 )
 
 [node name="LoadBitmapButton" type="Button" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 235.0
+margin_top = 231.0
 margin_right = 380.0
-margin_bottom = 255.0
+margin_bottom = 251.0
 hint_tooltip = "Doesn't work in the browser"
 text = "Load bitmap..."
 script = ExtResource( 1 )
@@ -176,47 +201,59 @@ access = 2
 filters = PoolStringArray( "*.png" )
 
 [node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 260.0
+margin_top = 256.0
 margin_right = 380.0
-margin_bottom = 264.0
+margin_bottom = 260.0
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 269.0
+margin_top = 265.0
 margin_right = 380.0
-margin_bottom = 283.0
+margin_bottom = 279.0
 text = "Pen settings"
 align = 1
 
 [node name="GridBoxContainer" type="GridContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 288.0
+margin_top = 284.0
 margin_right = 380.0
-margin_bottom = 324.0
+margin_bottom = 320.0
 columns = 2
 
 [node name="Label" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
 margin_top = 1.0
-margin_right = 56.0
+margin_right = 49.0
 margin_bottom = 15.0
-text = "Size:"
-script = ExtResource( 9 )
+text = "Size"
 
 [node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
-margin_left = 60.0
+margin_left = 53.0
 margin_right = 380.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
 min_value = 1.0
 value = 1.0
 
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider"]
+visible = false
+margin_right = 24.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+theme = ExtResource( 17 )
+theme_type_variation = "SliderLabel"
+align = 1
+valign = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_initialized_": true
+}
+
 [node name="Label2" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
 margin_top = 21.0
-margin_right = 56.0
+margin_right = 49.0
 margin_bottom = 35.0
-text = "Random:"
-script = ExtResource( 14 )
+text = "Opacity"
 
 [node name="HSlider2" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer"]
-margin_left = 60.0
+margin_left = 53.0
 margin_top = 20.0
 margin_right = 380.0
 margin_bottom = 36.0
@@ -226,10 +263,24 @@ max_value = 1.0
 step = 0.1
 value = 0.1
 
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2"]
+visible = false
+margin_right = 24.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+theme_type_variation = "SliderLabel"
+text = "100"
+align = 1
+valign = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_initialized_": true
+}
+
 [node name="PenTypeOptionButton" type="OptionButton" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 329.0
+margin_top = 325.0
 margin_right = 380.0
-margin_bottom = 349.0
+margin_bottom = 345.0
 hint_tooltip = "Select what type of cells to draw:
 Alive [A]
 Dead [D]
@@ -240,14 +291,14 @@ selected = 0
 script = ExtResource( 13 )
 
 [node name="HSeparator2" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 354.0
+margin_top = 350.0
 margin_right = 380.0
-margin_bottom = 358.0
+margin_bottom = 354.0
 
 [node name="ZonesRulesTabContainer" type="TabContainer" parent="Panel/ScrollContainer/VBoxContainer"]
-margin_top = 363.0
+margin_top = 359.0
 margin_right = 380.0
-margin_bottom = 475.0
+margin_bottom = 471.0
 hint_tooltip = "Modify properties of zones and types of cells"
 
 [node name="Zone0" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer" instance=ExtResource( 12 )]
@@ -287,6 +338,7 @@ margin_bottom = 40.0
 margin_right = 6.4
 margin_bottom = 25.4
 hint_tooltip = "Color of living infected cells"
+mouse_filter = 1
 text = "Color"
 
 [node name="ColorPickerButton" type="ColorPickerButton" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer"]
@@ -302,7 +354,6 @@ margin_bottom = 40.0
 margin_right = 6.4
 margin_bottom = 25.4
 text = "Infectivity"
-script = ExtResource( 8 )
 
 [node name="HSlider" type="HSlider" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2"]
 margin_right = 40.0
@@ -312,21 +363,31 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
+[node name="SliderLabel" type="Label" parent="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider"]
+margin_right = 24.0
+margin_bottom = 14.0
+size_flags_horizontal = 4
+theme_type_variation = "SliderLabel"
+text = "100"
+align = 1
+valign = 1
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_initialized_": true
+}
+
 [connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation" to="." method="_on_CheckButtonSimulation_toggled"]
 [connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GridHBoxContainer2/GridCheckButtonSimulation" to="." method="_on_GridCheckButtonSimulation_toggled"]
 [connection signal="toggled" from="Panel/ScrollContainer/VBoxContainer/GlowHBoxContainer/GlowCheckButton" to="." method="_on_GlowCheckButton_toggled"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="." method="_on_HSliderSpeed_value_changed"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed" to="Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/LabelSpeed" method="_on_HSliderSpeed_value_changed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ButtonStep" to="." method="_on_ButtonStep_pressed"]
 [connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/ButtonRandom" to="." method="_on_ButtonRandom_button_down"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill" to="." method="_on_SpinBoxRandFill_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SliderRandFill" to="." method="_on_SliderRandFill_value_changed"]
 [connection signal="button_down" from="Panel/ScrollContainer/VBoxContainer/ButtonClear" to="." method="_on_ButtonClear_button_down"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" method="_on_LoadBitmapButton_pressed"]
 [connection signal="file_selected" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton/BitmapFileDialog" to="." method="_on_BitmapFileDialog_file_selected"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider" to="." method="_on_pen_size_HSlider_value_changed"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/Label" method="_on_HSlider_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2" to="." method="_on_PenRandom_value_changed"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/HSlider2" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/Label2" method="_on_HSlider2_value_changed"]
 [connection signal="item_selected" from="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" to="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" method="_on_PenTypeOptionButton_item_selected"]
 [connection signal="pen_type_changed" from="Panel/ScrollContainer/VBoxContainer/PenTypeOptionButton" to="." method="_on_PenTypeOptionButton_pen_type_changed"]
 [connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0" to="." method="_on_Zone0_color_changed"]
@@ -335,4 +396,3 @@ value = 0.5
 [connection signal="rule_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1" to="." method="_on_Zone_rule_changed"]
 [connection signal="color_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer/ColorPickerButton" to="." method="_on_infected_color_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider" to="." method="_on_infectivity_value_changed"]
-[connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/HSlider" to="Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Infection/VBoxContainer/HBoxContainer2/Label" method="_on_infectivity_value_changed"]

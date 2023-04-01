@@ -6,7 +6,7 @@ func set_GOL(v):
 	GOL = v
 	$Panel/ScrollContainer/VBoxContainer/PauseHBoxContainer/CheckButtonSimulation.pressed = !GOL.paused
 	$Panel/ScrollContainer/VBoxContainer/SpeedHBoxContainer/HSliderSpeed.set_value(GOL.fps)
-	$Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SpinBoxRandFill.value = GOL.rand_fill_treshold
+	$Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/SliderRandFill.value = GOL.rand_fill_treshold
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0.set_checkboxes(GOL.rules[0])
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone1.set_checkboxes(GOL.rules[1])
 	$Panel/ScrollContainer/VBoxContainer/ZonesRulesTabContainer/Zone0.set_color(GOL.colors[0])
@@ -21,9 +21,6 @@ func set_GOL(v):
 
 func _on_ButtonClear_button_down():
 	GOL.clear()
-
-func _on_SpinBoxRandFill_value_changed(value):
-	GOL.rand_fill_treshold = value
 
 func _on_CheckButtonSimulation_toggled(button_pressed):
 	GOL.set_paused(!button_pressed)
@@ -73,3 +70,6 @@ func _on_BitmapFileDialog_file_selected(path):
 
 func _on_GlowCheckButton_toggled(button_pressed):
 	GOL.glow = button_pressed
+
+func _on_SliderRandFill_value_changed(v):
+	GOL.rand_fill_treshold = v
