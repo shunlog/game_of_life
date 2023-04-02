@@ -12,3 +12,7 @@ func _on_GOLPresetsOptionButton_GOL_changed(node):
 	if not GOL:
 		yield(self, "ready")
 	self.GOL = node
+
+
+func _on_LoadBitmapButton_pressed():
+	pass # Replace with function body.

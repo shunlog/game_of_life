@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://GOL_controller/GlowCheckButton.gd" type="Script" id=1]
 [ext_resource path="res://GOL_controller/CheckButtonSimulation.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://GOL_controller/PenOpacityHSlider.gd" type="Script" id=16]
 [ext_resource path="res://GOL_controller/InfectedColorPickerButton.gd" type="Script" id=17]
 [ext_resource path="res://GOL_controller/InfectedSpreadHSlider.gd" type="Script" id=18]
+[ext_resource path="res://GOL_controller/BitmapFileDialog.gd" type="Script" id=19]
 
 [node name="GOLController" type="Control"]
 anchor_bottom = 1.0
@@ -205,6 +206,7 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.png" )
+script = ExtResource( 19 )
 
 [node name="HSeparator" type="HSeparator" parent="Panel/ScrollContainer/VBoxContainer"]
 margin_top = 256.0
@@ -410,7 +412,7 @@ __meta__ = {
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillButton" to="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillButton" method="_on_FillButton_pressed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillSlider" to="Panel/ScrollContainer/VBoxContainer/FillHBoxContainer/FillSlider" method="_on_FillSlider_value_changed"]
 [connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/ButtonClear" to="Panel/ScrollContainer/VBoxContainer/ButtonClear" method="_on_ButtonClear_pressed"]
-[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" method="_on_LoadBitmapButton_pressed"]
+[connection signal="pressed" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton/BitmapFileDialog" method="_on_LoadBitmapButton_pressed"]
 [connection signal="file_selected" from="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton/BitmapFileDialog" to="Panel/ScrollContainer/VBoxContainer/LoadBitmapButton" method="_on_BitmapFileDialog_file_selected"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenSizeHSlider" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenSizeHSlider" method="_on_PenSizeHSlider_value_changed"]
 [connection signal="value_changed" from="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenOpacityHSlider" to="Panel/ScrollContainer/VBoxContainer/GridBoxContainer/PenOpacityHSlider" method="_on_PenOpacityHSlider_value_changed"]
