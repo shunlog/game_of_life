@@ -61,8 +61,11 @@ background_mode = 4
 background_color = Color( 1, 1, 1, 1 )
 glow_enabled = true
 glow_levels/7 = true
-glow_strength = 0.48
+glow_intensity = 0.43
 glow_blend_mode = 1
+glow_bicubic_upscale = true
+glow_high_quality = true
+adjustment_brightness = 0.62
 
 [node name="GameOfLife" type="Control"]
 modulate = Color( 1.5, 1.5, 1.5, 1 )
@@ -109,7 +112,7 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 3 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color( 1.5, 1.5, 1.5, 1 )
+modulate = Color( 1.2, 1.2, 1.2, 1 )
 mouse_filter = 2
 texture = SubResource( 4 )
 
