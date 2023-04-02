@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GOL_texture/GameOfLife.tscn" type="PackedScene" id=1]
-[ext_resource path="res://GOL_scenes/bitmaps/checker_board.png" type="Texture" id=2]
+[ext_resource path="res://GOL_presets/bitmaps/round_maze.png" type="Texture" id=2]
 [ext_resource path="res://GOL_texture/GameOfLife.shader" type="Shader" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -53,21 +53,21 @@ shader_param/isp = 0.5
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Viewport2")
 
-[node name="Checker Board" instance=ExtResource( 1 )]
-rand_fill_treshold = 0.1
+[node name="Round Maze" instance=ExtResource( 1 )]
+rand_fill_treshold = 0.001
 rules = [ {
 0: [ false, false, true, true, false, false, false, false, false ],
-1: [ false, false, false, true, false, false, false, false, false ]
+1: [ false, false, false, true, false, false, true, false, false ]
 }, {
-0: [ false, false, true, true, false, false, true, false, false ],
-1: [ false, false, false, true, false, false, false, false, false ]
+0: [ false, false, false, false, true, true, true, true, false ],
+1: [ false, false, true, false, true, false, false, false, false ]
 } ]
 colors = [ {
-false: Color( 0.00784314, 0.141176, 0.184314, 1 ),
-true: Color( 0.109804, 0.74902, 0.85098, 1 )
+false: Color( 0, 0, 0, 1 ),
+true: Color( 1, 0, 0, 1 )
 }, {
-false: Color( 0.00392157, 0.168627, 0.0196078, 1 ),
-true: Color( 0.054902, 0.521569, 0.27451, 1 )
+false: Color( 0, 0, 0, 1 ),
+true: Color( 0, 0.101961, 1, 1 )
 }, Color( 0, 1, 0.0862745, 1 ) ]
 infectivity = 0.8
 bitmap = ExtResource( 2 )

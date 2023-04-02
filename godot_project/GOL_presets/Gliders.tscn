@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://GOL_scenes/patterns/gliders.bmp" type="Texture" id=1]
+[ext_resource path="res://GOL_presets/patterns/gliders.bmp" type="Texture" id=1]
 [ext_resource path="res://GOL_texture/GameOfLife.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GOL_texture/GameOfLife.shader" type="Shader" id=3]
 

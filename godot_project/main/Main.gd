@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var GOL_scenes = Global.get_files_in_dir("res://GOL_scenes/", "tscn")
+onready var GOL_scenes = Global.get_files_in_dir("res://GOL_presets/", "tscn")
 var GOL :GameOfLife = null
 
 func _ready():

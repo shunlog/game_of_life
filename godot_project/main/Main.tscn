@@ -117,7 +117,7 @@ bbcode_text = "[center]Help[/center]
 - Zoom in with mouse wheel
 
 There are two zones with separate rules and colors, and also a separate type of \"infected\" cells that recolor the neighboring normal cells according to a probability. "
-text = "Help
+text = "[center]Help[/center]
 
 - Pan with left click
 - Draw cells with right click
