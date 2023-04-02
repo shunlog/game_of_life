@@ -17,4 +17,5 @@ func get_files_in_dir(path: String, ext: String) -> Array:
 			break
 		if !dir.current_is_dir() and fn.split(".")[-1] == ext:
 			ls.append(path + fn)
+	ls.sort()
 	return ls

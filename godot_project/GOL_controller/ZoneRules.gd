@@ -3,7 +3,6 @@ extends PanelContainer
 export var zone := 0
 
 var rules = {Global.Rules.survival: [], Global.Rules.birth: []} setget set_rules
-
 var GOL : GameOfLife = null
 
 func _on_GOLController_GOL_changed(node):

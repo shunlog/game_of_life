@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://main/LabelFPS.gd" type="Script" id=1]
 [ext_resource path="res://DarkTheme/Dark.theme" type="Theme" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://GOL_controller/GOLControl.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/Main.gd" type="Script" id=5]
 [ext_resource path="res://zoom_camera/ZoomCamera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://main/GOLPresetsOptionButton.gd" type="Script" id=7]
 
 [node name="Root" type="Node2D"]
 script = ExtResource( 5 )
@@ -61,19 +62,20 @@ margin_bottom = 24.4
 text = "FPS"
 script = ExtResource( 1 )
 
-[node name="OptionButton" type="OptionButton" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
+[node name="GOLPresetsOptionButton" type="OptionButton" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 28.0
 margin_right = 240.0
 margin_bottom = 51.0
 hint_tooltip = "Select a preset scene"
+script = ExtResource( 7 )
 
-[node name="CenterCameraButton2" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
+[node name="CenterCameraButton" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 54.0
 margin_right = 240.0
 margin_bottom = 77.0
 text = "Center camera"
 
-[node name="Button" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
+[node name="ShowHelpButton" type="Button" parent="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer"]
 margin_top = 80.0
 margin_right = 240.0
 margin_bottom = 103.0
@@ -117,7 +119,7 @@ bbcode_text = "[center]Help[/center]
 - Zoom in with mouse wheel
 
 There are two zones with separate rules and colors, and also a separate type of \"infected\" cells that recolor the neighboring normal cells according to a probability. "
-text = "[center]Help[/center]
+text = "Help
 
 - Pan with left click
 - Draw cells with right click
@@ -126,7 +128,8 @@ text = "[center]Help[/center]
 There are two zones with separate rules and colors, and also a separate type of \"infected\" cells that recolor the neighboring normal cells according to a probability. "
 fit_content_height = true
 
-[connection signal="zoom_changed" from="ZoomCamera" to="." method="_on_MovableCamera_zoom_changed"]
-[connection signal="item_selected" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/OptionButton" to="." method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/CenterCameraButton2" to="." method="_on_CenterCameraButton2_pressed"]
-[connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/Button" to="." method="_on_ShowHelpButton_pressed"]
+[connection signal="GOL_changed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/GOLPresetsOptionButton" to="." method="_on_GOLPresetsOptionButton_GOL_changed"]
+[connection signal="GOL_changed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/GOLPresetsOptionButton" to="HUD/Control/VBoxContainer/MarginContainer/GOLControl" method="_on_GOLPresetsOptionButton_GOL_changed"]
+[connection signal="item_selected" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/GOLPresetsOptionButton" to="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/GOLPresetsOptionButton" method="_on_GOLPresetsOptionButton_item_selected"]
+[connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/CenterCameraButton" to="." method="_on_CenterCameraButton_pressed"]
+[connection signal="pressed" from="HUD/Control/VBoxContainer/MarginContainer2/Panel/ScrollContainer/VBoxContainer/ShowHelpButton" to="HUD/Control/HelpPopupDialog" method="_on_ShowHelpButton_pressed"]

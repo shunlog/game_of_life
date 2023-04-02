@@ -22,7 +22,7 @@ func _ready():
 	for i in range(len(rules_RLE)):
 		var label = rules_RLE[i][0]
 		get_popup().add_item(label, i)
-	get_popup().connect("id_pressed", self, "_popup_menu_id_pressed")
+	var _err = get_popup().connect("id_pressed", self, "_popup_menu_id_pressed")
 
 func _popup_menu_id_pressed(id):
 	var d = _RLE_to_dict(rules_RLE[id][1])
@@ -30,7 +30,7 @@ func _popup_menu_id_pressed(id):
 
 func _RLE_to_dict(r: String):
 	var a = []
-	for i in range(9):
+	for _i in range(9):
 		a.append(false)
 	var d = {Global.Rules.survival: a.duplicate(), Global.Rules.birth: a.duplicate()}
 	for i in  r.split('/')[0].substr(1):

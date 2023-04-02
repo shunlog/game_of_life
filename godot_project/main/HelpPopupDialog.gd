@@ -10,3 +10,6 @@ func show():
 func _input(event):
 	if event is InputEventMouseButton:
 		hide()
+
+func _on_ShowHelpButton_pressed():
+	show()
