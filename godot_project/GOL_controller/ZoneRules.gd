@@ -2,13 +2,13 @@ extends PanelContainer
 
 export var zone := 0
 
-var _checkboxes = {Global.Rules.survival: [], Global.Rules.birth: []}
+var rules = {Global.Rules.survival: [], Global.Rules.birth: []} setget set_rules
 
 var GOL : GameOfLife = null
 
 func _on_GOLController_GOL_changed(node):
 	GOL = node
-	set_checkboxes(GOL.rules[zone])
+	set_rules(GOL.rules[zone])
 	set_color(GOL.colors[zone])
 	
 func _ready():
@@ -21,12 +21,12 @@ func _create_checkboxes(node, rule):
 		cb.text = str(i)
 		node.add_child(cb)
 		cb.connect("toggled", self, "_on_cb_toggled", [rule, i])
-		_checkboxes[rule].append(cb)
+		rules[rule].append(cb)
 
-func set_checkboxes(rules):
+func set_rules(d):
 	for r in [Global.Rules.survival, Global.Rules.birth]:
 		for i in range(9):
-			_checkboxes[r][i].pressed = rules[r][i]
+			rules[r][i].pressed = d[r][i]
 
 func set_color(colors):
 	$VBoxContainer/HBoxContainer2/AliveColorPickerButton.color = colors[true]
@@ -40,3 +40,6 @@ func _on_AliveColorPickerButton_color_changed(color):
 
 func _on_DeadColorPickerButton_color_changed(color):
 	GOL.set_color(zone, 0, color)
+
+func _on_PresetRulesMenuButton_rules_RLE_changed(rules_RLE):
+	self.rules = rules_RLE

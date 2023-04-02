@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://GOL_controller/ZoneRules.gd" type="Script" id=1]
+[ext_resource path="res://GOL_controller/PresetRulesMenuButton.gd" type="Script" id=2]
 
-[node name="Zone 0" type="PanelContainer"]
+[node name="Zone" type="PanelContainer"]
 margin_right = 245.0
 margin_bottom = 177.0
 script = ExtResource( 1 )
@@ -42,10 +43,18 @@ hint_tooltip = "A dead cell becomes alive if it has this many neighbors"
 mouse_filter = 1
 text = "Birth"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="PresetRulesMenuButton" type="MenuButton" parent="VBoxContainer"]
 margin_top = 18.0
 margin_right = 231.0
 margin_bottom = 38.0
+text = "Notable rules"
+flat = false
+script = ExtResource( 2 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 42.0
+margin_right = 231.0
+margin_bottom = 62.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_top = 3.0
@@ -62,9 +71,9 @@ margin_bottom = 20.0
 size_flags_horizontal = 3
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 42.0
+margin_top = 66.0
 margin_right = 231.0
-margin_bottom = 62.0
+margin_bottom = 86.0
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
 margin_top = 3.0
@@ -80,5 +89,6 @@ margin_right = 231.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 
+[connection signal="rules_RLE_changed" from="VBoxContainer/PresetRulesMenuButton" to="." method="_on_PresetRulesMenuButton_rules_RLE_changed"]
 [connection signal="color_changed" from="VBoxContainer/HBoxContainer2/AliveColorPickerButton" to="." method="_on_AliveColorPickerButton_color_changed"]
 [connection signal="color_changed" from="VBoxContainer/HBoxContainer3/DeadColorPickerButton" to="." method="_on_DeadColorPickerButton_color_changed"]
