@@ -36,10 +36,10 @@ func _on_cb_toggled(pressed, rule, id):
 	GOL.set_rule(zone, pressed, rule, id)
 
 func _on_AliveColorPickerButton_color_changed(color):
-	GOL.set_color(zone, 1, color)
+	GOL.set_color(zone, true, color)
 
 func _on_DeadColorPickerButton_color_changed(color):
-	GOL.set_color(zone, 0, color)
+	GOL.set_color(zone, false, color)
 
 func _on_PresetRulesMenuButton_rules_RLE_changed(rules_RLE):
 	self.rules = rules_RLE
