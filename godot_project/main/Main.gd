@@ -14,9 +14,7 @@ func set_GOL(node: GameOfLife):
 	GOL = node
 	add_child(GOL)
 	_center_camera()
-
-func _on_MovableCamera_zoom_changed(v):
-	GOL.set_zoom(v)
+	$ZoomCamera.connect("zoom_changed", GOL, "set_zoom")
 
 func _on_GOLPresetsOptionButton_GOL_changed(node):
 	self.GOL = node
