@@ -117,8 +117,8 @@ void index_uv_to_texture_uv(int index, float u, float v, out float tx, out float
 			y = .0;
 			break;
 	}
-	tx = x + u / 3.;
-	ty = y + v / 2.;
+	tx =  u / 3.;
+	ty =  v / 2.;
 }
 
 
@@ -136,7 +136,7 @@ void vertex() {
 	tex_position = vec2(tx, ty);
 
 	
-	VERTEX = normalize(VERTEX);
+	//VERTEX = normalize(VERTEX);
 }
 
 
