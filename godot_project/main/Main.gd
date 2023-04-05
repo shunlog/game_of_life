@@ -1,9 +1,6 @@
 extends Node2D
 
 var GOL :GameOfLife = null setget set_GOL
-	
-func _center_camera():
-	$ZoomCamera.center_on_rect(Rect2(GOL.rect_position, GOL.rect_size))
 
 func set_GOL(node: GameOfLife):
 	if not GOL:
@@ -16,8 +13,11 @@ func set_GOL(node: GameOfLife):
 	_center_camera()
 	$ZoomCamera.connect("zoom_changed", GOL, "set_zoom")
 
-func _on_GOLPresetsOptionButton_GOL_changed(node):
+func _on_GOLControl_GOL_changed(node):
 	self.GOL = node
 
-func _on_CenterCameraButton_pressed():
+func _on_GOLControl_center_camera():
 	_center_camera()
+
+func _center_camera():
+	$ZoomCamera.center_on_rect(Rect2(GOL.rect_position, GOL.rect_size))

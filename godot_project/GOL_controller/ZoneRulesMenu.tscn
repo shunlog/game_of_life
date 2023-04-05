@@ -51,44 +51,42 @@ text = "Notable rules"
 flat = false
 script = ExtResource( 2 )
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
 margin_top = 42.0
 margin_right = 231.0
-margin_bottom = 62.0
+margin_bottom = 86.0
+columns = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer2"]
+[node name="Label" type="Label" parent="VBoxContainer/GridContainer"]
 margin_top = 3.0
-margin_right = 32.0
+margin_right = 114.0
 margin_bottom = 17.0
 hint_tooltip = "Color of living cells"
 mouse_filter = 1
+size_flags_horizontal = 3
 text = "Alive"
 
-[node name="AliveColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer2"]
-margin_left = 36.0
+[node name="AliveColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/GridContainer"]
+margin_left = 118.0
 margin_right = 231.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 66.0
-margin_right = 231.0
-margin_bottom = 86.0
-
-[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer3"]
-margin_top = 3.0
-margin_right = 33.0
-margin_bottom = 17.0
+[node name="Label2" type="Label" parent="VBoxContainer/GridContainer"]
+margin_top = 27.0
+margin_right = 114.0
+margin_bottom = 41.0
 hint_tooltip = "Color of dead cells"
 mouse_filter = 1
 text = "Dead"
 
-[node name="DeadColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/HBoxContainer3"]
-margin_left = 37.0
+[node name="DeadColorPickerButton" type="ColorPickerButton" parent="VBoxContainer/GridContainer"]
+margin_left = 118.0
+margin_top = 24.0
 margin_right = 231.0
-margin_bottom = 20.0
+margin_bottom = 44.0
 size_flags_horizontal = 3
 
 [connection signal="rules_RLE_changed" from="VBoxContainer/PresetRulesMenuButton" to="." method="_on_PresetRulesMenuButton_rules_RLE_changed"]
-[connection signal="color_changed" from="VBoxContainer/HBoxContainer2/AliveColorPickerButton" to="." method="_on_AliveColorPickerButton_color_changed"]
-[connection signal="color_changed" from="VBoxContainer/HBoxContainer3/DeadColorPickerButton" to="." method="_on_DeadColorPickerButton_color_changed"]
+[connection signal="color_changed" from="VBoxContainer/GridContainer/AliveColorPickerButton" to="." method="_on_AliveColorPickerButton_color_changed"]
+[connection signal="color_changed" from="VBoxContainer/GridContainer/DeadColorPickerButton" to="." method="_on_DeadColorPickerButton_color_changed"]

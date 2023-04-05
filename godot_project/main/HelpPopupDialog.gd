@@ -6,10 +6,6 @@ func _ready():
 	
 func show():
 	popup_centered(get_viewport_rect().size / 1.5)
-	
-#func _input(event):
-#	if event is InputEventMouseButton:
-#		hide()
 
 func _on_ShowHelpButton_pressed():
 	show()

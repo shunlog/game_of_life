@@ -28,8 +28,8 @@ func set_rules(d):
 			rules[r][i].pressed = d[r][i]
 
 func set_color(colors):
-	$VBoxContainer/HBoxContainer2/AliveColorPickerButton.color = colors[true]
-	$VBoxContainer/HBoxContainer3/DeadColorPickerButton.color = colors[false]
+	$VBoxContainer/GridContainer/AliveColorPickerButton.color = colors[true]
+	$VBoxContainer/GridContainer/DeadColorPickerButton.color = colors[false]
 
 func _on_cb_toggled(pressed, rule, id):
 	GOL.set_rule(zone, pressed, rule, id)
