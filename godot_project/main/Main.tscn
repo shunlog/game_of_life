@@ -113,7 +113,7 @@ script = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 bbcode_enabled = true
-bbcode_text = "[center]Useful info here vvv[/center]
+bbcode_text = "[center][rainbow freq=.4 sat=1 val=20]Useful info here vvv[/rainbow][/center]
 
 Start by trying out all the buttons in the UI on the left.
 Hover for a tooltip - it will explain what a button does and what's the shortcut for it.
