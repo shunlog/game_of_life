@@ -450,8 +450,11 @@ anchor_bottom = 1.0
 bbcode_enabled = true
 bbcode_text = "[center][rainbow freq=.4 sat=1 val=20]Useful info here vvv[/rainbow][/center]
 
-Start by trying out all the buttons in the UI on the left.
-Hover for a tooltip - it will explain what a button does and what's the shortcut for it.
+[b]Steps for having FUN:[/b]
+1. Don't follow any steps
+2. Try out all the buttons (read the tooltips)
+3. Try out all the presets
+4. Start playing around with the rules, test each rule set in many ways (e.g. drawing with different brush sizes, random fill, erasing)
 
 [b]Mouse controls:[/b]
 - Pan with left click
@@ -469,8 +472,11 @@ Hover for a tooltip - it will explain what a button does and what's the shortcut
 - Glow [i]uwu[/i]"
 text = "Useful info here vvv
 
-Start by trying out all the buttons in the UI on the left.
-Hover for a tooltip - it will explain what a button does and what's the shortcut for it.
+Steps for having FUN:
+1. Don't follow any steps
+2. Try out all the buttons (read the tooltips)
+3. Try out all the presets
+4. Start playing around with the rules, test each rule set in many ways (e.g. drawing with different brush sizes, random fill, erasing)
 
 Mouse controls:
 - Pan with left click
