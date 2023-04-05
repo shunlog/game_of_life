@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
+[ext_resource path="res://main/Background.gd" type="Script" id=1]
 [ext_resource path="res://themes/DarkTheme/Dark.theme" type="Theme" id=2]
-[ext_resource path="res://GOL_controller/GOLControl.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GOL_controller/GOLController.tscn" type="PackedScene" id=4]
 [ext_resource path="res://main/Main.gd" type="Script" id=5]
 [ext_resource path="res://zoom_camera/ZoomCamera.tscn" type="PackedScene" id=6]
 
@@ -9,7 +10,6 @@
 script = ExtResource( 5 )
 
 [node name="ZoomCamera" parent="." instance=ExtResource( 6 )]
-position = Vector2( -644, 379 )
 zoom = Vector2( 0.5, 0.5 )
 max_zoom = 0.02
 
@@ -17,7 +17,7 @@ max_zoom = 0.02
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD"]
 anchor_bottom = 1.0
-margin_right = 40.0
+margin_right = 300.0
 rect_min_size = Vector2( 300, 0 )
 size_flags_vertical = 3
 size_flags_stretch_ratio = 4.0
@@ -35,6 +35,12 @@ margin_right = 280.0
 margin_bottom = 1060.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="BG" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="Node2D" parent="BG"]
+script = ExtResource( 1 )
 
 [connection signal="GOL_changed" from="HUD/MarginContainer/GOLControl" to="." method="_on_GOLControl_GOL_changed"]
 [connection signal="center_camera" from="HUD/MarginContainer/GOLControl" to="." method="_on_GOLControl_center_camera"]
