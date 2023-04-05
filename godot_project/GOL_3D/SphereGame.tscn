@@ -2,7 +2,7 @@
 
 [ext_resource path="res://GOL_texture/GameOfLife.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GOL_3D/SphereGame.gd" type="Script" id=2]
-[ext_resource path="res://GOL_controller/GOLControl.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GOL_controller/GOLController.tscn" type="PackedScene" id=3]
 [ext_resource path="res://GOL_3D/MeshInstance.gd" type="Script" id=4]
 
 [sub_resource type="ViewportTexture" id=1]

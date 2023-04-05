@@ -47,6 +47,7 @@ text = "Birth"
 margin_top = 18.0
 margin_right = 231.0
 margin_bottom = 38.0
+hint_tooltip = "Some rule sets have been given names, see more on wikipedia (Game of Life # Variations)"
 text = "Notable rules"
 flat = false
 script = ExtResource( 2 )
